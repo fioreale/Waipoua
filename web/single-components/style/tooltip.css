@@ -1,0 +1,32 @@
+.tooltip-base {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-base .tooltiptext {
+    visibility: hidden;
+    width:120%;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 10%;
+}
+/* Creates the arrow pointing down on the tooltip*/
+.tooltip-base .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip-base:hover .tooltiptext {
+    visibility: visible;
+}

@@ -1,0 +1,42 @@
+.person-description {
+    padding-left: 20%;
+}
+
+.content-block {
+    margin: 1em;
+    margin-left: 2em;
+    padding-bottom: 0.5em;
+    align-content: center;
+}
+
+.titleParagraph {
+    font-size: 1.5em !important;
+}
+
+.description, .list-of-links, .contacts {
+    padding-top: 0.5em;
+    padding-left: 2em;
+}
+
+.transition-link {
+    margin-right: 0.25em;
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
+    position: relative;
+    bottom: 19%;
+}
+
+.title-contact, .content-contact {
+    font-size: 1em !important;
+}
+
+.title-contact {
+    font-weight: 500;
+}
+#tooltip {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}

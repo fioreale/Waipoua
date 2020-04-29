@@ -38,7 +38,18 @@
     }
     
     .active {
-        background-color: rgb(235, 192, 0)!important;
+        background-color: rgb(235, 192, 0) !important;
         border-color: rgb(235, 192, 0)!important;
         color: black!important
+    }
+
+    /* Tooltip colors */
+
+    .tooltip-base .tooltiptext {
+        background-color: rgb(235, 192, 0)!important;
+        color: black!important;
+    }
+
+    .tooltip-base .tooltiptext::after {
+        border-color: rgb(235, 192, 0) transparent transparent transparent !important;
     }

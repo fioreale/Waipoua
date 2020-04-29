@@ -8,28 +8,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./style/colors.css">
     <link rel="stylesheet" href="./style/paragraphs.css">
-    <link rel="stylesheet" href="./style/images.css">
-    <title>Navbar</title>
+    <link rel="stylesheet" href="./style/tooltip.css">
+
+
+    <title>Paragraph and Inputs</title>
 
     <!-- Favicon (browser tab icon) -->
     <link rel="icon" href="./img/logo.png">
 </head>
-
-
 <body>
+<div class="person-description">
+    <div class="content-block">
+        <div class="display-4 titleParagraph">Description:</div>
+        <p class="description display-4 content-contact text-justify">
+            This is the description of the person; we will describe here the studies of the person, her passions
+            and her role inside the association.<br>
+            This is the description of the person; we will describe here the studies of the person, her passions
+            and her role inside the association.<br>
+            This is the description of the person; we will describe here the studies of the person, her passions
+            and her role inside the association.<br>
+            This is the description of the person; we will describe here the studies of the person, her passions
+            and her role inside the association.<br>
+            This is the description of the person; we will describe here the studies of the person, her passions
+            and her role inside the association.<br>
+        </p>
+    </div>
+
+    <div class="content-block">
+        <div class="display-4 titleParagraph">Services:</div>
+        <a class="list-of-links list-inline">
+            <a class=" tooltip-base badge-pill btn btn-outline-success list-inline-item transition-link" href="#">
+                Service1 with tooltip
+                <span class="tooltiptext">Tooltip text</span></a>
+
+            <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service 2</a>
+
+            <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service 3</a>
+            </ul>
+    </div>
 
 
+    <div class="content-block">
+        <div class="display-4 titleParagraph">Events:</div>
+        <ul class="list-of-links list-unstyled">
+            <li><a class="badge-pill btn btn-outline-success transition-link" href="#">Event 1</a></li>
+            <li><a class="badge-pill btn btn-outline-success transition-link" href="#">Event 2</a></li>
+            <li><a class="badge-pill btn btn-outline-success transition-link" href="#">Event 3</a></li>
+        </ul>
+    </div>
+
+    <div class="content-block">
+        <div class="display-4 titleParagraph">Contacts</div>
+        <dl class="row contacts">
+            <dt class="col-sm-2 display-4 title-contact">Phone number:</dt>
+            <dd class="col-sm-10 display-4 content-contact">+39 1234567</dd>
+
+            <dt class="col-sm-2 display-4 title-contact">Waipoua e-mail:</dt>
+            <dd class="col-sm-10 display-4 content-contact">name.surname@waipoua.it</dd>
+
+            <dt class="col-sm-2 display-4 title-contact">Personal e-mail:</dt>
+            <dd class="col-sm-10 display-4 content-contact">name.surname@waipoua.it</dd>
+        </dl>
+    </div>
+
+
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
