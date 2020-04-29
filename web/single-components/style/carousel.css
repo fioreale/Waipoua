@@ -1,0 +1,14 @@
+.slideshow {
+    padding-left: 15em;
+    padding-right: 15em;
+}
+
+.carousel-indicator-round {
+    width: 18px!important;
+    height: 18px!important;
+}
+
+.control-arrow {
+    font-size: 3em;
+    border-radius: 100%;
+}
