@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style/applyForm.css">
+    <link rel="icon" href="./img/logo.png">
 </head>
 <body>
-<div class="d-flex justify-content-md-around color2">
 
-    <div class="d-flex flex-column bd-highlight mb-1">
+<!--classic representation-->
+<div class="d-flex justify-content-around color2">
+
+    <div class="d-flex flex-column bd-highlight mb-1 align-self-center">
         <div class="p-2 bd-highlight">
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="allRadio" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="allRadio">All</label>
+                <input type="radio" id="allRadio1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="allRadio1">All</label>
             </div>
         </div>
     </div>
@@ -21,8 +24,8 @@
     <div class="d-flex flex-column bd-highlight mb-2">
         <div class="p-2 bd-highlight">
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="monthRadio" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="monthRadio">Select by month</label>
+                <input type="radio" id="monthRadio1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="monthRadio1">Select by month</label>
             </div>
         </div>
         <div class="p-2 bd-highlight">
@@ -46,9 +49,9 @@
 
     <div class="d-flex flex-column bd-highlight mb-2">
         <div class="p-2 bd-highlight">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="categoryRadio" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="categoryRadio">Select by category</label>
+            <div class="custom-control custom-radio custom-control-inline ">
+                <input type="radio" id="categoryRadio1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="categoryRadio1">Select by category</label>
             </div>
         </div>
         <div class="p-2 bd-highlight">
@@ -63,11 +66,80 @@
         </div>
     </div>
     <div class="d-flex flex-column bd-highlight mb-1 align-self-center">
-        <div class="p-2 bd-highlight">
+        <div class="p-2 bd-highlight classic-screen-rep">
             <input class="btn btn-primary btn-lg" type="submit" value="Apply">
         </div>
     </div>
 </div>
+
+<!--little screen representation-->
+<!--<div class = "container-fluid">
+    <div class="row">
+
+        <div class="col-md color2">
+            <div class = "col-md">
+                <div class="custom-control custom-radio custom-control-inline little-screen-rep">
+                    <input type="radio" id="allRadio2" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="allRadio2">All</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md color2">
+            <div class = "col-md">
+                <div class="custom-control custom-radio custom-control-inline little-screen-rep">
+                    <input type="radio" id="monthRadio2" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="monthRadio2">Select by month</label>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class = "col-md little-screen-rep">
+                <select class="custom-select">
+                    <option selected>Select a month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md color2">
+            <div class = "col-md">
+                <div class="custom-control custom-radio custom-control-inline little-screen-rep">
+                    <input type="radio" id="categoryRadio2" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="categoryRadio2">Select by category</label>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class = "col-md little-screen-rep">
+                <select class="custom-select">
+                    <option selected>Select a category</option>
+                    <option value="1">Animal protection</option>
+                    <option value="2">Forest protection</option>
+                    <option value="3">Pollution</option>
+                    <option value="4">Fund raising</option>
+                    <option value="5">Association promotion</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md color2">
+            <div class="col-md appl-btn little-screen-rep">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Apply</button>
+            </div>
+        </div>
+
+    </div>
+</div>-->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

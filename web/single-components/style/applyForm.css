@@ -1,6 +1,8 @@
 .btn {
     background-color: rgb(235, 192, 0);
     color: black;
+    padding-left: 3em;
+    padding-right: 3em;
 }
 
 .color2 {
