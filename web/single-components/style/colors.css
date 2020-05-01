@@ -63,3 +63,30 @@
     .color2 {
         background-color: rgb(14, 61, 26);
     }
+    /*********************************************************************************************************/
+    /*                                                Tab colors                                             */
+    /*********************************************************************************************************/
+    .nav-tabs{
+        background-color: white;
+    }
+    .nav-item .active {
+        background-color: #325c32;
+    }
+    .tab-content-line{
+        background-color:#325c32;
+        padding:0.1em;
+    }
+    div.active{
+        background-color: #325c32!important;
+        border-color:#325c32!important;
+        color:white!important;
+    }
+
+    div.standard{
+        color:#325c32;
+    }
+
+    .tab-body{
+        background-color:white;
+        color:black;
+    }
