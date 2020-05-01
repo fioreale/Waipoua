@@ -1,16 +1,4 @@
     /*Colors for the grid*/
-    
-    .color1 {
-        background-color: rgb(111, 79, 153);
-    }
-    
-    .color2 {
-        background-color: rgb(59, 136, 82);
-    }
-    
-    .color3 {
-        background-color: rgb(51, 170, 190);
-    }
     /*Navbar colors*/
     
     .bg-navbar {
@@ -52,4 +40,8 @@
 
     .tooltip-base .tooltiptext::after {
         border-color: rgb(235, 192, 0) transparent transparent transparent !important;
+    }
+
+    .color2 {
+        background-color: rgb(14, 61, 26);
     }
