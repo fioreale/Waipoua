@@ -1,4 +1,16 @@
-.group-link {
-    font-size:1.7em;
-    font-weight:100;
+.group-footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.group-footer a:link {
+    text-decoration: none;
+}
+
+.group-footer a:visited {
+    text-decoration: none;
+}
+
+.group-footer a:active {
+    text-decoration: underline;
 }

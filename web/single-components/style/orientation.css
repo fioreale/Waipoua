@@ -1,25 +1,30 @@
 
 li a {
-    color: white;
+    color: rgb(14, 61, 26);
     font-weight: bold;
     font-size: 1em;
 }
 
 li a:hover {
-    color: white;
+    color: #757575;
 }
 
 .breadcrumb-item.active {
-    color: white;
+    color: #757575;
 }
 
 .breadcrumb {
-    background-color: rgba(14, 61, 26, 0.8);
+    background-color: white;
+    border-color: rgb(14, 61, 26);
+    border-radius: 0;
+    border-bottom-style: solid;
+    border-bottom-width: medium;
 }
+
 
 .breadcrumb-item + .breadcrumb-item::before {
     display: inline-block;
     padding-right: .5rem;
-    color: white;
+    color: rgb(14, 61, 26);
     content: "/";
 }

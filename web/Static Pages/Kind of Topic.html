@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="../single-components/img/logo.png">
+    <link rel="stylesheet" href="../single-components/style/navbar.css">
+    <link rel="stylesheet" href="../single-components/style/images.css">
+    <link rel="stylesheet" href="../single-components/style/jumbotron.css">
+    <link rel="stylesheet" href="../single-components/style/orientation.css">
+    <link rel="stylesheet" href="../single-components/style/paragraphs.css">
+    <link rel="stylesheet" href="../single-components/style/tooltip.css">
+    <link rel="stylesheet" href="../single-components/style/groupNavigationBar.css">
+    <link rel="stylesheet" href="../single-components/style/colors.css">
+    <title>Event Topic</title>
+</head>
+<body>
+<!--NavBar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+        <img src="../single-components/img/logo.png" id="logo_img" alt="Waipoua Brand">
+    </a>
+
+    <!-- Navbar toggler (appears with small-width screens) -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navigation Bar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Landmarks of the navbar -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav ">
+            <a class="nav-link active landmark " href="#">Home </a>        <!-- Link to Home -->
+            <a class="nav-link landmark" href="#">Services</a>        <!-- Link to All Services -->
+            <a class="nav-link landmark" href="#">Events</a>            <!-- Link to All Events -->
+            <a class="nav-link landmark" href="#">People</a>            <!-- Link to All People -->
+            <a class="nav-link landmark" href="#">Contacts</a>        <!-- Link to Contacts -->
+        </div>
+
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link" id="Support" href="#">Support us</a>        <!-- Link to Support -->
+        </div>
+
+    </div>
+
+
+</nav>
+<!--JumboTron-->
+<div class="jumbotron jumbotron-fluid jumbotron-background">
+    <div class="container">
+        <h1 class="display-1 title">All events</h1>
+    </div>
+</div>
+<!--Orientation Info-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item non-active"><a href="#">Home</a></li>
+        <li class="breadcrumb-item non-active"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+</nav>
+<!--paragraph-->
+<div class="d-flex justify-content-center" id="parag_sample">
+    <div class="d-flex flex-column bd-highlight mb-4 person-description">
+        <div class="p-2 bd-highlight">
+            <div class="col">
+                <div class="content-block">
+                    <h1 class="display-4 titleParagraph">Description:</h1>
+                    <p class="description display-4 content-contact">
+                        This is the description of the person; we will describe here the studies of the person, her
+                        passions
+                        and her role inside the association.<br>
+                        This is the description of the person; we will describe here the studies of the person, her
+                        passions
+                        and her role inside the association.<br>
+                        This is the description of the person; we will describe here the studies of the person, her
+                        passions
+                        and her role inside the association.<br>
+                        This is the description of the person; we will describe here the studies of the person, her
+                        passions
+                        and her role inside the association.<br>
+                        This is the description of the person; we will describe here the studies of the person, her
+                        passions
+                        and her role inside the association.<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-2 bd-highlight">
+            <div class="col">
+                <div class="content-block">
+                    <div class="display-4 titleParagraph">Services:</div>
+
+                    <div class="d-flex">
+                        <div class="d-flex flex-row bd-highlight mb-3 list-of-links align-self-center">
+                            <div class="p-2 bd-highlight">
+                                <a class=" tooltip-base badge-pill btn btn-outline-success list-inline-item transition-link"
+                                   href="#">
+                                    Service1 with tooltip
+                                    <span class="tooltiptext">Tooltip text</span></a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service
+                                    2</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service
+                                    3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<a class="list-of-links list-inline align-items-center">
+                        <a class=" tooltip-base badge-pill btn btn-outline-success list-inline-item transition-link" href="#">
+                            Service1 with tooltip
+                            <span class="tooltiptext">Tooltip text</span></a>
+                        <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service 2</a>
+                        <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service 3</a>
+                    </a>-->
+                </div>
+                <!--<a class="list-of-links list-inline align-items-center">
+                    <a class=" tooltip-base badge-pill btn btn-outline-success list-inline-item transition-link" href="#">
+                        Service1 with tooltip
+                        <span class="tooltiptext">Tooltip text</span></a>
+                    <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service 2</a>
+                    <a class="badge-pill btn btn-outline-success list-inline-item transition-link" href="#">Service 3</a>
+                </a>-->
+            </div>
+
+            <div class="p-2 bd-highlight">
+                <div class="col">
+                    <div class="content-block">
+                        <div class="display-4 titleParagraph">Events:</div>
+
+                        <div class="d-flex">
+                            <div class="d-flex flex-column bd-highlight mb-3 list-of-links align-self-center">
+                                <div class="p-2 bd-highlight">
+                                    <a class="badge-pill btn btn-outline-success transition-link" href="#">Event 1</a>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <a class="badge-pill btn btn-outline-success transition-link" href="#">Event 2</a>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <a class="badge-pill btn btn-outline-success transition-link" href="#">Event 3</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<ul class="list-of-links list-unstyled">
+                            <li><a class="badge-pill btn btn-outline-success transition-link" href="#">Event 1</a></li>
+                            <li><a class="badge-pill btn btn-outline-success transition-link" href="#">Event 2</a></li>
+                            <li><a class="badge-pill btn btn-outline-success transition-link" href="#">Event 3</a></li>
+                        </ul>-->
+
+                    </div>
+                </div>
+
+                <div class="p-2 bd-highlight">
+                    <div class="col">
+                        <div class="content-block">
+                            <div class="display-4 titleParagraph">Contacts</div>
+                            <dl class="row contacts">
+                                <dt class="col-sm-2 display-4 title-contact">Phone number:</dt>
+                                <dd class="col-sm-10 display-4 content-contact">+39 1234567</dd>
+
+                                <dt class="col-sm-2 display-4 title-contact">Waipoua e-mail:</dt>
+                                <dd class="col-sm-10 display-4 content-contact">name.surname@waipoua.it</dd>
+
+                                <dt class="col-sm-2 display-4 title-contact">Personal e-mail:</dt>
+                                <dd class="col-sm-10 display-4 content-contact">name.surname@waipoua.it</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--groupOrientation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+    <!-- Landmarks of the navbar -->
+    <div class="navbar-nav mx-auto">
+        <a class="nav-link landmark group-link group-footer" href="#" aria-label="Previous Button"> << Prev</a>
+        <!-- Link to Home -->
+        <a class="nav-link landmark group-link group-footer" href="#" aria-label="Next Button">Next >></a>
+        <!-- Link to Support -->
+    </div>
+
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
