@@ -31,8 +31,26 @@
         color: black!important
     }
 
+    .title{
+        color:white;
+    }
+
+    .jumbotron-background{
+        background-color:black;
+    }
+
     /* Tooltip colors */
 
+    .btn-outline-success{
+        color:rgb(14, 61, 26)!important;
+        border-color: rgb(14, 61, 26)!important;
+    }
+
+    .btn-outline-success:hover {
+        background-color:rgb(137, 183, 88) !important;
+        color:black!important;
+        border-color: rgb(137, 183, 88) !important;
+    }
     .tooltip-base .tooltiptext {
         background-color: rgb(235, 192, 0)!important;
         color: black!important;
