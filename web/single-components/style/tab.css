@@ -1,0 +1,16 @@
+.color2 {
+    background-color: rgb(59, 136, 82);
+    color: white;
+}
+
+.color2 > .nav-link {
+    color: white;
+}
+
+.color1 {
+    background-color: rgb(235, 192, 0);
+}
+
+.color1 > .nav-link {
+    color: black;
+}

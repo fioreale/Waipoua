@@ -1,10 +1,16 @@
 .btn {
     background-color: rgb(235, 192, 0);
     color: black;
-    padding-left: 3em;
-    padding-right: 3em;
 }
 
 .color2 {
     background-color: rgb(59, 136, 82);
+}
+
+/*responsive screen */
+@media (min-width: 800px) {
+    .btn {
+        padding-left: 3em;
+        padding-right: 3em;
+    }
 }

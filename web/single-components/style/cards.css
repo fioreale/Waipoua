@@ -3,4 +3,8 @@
     background-color: rgb(235, 192, 0);
 }
 
-
+@media (min-width: 1000px) {
+    .card {
+        width: 20em;
+    }
+}
