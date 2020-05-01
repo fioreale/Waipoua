@@ -1,92 +1,124 @@
-    /*Colors for the grid*/
-    /*Navbar colors*/
-    
-    .bg-navbar {
-        background-color: rgb(14, 61, 26)!important;
-    }
-    
-    .landmark {
-        color: white!important
-    }
-    
-    #Support {
-        background-color: rgb(235, 192, 0);
-        color: black;
-    }
-    /* Carousel control icons colors (fill color in the url)*/
-    
-    .carousel-indicator-round {
-        background-color: black!important;
-        border-color: white!important;
-    }
-    
-    .control-arrow {
-        color: black!important;
-        background-color: rgba(255, 255, 255, 1)!important;
-    }
-    
-    a.active {
-        background-color: rgb(137, 183, 88) !important;
-        border-color: rgb(137, 183, 88) !important;
-        color: black!important
-    }
+/*********************************************************************************************************/
+/*                                                Common                                                 */
+/*********************************************************************************************************/
 
-    .title{
-        color:white;
-    }
+/*Background and border for active elements (active landmarks, selector of carousel)*/
+a.active {
+    background-color: rgb(137, 183, 88) !important;
+    border-color: rgb(137, 183, 88) !important;
+    color: black !important
+}
 
-    .jumbotron-background{
-        background-color:red;
-    }
+/*********************************************************************************************************/
+/*                                                Navbar                                                 */
+/*********************************************************************************************************/
 
-    /* Tooltip colors */
+/*Navbar background*/
+.bg-navbar {
+    background-color: rgb(14, 61, 26) !important;
+}
 
-    .btn-outline-success{
-        color:rgb(14, 61, 26)!important;
-        border-color: rgb(14, 61, 26)!important;
-    }
+/*Text color of the the navbar links(when not active)*/
+.landmark {
+    color: white !important
+}
 
-    .btn-outline-success:hover {
-        background-color:rgb(137, 183, 88) !important;
-        color:black!important;
-        border-color: rgb(137, 183, 88) !important;
-    }
-    .tooltip-base .tooltiptext {
-        background-color: rgb(235, 192, 0)!important;
-        color: black!important;
-    }
+/*Support button colors*/
+#Support {
+    background-color: rgb(235, 192, 0);
+    color: black;
+}
 
-    .tooltip-base .tooltiptext::after {
-        border-color: rgb(235, 192, 0) transparent transparent transparent !important;
-    }
+/*********************************************************************************************************/
+/*                                                Carousel                                               */
+/*********************************************************************************************************/
 
-    .color2 {
-        background-color: rgb(14, 61, 26);
-    }
-    /*********************************************************************************************************/
-    /*                                                Tab colors                                             */
-    /*********************************************************************************************************/
-    .nav-tabs{
-        background-color: white;
-    }
-    .nav-item .active {
-        background-color: #325c32;
-    }
-    .tab-content-line{
-        background-color:#325c32;
-        padding:0.1em;
-    }
-    div.active{
-        background-color: #325c32!important;
-        border-color:#325c32!important;
-        color:white!important;
-    }
+/* Colors of inactive round carousel indocator*/
+.carousel-indicator-round {
+    background-color: black !important;
+    border-color: white !important;
+}
 
-    div.standard{
-        color:#325c32;
-    }
+/* Colors of arrows to control the carousel navigation*/
+.control-arrow {
+    color: black !important;
+    background-color: rgba(255, 255, 255, 1) !important;
+}
 
-    .tab-body{
-        background-color:white;
-        color:black;
-    }
+/*********************************************************************************************************/
+/*                                                Jumbotron                                              */
+/*********************************************************************************************************/
+
+/*Text over the image*/
+.title {
+    color: white;
+}
+
+/* Background color behind the image (debug purpose)*/
+.jumbotron-background {
+    background-color: red;
+}
+
+/*********************************************************************************************************/
+/*                                                Tooltip                                                */
+/*********************************************************************************************************/
+
+/* Tooltip background colour*/
+.tooltip-base .tooltiptext {
+    background-color: rgb(235, 192, 0) !important;
+    color: black !important;
+}
+
+/*Tooltip arrow*/
+.tooltip-base .tooltiptext::after {
+    border-color: rgb(235, 192, 0) transparent transparent transparent !important;
+}
+
+/*********************************************************************************************************/
+/*                                  Filter form for group pages                                          */
+/*********************************************************************************************************/
+.filter-form {
+    background-color: rgb(14, 61, 26);
+}
+
+/*********************************************************************************************************/
+/*                                          Link colors                                                  */
+/*********************************************************************************************************/
+
+/* Color of the transition link buttons (eg services, events)*/
+.btn-outline-success {
+    color: rgb(14, 61, 26) !important;
+    border-color: rgb(14, 61, 26) !important;
+}
+/* Color of the transition link buttons (eg services, events) when mouse is over the link*/
+.btn-outline-success:hover {
+    background-color: rgb(137, 183, 88) !important;
+    color: black !important;
+    border-color: rgb(137, 183, 88) !important;
+}
+
+
+/*********************************************************************************************************/
+/*                                                Tab colors                                             */
+/*********************************************************************************************************/
+
+/* Line below the tabs*/
+.tab-content-line {
+    background-color: #325c32;
+    padding: 0.1em;
+}
+/* Active tab colours*/
+div.active {
+    background-color: #325c32 !important;
+    border-color: #325c32 !important;
+    color: white !important;
+}
+/* Color of text of inactive tab*/
+div.standard {
+    color: #325c32;
+}
+/* Background color of content of the tab (body)*/
+.tab-body {
+    background-color: white;
+    color: black;
+}
