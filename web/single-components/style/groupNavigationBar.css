@@ -13,3 +13,11 @@
 .footer > a:active {
     text-decoration: underline;
 }
+
+.prev-btn img {
+    padding-right: .5em;
+}
+
+.next-btn img {
+    padding-left: .5em;
+}
