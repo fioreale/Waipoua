@@ -78,5 +78,5 @@
 }
 
 .custom-control-input[disabled] ~ .custom-control-label::before, .custom-control-input:disabled ~ .custom-control-label::before {
-    background-color: rgb(137, 183, 88);
+    background-color: rgba(117, 117, 117, 0.5);
 }

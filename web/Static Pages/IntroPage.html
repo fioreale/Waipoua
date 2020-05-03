@@ -52,7 +52,7 @@
 <!--JumboTron-->
 <div class="jumbotron jumbotron-fluid jumbotron-background">
     <div class="container">
-        <h1 class="display-1 title">All Services</h1>
+        <h1 class="display-1 title" id="title_jumbo">All Events</h1>
     </div>
 </div>
 <!--Application Form-->
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="p-2 bd-highlight">
-                <select class="custom-select" aria-label="select month">
+                <select class="custom-select" id="select-month" aria-label="select month">
                     <option selected>Select a month</option>
                     <option value="1">January</option>
                     <option value="2">February</option>
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <div class="p-2 bd-highlight">
-                <select class="custom-select" aria-label="select category">
+                <select class="custom-select" id="select-category" aria-label="select category">
                     <option selected>Select a category</option>
                     <option value="1">Animal protection</option>
                     <option value="2">Forest protection</option>
@@ -117,7 +117,7 @@
     </div>
     <div class="d-flex flex-sm-column bd-highlight mb-1 align-self-sm-center">
         <div class="p-2 bd-highlight classic-screen-rep">
-            <input class="btn btn-primary btn-lg" type="submit" value="Apply">
+            <input class="btn btn-primary btn-lg" id="apply-btn" type="submit" value="Apply">
         </div>
     </div>
 </div>
@@ -126,7 +126,8 @@
     <div class="d-flex flex-sm-row bd-highlight mb-3 justify-content-sm-center">
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Name Surname</p>
                 </div>
@@ -134,7 +135,8 @@
         </div>
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Service Name</p>
                 </div>
@@ -142,7 +144,8 @@
         </div>
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Event Name</p>
                 </div>
@@ -153,7 +156,8 @@
     <div class="d-flex flex-sm-row bd-highlight mb-3 justify-content-sm-center">
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Name Surname</p>
                 </div>
@@ -161,7 +165,8 @@
         </div>
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Service Name</p>
                 </div>
@@ -169,7 +174,8 @@
         </div>
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Event Name</p>
                 </div>
@@ -180,7 +186,8 @@
     <div class="d-flex flex-sm-row bd-highlight mb-3 justify-content-sm-center">
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Name Surname</p>
                 </div>
@@ -188,7 +195,8 @@
         </div>
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Service Name</p>
                 </div>
@@ -196,7 +204,8 @@
         </div>
         <div class="p-2 bd-highlight">
             <div class="card">
-                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid" alt="Responsive image">
+                <img src="../single-components/img/elefantino.jpg" class="card-img-top img-fluid"
+                     alt="Responsive image">
                 <div class="card-body">
                     <p class="card-text">Event Name</p>
                 </div>
@@ -226,5 +235,29 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script>
+    //this script manages the control of the applier, s.t. it automatically disable button columns not selected
+    var all_radio = document.getElementById("allRadio1");
+    var month_radio = document.getElementById("monthRadio1");
+    var category_radio = document.getElementById("categoryRadio1");
+    var apply_btn = document.getElementById("apply-btn");
+    all_radio.onclick = function () {
+        apply_btn.onclick = function () {
+            document.getElementById("title_jumbo").innerText = "All Events"
+        }
+    }
+    month_radio.onclick = function () {
+        apply_btn.onclick = function () {
+            var index = document.getElementById("select-month").selectedIndex
+            document.getElementById("title_jumbo").innerHTML = document.getElementById("select-month").innerText.split("\n")[index];
+        }
+    }
+    category_radio.onclick = function () {
+        apply_btn.onclick = function () {
+            var index = document.getElementById("select-category").selectedIndex
+            document.getElementById("title_jumbo").innerHTML = document.getElementById("select-category").innerText.split("\n")[index];
+        }
+    }
+</script>
 </body>
 </html>
