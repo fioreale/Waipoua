@@ -29,6 +29,7 @@ a.active {
     color: black;
 }
 
+
 /*********************************************************************************************************/
 /*                                                Carousel                                               */
 /*********************************************************************************************************/
@@ -39,10 +40,19 @@ a.active {
     border-color: white !important;
 }
 
+.carousel-indicator-round.active {
+    background-color:  rgb(235, 192, 0) !important;
+    border-color: black !important;
+}
+
 /* Colors of arrows to control the carousel navigation*/
 .control-arrow {
     color: black !important;
     background-color: rgba(255, 255, 255, 1) !important;
+}
+/* Background color behind the carousel*/
+.carousel-item{
+    background-color:black;
 }
 
 /*********************************************************************************************************/
@@ -108,7 +118,7 @@ a.active {
     padding: 0.1em;
 }
 /* Active tab colours*/
-div.active {
+div.standard.active {
     background-color: #325c32 !important;
     border-color: #325c32 !important;
     color: white !important;
@@ -122,3 +132,10 @@ div.standard {
     background-color: white;
     color: black;
 }
+/* Colors for active tab*/
+a.standard.active {
+    background-color: #325c32 !important;
+    border-color: #325c32 !important;
+    color: white !important;
+}
+

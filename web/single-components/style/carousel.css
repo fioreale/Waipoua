@@ -1,8 +1,10 @@
 .slideshow {
-    padding-left: 15em;
-    padding-right: 15em;
+    width:50%;
+    margin:auto;
 }
-
+.carousel-inner{
+    margin-bottom:10em;
+}
 .carousel-indicator-round {
     width: 18px!important;
     height: 18px!important;
@@ -11,4 +13,9 @@
 .control-arrow {
     font-size: 3em;
     border-radius: 100%;
+}
+
+.img-carousel{
+    height: 20em;
+    margin: auto;
 }
