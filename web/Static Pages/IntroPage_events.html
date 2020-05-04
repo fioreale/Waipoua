@@ -50,15 +50,19 @@
 
 </nav>
 <!--JumboTron-->
-<div class="jumbotron jumbotron-fluid jumbotron-background">
-    <div class="container-fluid">
-        <h1 class="display-4 title" id="title_jumbo">All Events</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="jumbotron jumbotron-fluid jumbotron-background">
+            <div class="container-fluid">
+                <h1 class="display-4 title" id="title_jumbo">All Events</h1>
+            </div>
+        </div>
     </div>
 </div>
 <!--Application Form-->
-<div class="d-flex justify-content-sm-around filter-form">
+<div class="d-flex justify-content-around filter-form">
 
-    <div class="d-flex flex-sm-column bd-highlight mb-1 align-self-sm-center">
+    <div class="d-flex flex-column bd-highlight mb-1 justify-content-center">
         <div class="p-2 bd-highlight">
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="allRadio1" name="customRadioInline1" class="custom-control-input">
@@ -67,55 +71,51 @@
         </div>
     </div>
 
-    <div class="d-flex flex-sm-column bd-highlight mb-1">
-        <div class="col-sm">
-            <div class="p-2 bd-highlight">
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="monthRadio1" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="monthRadio1">Select by month</label>
-                </div>
+    <div class="d-flex flex-column bd-highlight mb-2 justify-content-center">
+        <div class="p-2 bd-highlight">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="monthRadio1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="monthRadio1">Select by month</label>
             </div>
-            <div class="p-2 bd-highlight">
-                <select class="custom-select" id="select-month" aria-label="select month">
-                    <option selected>Select a month</option>
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
-            </div>
+        </div>
+        <div class="p-2 bd-highlight" id="month-menu">
+            <select class="custom-select" id="select-month" aria-label="select month">
+                <option selected>Select a month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
         </div>
     </div>
 
-    <div class="d-flex flex-sm-column bd-highlight mb-1">
-        <div class="col-sm">
-            <div class="p-2 bd-highlight">
-                <div class="custom-control custom-radio custom-control-inline ">
-                    <input type="radio" id="categoryRadio1" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="categoryRadio1">Select by category</label>
-                </div>
-            </div>
-            <div class="p-2 bd-highlight">
-                <select class="custom-select" id="select-category" aria-label="select category">
-                    <option selected>Select a category</option>
-                    <option value="1">Animal protection</option>
-                    <option value="2">Forest protection</option>
-                    <option value="3">Pollution</option>
-                    <option value="4">Fund raising</option>
-                    <option value="5">Association promotion</option>
-                </select>
+    <div class="d-flex flex-column bd-highlight mb-2 justify-content-center">
+        <div class="p-2 bd-highlight">
+            <div class="custom-control custom-radio custom-control-inline ">
+                <input type="radio" id="categoryRadio1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="categoryRadio1">Select by category</label>
             </div>
         </div>
+        <div class="p-2 bd-highlight" id="events-menu">
+            <select class="custom-select" id="select-category" aria-label="select category">
+                <option selected>Select a category</option>
+                <option value="1">Animal protection</option>
+                <option value="2">Forest protection</option>
+                <option value="3">Pollution</option>
+                <option value="4">Fund raising</option>
+                <option value="5">Association promotion</option>
+            </select>
+        </div>
     </div>
-    <div class="d-flex flex-sm-column bd-highlight mb-1 align-self-sm-center">
+    <div class="d-flex flex-column bd-highlight mb-1 justify-content-center">
         <div class="p-2 bd-highlight classic-screen-rep">
             <input class="btn btn-primary btn-lg" id="apply-btn" type="submit" value="Apply">
         </div>

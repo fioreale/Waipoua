@@ -17,9 +17,14 @@
 }
 
 .title{
-	text-align:center;
-	font-size:6em;
+	text-align:left;
 	position: absolute;
   	top: 30%;
   	left: 5%;
+}
+
+@media (min-width: 1200px) {
+	.title {
+		font-size: 6em;
+	}
 }
