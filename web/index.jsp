@@ -7,10 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  HELLO WORLD!!!!!
-  </body>
+<head>
+    <title>Waipoua</title>
+</head>
+<body>
+This is the index page of the Waipoua Association website
+</body>
 </html>

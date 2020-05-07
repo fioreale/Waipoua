@@ -1,21 +1,26 @@
-.slideshow {
-    width:50%;
-    margin:auto;
-}
-.carousel-inner{
-    margin-bottom:10em;
-}
-.carousel-indicator-round {
-    width: 18px!important;
-    height: 18px!important;
+.adj-row {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 7em;
 }
 
 .control-arrow {
-    font-size: 3em;
     border-radius: 100%;
 }
 
-.img-carousel{
-    height: 20em;
-    margin: auto;
+.carousel-indicator-round {
+    width: 9px!important;
+    height: 9px!important;
+}
+
+@media (min-width: 1300px){
+    .carousel-indicator-round {
+        width: 18px!important;
+        height: 18px!important;
+    }
+}
+
+.home {
+    padding-left: 0;
+    padding-right: 0;
 }

@@ -1,0 +1,84 @@
+
+.home{
+    margin-bottom: 3em;
+}
+
+.home-title {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.btn {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.banners {
+    font-size: 1.5em;
+}
+
+.card-header {
+    text-align: left;
+}
+
+.next-events-adj {
+    text-align: left;
+}
+
+.card-text-adj {
+    text-align: center;
+}
+
+.subtitle {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    font-weight: bold;
+}
+
+@media (min-width: 1000px) {
+    .home-title {
+        font-size: 5em;
+    }
+    .card {
+        text-align: center;
+    }
+}
+
+
+/*BTN*/
+.btn-primary {
+    color: #fff;
+    background-color: #325c32;
+    border-color: #757575;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #545454;
+    border-color: #757575;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    color: #fff;
+    background-color: #325c32;
+    border-color: #757575;
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #325c32;
+    border-color: #757575;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #444444;
+    border-color: #444444;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
+}
