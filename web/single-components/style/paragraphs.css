@@ -5,7 +5,8 @@
 }
 
 .description, .list-of-links, .contacts {
-    padding: 3em;
+    padding-left: 2em;
+    padding-top:1em;
 }
 
 .title-contact, .content-contact {
