@@ -1,5 +1,5 @@
 
-.home{
+.home {
     margin-bottom: 3em;
 }
 
@@ -35,10 +35,23 @@
     font-weight: bold;
 }
 
+.banner-adj {
+    margin-top: 40px;
+}
+
+.small-skip {
+    margin-bottom: 0.5em;
+}
+
+/*.banner-ref {
+    margin-top: 50%;
+}*/
+
 @media (min-width: 1000px) {
     .home-title {
         font-size: 5em;
     }
+
     .card {
         text-align: center;
     }
