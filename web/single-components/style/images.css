@@ -2,3 +2,12 @@
 	width: 2em;
 	height: 2em;
 }
+
+#imageContacts{
+	padding-top:3em;
+}
+
+#fillPage{
+	content:"";
+	padding:5em;
+}
