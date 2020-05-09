@@ -17,6 +17,8 @@ module.exports.peopleByRoleGET = function peopleByRoleGET (req, res, next) {
 module.exports.peopleGET = function peopleGET (req, res, next) {
   var limit = req.swagger.params['limit'].value;
   var offset = req.swagger.params['offset'].value;
+  if(!limit) limit = 12;
+  if(!offset) offset = 0;
   Person.peopleGET(limit,offset)
     .then(function (response) {
       utils.writeJson(res, response);
