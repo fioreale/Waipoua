@@ -8,8 +8,9 @@ var content_months = months.innerHTML;
 var events = document.getElementById("events-menu");
 var content_events = events.innerHTML;
 
-document.getElementById("month-menu").remove();
-document.getElementById("events-menu").remove();
+window.onload = function(){
+    all_radio.click();
+}
 
 all_radio.onclick = function () {
     if (document.getElementById("month-menu") != null) {

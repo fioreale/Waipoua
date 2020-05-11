@@ -5,7 +5,9 @@ var apply_btn = document.getElementById("apply-btn2");
 var menu = document.getElementById("service-menu");
 var content_menu = menu.innerHTML;
 
-document.getElementById("service-menu").remove();
+window.onload = function(){
+    all_radio.click();
+}
 
 all_radio.onclick = function () {
     if (document.getElementById("service-menu") != null) {

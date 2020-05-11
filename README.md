@@ -5,12 +5,12 @@ Hypermedia project repository for voluntary association website
 - [x] static components
 
 ## Things to do:
-> - [ ] single topic pages ( + HomePage)
+> - [x] single topic pages ( + HomePage)
 >
 > - [ ] accessibility
 >
 > - [ ] database and relative population
 >
-> - [ ] REST api
+> - [x] REST api
 >
 > - [ ] server implementation

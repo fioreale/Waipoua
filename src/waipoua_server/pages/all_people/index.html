@@ -1,3 +1,6 @@
+<?php session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,23 +9,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href="http://localhost:63342/Waipoua/web/single-components/img/logo.png">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/navbar.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/images.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/jumbotron.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/orientation.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/paragraphs.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/cards.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/applyForm.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/groupNavigationBar.css">
-    <link rel="stylesheet" href="http://localhost:63342/Waipoua/web/single-components/style/colors.css">
     <title>IntroPage-People</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/images.css">
+    <link rel="stylesheet" href="../css/jumbotron.css">
+    <link rel="stylesheet" href="../css/orientation.css">
+    <link rel="stylesheet" href="../css/paragraphs.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/applyForm.css">
+    <link rel="stylesheet" href="../css/groupNavigationBar.css">
+    <link rel="stylesheet" href="../css/colors.css">
 </head>
 <body>
 <!--NavBar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
     <!-- Logo -->
-    <a class="navbar-brand" href="#">
-        <img src="http://localhost:63342/Waipoua/web/single-components/img/logo.png" id="logo_img" alt="Waipoua Brand">
+    <a class="navbar-brand" href="index.html">
+        <img src="../img/logo.png" id="logo_img" alt="Waipoua Brand">
     </a>
 
     <!-- Navbar toggler (appears with small-width screens) -->
@@ -34,15 +37,16 @@
     <!-- Landmarks of the navbar -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ">
-            <a class="nav-link landmark " href="#">Home </a>        <!-- Link to Home -->
+            <a class="nav-link landmark " href="../">Home </a>        <!-- Link to Home -->
             <a class="nav-link landmark" href="#">Services</a>        <!-- Link to All Services -->
             <a class="nav-link landmark" href="#">Events</a>            <!-- Link to All Events -->
-            <a class="nav-link active landmark" href="#">People</a>            <!-- Link to All People -->
-            <a class="nav-link landmark" href="#">Contacts</a>        <!-- Link to Contacts -->
+            <a class="nav-link active landmark" href="/">People</a>            <!-- Link to All People -->
+            <a class="nav-link landmark" href="../AboutUs.html">About Us</a>
+            <a class="nav-link landmark" href="../ContactsPage.html">Contacts Us</a>        <!-- Link to Contacts -->
         </div>
 
         <div class="navbar-nav ml-auto">
-            <a class="nav-link" id="Support" href="#">Support us</a>        <!-- Link to Support -->
+            <a class="nav-link" id="Support" href="../Support.html">Support us</a>        <!-- Link to Support -->
         </div>
 
     </div>
@@ -98,38 +102,10 @@
         </div>
     </div>
 </div>
+
 <!--Cards-->
-<div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-    <div class="p-2 bd-highlight">
-        <div class="card" id="person-1">
-            <img src="http://localhost:63342/Waipoua/web/single-components/img/elefantino.jpg"
-                 class="card-img-top img-fluid"
-                 alt="Responsive image">
-            <div class="card-body">
-                <p class="card-text" href="#">Name Surname</p>
-            </div>
-        </div>
-    </div>
-    <div class="p-2 bd-highlight">
-        <div class="card" id="person-2">
-            <img src="http://localhost:63342/Waipoua/web/single-components/img/elefantino.jpg"
-                 class="card-img-top img-fluid"
-                 alt="Responsive image">
-            <div class="card-body">
-                <p class="card-text" href="#">Service Name</p>
-            </div>
-        </div>
-    </div>
-    <div class="p-2 bd-highlight">
-        <div class="card" id="person-3">
-            <img src="http://localhost:63342/Waipoua/web/single-components/img/elefantino.jpg"
-                 class="card-img-top img-fluid"
-                 alt="Responsive image">
-            <div class="card-body">
-                <p class="card-text" href="#">Event Name</p>
-            </div>
-        </div>
-    </div>
+<div class="d-flex flex-row bd-highlight mb-3 justify-content-center" id="begin-people">
+
 </div>
 
 <!--groupOrientation-->
@@ -156,32 +132,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="http://localhost:63342/Waipoua/web/Scripts/makeTitle_people.js"></script>
-<script>
-    fetch("People")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (json) {
-            for (var i = 0; i < json.length; i++) {
-                var person = document.getElementById("person-" + (i+1));
-                person.innerHTML = "";
-                var card_body = document.createElement("div");
-                var card_text = document.createElement("p");
-                card_body.appendChild(card_text);
-                var imageItem = document.createElement("img");
-                imageItem.setAttribute("class", "card-img-top img-fluid");
-                imageItem.setAttribute("alt", "...");
-                card_body.setAttribute("class", "card-body");
-
-                let {ID_person, name, surname, description, phone_number, email, URI_image, ID_role} = json[i];
-                imageItem.setAttribute("src", URI_image.url);
-                card_text.setAttribute("card", "card-text");
-                person.appendChild(imageItem);
-                card_text.innerText = name + " " + surname;
-                person.appendChild(card_body);
-            }
-        })
-</script>
+<script src="../js/makeTitle_people.js"></script>
 </body>
 </html>

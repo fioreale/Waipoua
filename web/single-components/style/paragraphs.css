@@ -5,13 +5,15 @@
 }
 
 .description, .list-of-links, .contacts {
-    padding-left: 2em;
-    padding-top:1em;
-}
-
-#contactsParagraph{
+    padding-left: 3em;
     padding-top:2em;
 }
+
+.buttons-list {
+    padding-top: 2em;
+    padding-left: 4em;
+}
+
 .title-contact, .content-contact {
     font-size: 1em !important;
 }
@@ -19,8 +21,8 @@
 .title-contact {
     font-weight: 500;
 }
-#tooltip {
+/*#tooltip {
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 13px;
-}
+}*/
