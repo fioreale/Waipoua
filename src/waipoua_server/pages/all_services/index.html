@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href="../img/logo.png">
-    <title>Waipoua</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/images.css">
     <link rel="stylesheet" href="../css/jumbotron.css">
@@ -16,12 +15,13 @@
     <link rel="stylesheet" href="../css/applyForm.css">
     <link rel="stylesheet" href="../css/groupNavigationBar.css">
     <link rel="stylesheet" href="../css/colors.css">
+    <title>Waipoua</title>
 </head>
 <body>
 <!--NavBar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
     <!-- Logo -->
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="#">
         <img src="../img/logo.png" id="logo_img" alt="Waipoua Brand">
     </a>
 
@@ -35,11 +35,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ">
             <a class="nav-link landmark " href="../">Home </a>        <!-- Link to Home -->
-            <a class="nav-link landmark" href="#">Services</a>        <!-- Link to All Services -->
+            <a class="nav-link active landmark" href="#">Services</a>        <!-- Link to All Services -->
             <a class="nav-link landmark" href="#">Events</a>            <!-- Link to All Events -->
-            <a class="nav-link active landmark" href="/">People</a>            <!-- Link to All People -->
-            <a class="nav-link landmark" href="../AboutUs.html">About Us</a>
-            <a class="nav-link landmark" href="../ContactsPage.html">Contacts Us</a>        <!-- Link to Contacts -->
+            <a class="nav-link landmark" href="../all_people">People</a>
+            <a class="nav-link landmark" href="../AboutUs.html">About Us</a><!-- Link to All People -->
+            <a class="nav-link landmark" href="../ContactsPage.html">Contacts</a>        <!-- Link to Contacts -->
         </div>
 
         <div class="navbar-nav ml-auto">
@@ -55,7 +55,7 @@
     <div class="col-12">
         <div class="jumbotron jumbotron-fluid jumbotron-background">
             <div class="container-fluid">
-                <h1 class="display-4 title" id="title_jumbo3">All People</h1>
+                <h1 class="display-4 title" id="title_jumbo2">All Services</h1>
             </div>
         </div>
     </div>
@@ -66,8 +66,8 @@
     <div class="d-flex flex-column bd-highlight mb-1 justify-content-center">
         <div class="p-2 bd-highlight">
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="allRadio3" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="allRadio3">All</label>
+                <input type="radio" id="allRadio2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="allRadio2">All</label>
             </div>
         </div>
     </div>
@@ -75,33 +75,27 @@
     <div class="d-flex flex-column bd-highlight mb-2 justify-content-center">
         <div class="p-2 bd-highlight">
             <div class="custom-control custom-radio custom-control-inline ">
-                <input type="radio" id="categoryRadio3" name="customRadioInline1" class="custom-control-input">
-                <label class="custom-control-label" for="categoryRadio3">Select by Role</label>
+                <input type="radio" id="categoryRadio2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="categoryRadio2">Select by category</label>
             </div>
         </div>
-        <div class="p-2 bd-highlight" id="people-menu">
-            <select class="custom-select" id="select-category3" aria-label="select role">
-                <option selected>Select a role</option>
-                <option value="1">Chief</option>
-                <option value="2">Vice</option>
-                <option value="3">Treasurer</option>
-                <option value="4">Vets</option>
-                <option value="5">Biologists</option>
-                <option value="6">Chemists</option>
-                <option value="7">Recycle Experts</option>
-                <option value="8">Volunteers</option>
+        <div class="p-2 bd-highlight" id="service-menu">
+            <select class="custom-select" id="select-category2" aria-label="select category">
+                <option selected>Select a category</option>
+                <option value="1">Animal Protection</option>
+                <option value="2">Forest Protection</option>
+                <option value="3">Pollution</option>
             </select>
         </div>
     </div>
     <div class="d-flex flex-column bd-highlight mb-1 justify-content-center">
         <div class="p-2 bd-highlight classic-screen-rep">
-            <input class="btn btn-primary btn-lg" id="apply-btn3" type="submit" value="Apply">
+            <input class="btn btn-primary btn-lg" id="apply-btn2" type="submit" value="Apply">
         </div>
     </div>
 </div>
-
 <!--Cards-->
-<div class="d-flex flex-row bd-highlight mb-3 justify-content-center" id="begin-people"></div>
+<div class="d-flex flex-sm-row bd-highlight mb-3 justify-content-sm-center" id="begin-service"></div>
 
 <!--groupOrientation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
@@ -112,8 +106,7 @@
                        alt="previous button"></span>Prev</a>
         <!-- Link to Home -->
         <a class="nav-link landmark group-link next-btn" href="#" aria-label="Next Button">
-            Next<span><img src="../img/next_.svg" height="40"
-                           alt="next button"></span></a>
+            Next<span><img src="../img/next_.svg" height="40" alt="next button"></span></a>
         <!-- Link to Support -->
     </div>
 
@@ -127,6 +120,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="../js/makeTitle_people.js"></script>
+<script src="../js/makeTitle_services.js"></script>
 </body>
 </html>

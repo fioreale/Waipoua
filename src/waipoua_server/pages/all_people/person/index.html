@@ -6,25 +6,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="icon" href="http://localhost:63342/Waipoua/web/single-components/img/logo.png">
-    <title>Waipoua - Person</title>
+    <link rel="icon" href="../../img/logo.png">
+    <title>Waipoua</title>
     <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="../../css/images.css">
     <link rel="stylesheet" href="../../css/jumbotron.css">
     <link rel="stylesheet" href="../../css/paragraphs.css">
     <link rel="stylesheet" href="../../css/groupNavigationBar.css">
     <link rel="stylesheet" href="../../css/colors.css">
-    <link rel="stylesheet" href="../../css/carousel.css">
     <link rel="stylesheet" href="../../css/support.css">
     <link rel="stylesheet" href="../../css/tooltip.css">
-    <script src="../../js/fillPerson.js"></script>
+    <link rel="stylesheet" href="../../css/orientation.css">
 </head>
 <body>
 <!--NavBar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
     <!-- Logo -->
     <a class="navbar-brand" href="./">
-        <img src="http://localhost:63342/Waipoua/web/single-components/img/logo.png" id="logo_img" alt="Waipoua Brand">
+        <img src="../../img/logo.png" id="logo_img" alt="Waipoua Brand">
     </a>
 
     <!-- Navbar toggler (appears with small-width screens) -->
@@ -36,16 +35,16 @@
     <!-- Landmarks of the navbar -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ">
-            <a class="nav-link landmark " href="./">Home </a>        <!-- Link to Home -->
-            <a class="nav-link landmark" href="#">Services</a>        <!-- Link to All Services -->
-            <a class="nav-link landmark" href="#">Events</a>            <!-- Link to All Events -->
-            <a class="nav-link landmark active" href="/waipoua_server/pages/all_people">People</a>            <!-- Link to All People -->
-            <a class="nav-link landmark" href="/waipoua_server/pages/AboutUs.html">About Us</a>
-            <a class="nav-link landmark" href="/waipoua_server/pages/ContactsPage.html">Contact Us</a>
+            <a class="nav-link landmark " href="../../">Home </a>
+            <a class="nav-link landmark" href="#">Services</a>
+            <a class="nav-link landmark" href="#">Events</a>
+            <a class="nav-link landmark active" href="../../all_people">People</a>
+            <a class="nav-link landmark" href="../../AboutUs.html">About Us</a>
+            <a class="nav-link landmark" href="../../ContactsPage.html">Contact Us</a>
         </div>
 
         <div class="navbar-nav ml-auto">
-            <a class="nav-link" id="Support" href="/waipoua_server/pages/Support.html">Support us</a>        <!-- Link to Support -->
+            <a class="nav-link" id="Support" href="../../Support.html">Support us</a>
         </div>
 
     </div>
@@ -54,10 +53,16 @@
 </nav>
 <!--JumboTron-->
 <div class="jumbotron jumbotron-fluid jumbotron-background" id="background-person">
-    <div class="container" id="person-name">
+    <div class="container" id="person-service_name">
         <h1 class="display-1 title">Name Surname</h1>
     </div>
 </div>
+<!--Orientation-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item non-active"><a href="../../all_people">People</a></li>
+    </ol>
+</nav>
 <!--paragraph-->
 <div class="container-md small-skip" id="parag_sample">
     <div class="d-flex flex-column bd-highlight mb-4">
@@ -71,7 +76,7 @@
         <div class="p-2 bd-highlight">
             <h1 class="display-4 titleParagraph">Involved in:</h1>
             <div class="d-flex buttons-list">
-                <div class="d-flex flex-row bd-highlight mb-3   align-self-center" id="services-person">
+                <div class="d-flex flex-row bd-highlight mb-3 align-self-center" id="services-person">
                     <div class="p-2 bd-highlight">
                         <a class="badge-pill btn btn-outline-success list-inline-item transition-link"
                            href="#">Service 1</a>
@@ -100,12 +105,11 @@
                 <dd class="col-sm-10 display-4 content-contact" id="number">+39 1234567890</dd>
 
                 <dt class="col-sm-2 display-4 title-contact">Personal e-mail:</dt>
-                <dd class="col-sm-10 display-4 content-contact" id="mail">name.surname@waipoua.it</dd>
+                <dd class="col-sm-10 display-4 content-contact" id="mail">service_name.surname@waipoua.it</dd>
             </dl>
         </div>
     </div>
 
-</div>
 </div>
 
 <!--groupOrientation-->
@@ -114,11 +118,11 @@
         <!-- Landmarks of the navbar -->
         <div class="navbar-nav mx-auto">
             <a class="nav-link landmark group-link prev-btn footer" href="#" aria-label="Previous Button">
-                <span><img src="http://localhost:63342/Waipoua/web/single-components/img/prev.svg" height="40"
+                <span><img src="../../img/prev.svg" height="40"
                            alt="previous button"></span>Prev</a>
             <!-- Link to Home -->
             <a class="nav-link landmark group-link next-btn" href="#" aria-label="Next Button">
-                Next<span><img src="http://localhost:63342/Waipoua/web/single-components/img/next_.svg" height="40"
+                Next<span><img src="../../img/next_.svg" height="40"
                                alt="next button"></span></a>
         </div>
     </nav>
@@ -133,6 +137,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="pages/js/fillPerson.js"></script>
+<script src="../../js/fillPerson.js"></script>
 </body>
 </html>

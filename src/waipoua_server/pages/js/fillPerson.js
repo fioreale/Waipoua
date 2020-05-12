@@ -1,8 +1,15 @@
-var queryString = decodeURIComponent(window.location.search);
-queryString = queryString.substring(1);
-var person_id = queryString.split("=")[1];
+var person_queryString = decodeURIComponent(window.location.search);
+person_queryString = person_queryString.substring(1);
+var queris = person_queryString.split("&");
+console.log(queris)
+var person_id = queris[0].split("=")[1];
+if (queris[1] != null) {
+    var role_name = queris[1].split("=")[1];
+}
 
-fetch("http://localhost:8080/People/" + person_id)
+// TODO fill the next and prev buttons depending on the visited group of people
+
+fetch("../../People/" + person_id)
     .then(function (response) {
         return response.json();
     })
@@ -13,13 +20,15 @@ fetch("http://localhost:8080/People/" + person_id)
         let number = document.getElementById("number");
         let mail = document.getElementById("mail");
         console.log(json)
-        let {ID_person, name, surname, description, phone_number, email, URI_image, ID_role} = json[0];
+        let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[0];
 
         title.firstElementChild.innerHTML = name + " " + surname;
         text.innerText = description;
         number.innerText = phone_number;
         mail.innerText = email;
         background.style.backgroundImage = "url(" + URI_image + ")"
+
+        orientation_info(role_name, name + " " + surname)
 
         //filling the services (at least one)
         let el = document.getElementById("services-person");
@@ -60,4 +69,35 @@ fetch("http://localhost:8080/People/" + person_id)
             newDiv.appendChild(newA);
             event_el.appendChild(newDiv);
         }
+        return role.ID_role
     })
+    .then(function (role) {
+        orientation_role_click(role)
+    })
+
+function orientation_info(role, name) {
+    let info = document.getElementsByClassName("breadcrumb");
+    let newEl = document.createElement("li")
+    if (role != null) {
+        let roleEl = document.createElement("li")
+        roleEl.setAttribute("class", "breadcrumb-item non-active")
+        let newA = document.createElement("a")
+        newA.setAttribute("href", "#")
+        newA.setAttribute("id", "role-callback")
+        newA.innerText = role;
+        roleEl.appendChild(newA);
+        info[0].appendChild(roleEl);
+    }
+    newEl.setAttribute("class", "breadcrumb-item active")
+    newEl.setAttribute("aria-current", "page")
+    newEl.innerText = name;
+    info[0].appendChild(newEl)
+}
+
+function orientation_role_click(role) {
+    var listener = document.getElementById("role-callback");
+    listener.onclick = function () {
+        let query_par = "?id_role=" + role;
+        window.location.href = "../../all_people" + query_par;
+    }
+}

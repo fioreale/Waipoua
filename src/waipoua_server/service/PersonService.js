@@ -10,19 +10,8 @@ exports.peopleDbSetup = function (connection) {
         .then((exists) => {
             if (!exists) {
                 console.log("The table you are searching for doesn't exist")
-                return sqlDb.schema.createTable("Person", table => {
-                    table.increments();
-                    table.integer("ID-person");
-                    table.text("name");
-                    table.text("surname");
-                    table.text("description");
-                    table.text("phone_number");
-                    table.text("email");
-                    table.text("URI_image");
-                    table.integer("ID_role");
-                })
             } else {
-                console.log("TABLE EXISTS!");
+                console.log("TABLE 'Person' EXISTS!");
             }
         })
         .catch(() => {
@@ -38,9 +27,11 @@ exports.peopleDbSetup = function (connection) {
  **/
 exports.peopleByRoleGET = function (category_id) {
     return sqlDb("Person")
+        .innerJoin("Role","Role.ID_role","Person.ID_role")
         .where("Person.ID_role", category_id)
         .then(data => {
             let v = data.map(e => {
+                e.role = {ID_role: e.ID_role, role_name: e.role_name}
                 return e;
             })
             return v;
