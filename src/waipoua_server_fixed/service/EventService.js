@@ -12,13 +12,11 @@ exports.eventSpecificGET = function(eventId) {
     var examples = {};
     examples['application/json'] = [ {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -60,13 +58,11 @@ exports.eventSpecificGET = function(eventId) {
   }
 }, {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -129,13 +125,11 @@ exports.eventsByCateogoryGET = function(categoryId,limit,offset) {
     var examples = {};
     examples['application/json'] = [ {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -177,13 +171,11 @@ exports.eventsByCateogoryGET = function(categoryId,limit,offset) {
   }
 }, {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -246,13 +238,11 @@ exports.eventsByMonthGET = function(month,limit,offset) {
     var examples = {};
     examples['application/json'] = [ {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -294,13 +284,11 @@ exports.eventsByMonthGET = function(month,limit,offset) {
   }
 }, {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -362,13 +350,11 @@ exports.eventsGET = function(limit,offset) {
     var examples = {};
     examples['application/json'] = [ {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },
@@ -410,13 +396,11 @@ exports.eventsGET = function(limit,offset) {
   }
 }, {
   "presentation" : "presentation",
-  "date" : {
-    "month" : 1,
-    "hour" : 5,
-    "year" : 5,
-    "minutes" : 2,
-    "day" : 6
-  },
+  "month" : 1,
+  "hour" : 5,
+  "year" : 5,
+  "minutes" : 2,
+  "day" : 6,
   "image" : {
     "url" : "url"
   },

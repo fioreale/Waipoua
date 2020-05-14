@@ -364,12 +364,11 @@ definitions:
     description: "An event of the association"
     example:
       presentation: "presentation"
-      date:
-        month: 1
-        hour: 5
-        year: 5
-        minutes: 2
-        day: 6
+      month: 1
+      hour: 5
+      year: 5
+      minutes: 2
+      day: 6
       image:
         url: "url"
       event_id: 0
