@@ -18,6 +18,8 @@ module.exports.eventsByCateogoryGET = function eventsByCateogoryGET (req, res, n
   var categoryId = req.swagger.params['categoryId'].value;
   var limit = req.swagger.params['limit'].value;
   var offset = req.swagger.params['offset'].value;
+  if(!limit) limit = 12;
+  if(!offset) offset = 0;
   Event.eventsByCateogoryGET(categoryId,limit,offset)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -31,6 +33,8 @@ module.exports.eventsByMonthGET = function eventsByMonthGET (req, res, next) {
   var month = req.swagger.params['month'].value;
   var limit = req.swagger.params['limit'].value;
   var offset = req.swagger.params['offset'].value;
+  if(!limit) limit = 12;
+  if(!offset) offset = 0;
   Event.eventsByMonthGET(month,limit,offset)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -43,6 +47,8 @@ module.exports.eventsByMonthGET = function eventsByMonthGET (req, res, next) {
 module.exports.eventsGET = function eventsGET (req, res, next) {
   var limit = req.swagger.params['limit'].value;
   var offset = req.swagger.params['offset'].value;
+  if(!limit) limit = 12;
+  if(!offset) offset = 0;
   Event.eventsGET(limit,offset)
     .then(function (response) {
       utils.writeJson(res, response);

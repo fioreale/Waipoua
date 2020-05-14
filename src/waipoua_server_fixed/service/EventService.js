@@ -1,451 +1,147 @@
 'use strict';
 
-
 /**
- * List of events provided by the association 
- *
- * eventId Long Id of the month
- * returns List
+ * This is the DB setup for the "Event" Table
  **/
-exports.eventSpecificGET = function(eventId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-}, {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+let sqlDb;
+exports.eventDbSetup = function (connection) {
+    sqlDb = connection;
+    return sqlDb.schema.hasTable("Event")
+        .then((exists) => {
+            if (!exists) {
+                console.log("The table you are searching for doesn't exist")
+            } else {
+                console.log("TABLE 'Event' EXISTS!");
+            }
+        })
+        .catch(() => {
+            console.log("Something gone wrong in the Connection with DB!")
+        })
 }
 
 
 /**
- * List of events provided by the association 
+ * List of events provided by the association
+ *
+ * eventId Long Id of the month
+ * returns List
+ **/
+exports.eventSpecificGET = function (eventId) {
+    return sqlDb("Event")
+        .leftJoin("Service", "Service.ID_service", "Event.event_ID_service")
+        .innerJoin("Person", "Person.ID_person", "Event.ID_contact_person")
+        .where("ID_event", eventId)
+        .then(data => {
+            let v = data.map(e => {
+                e.date = {
+                    day: e.day,
+                    month: e.month,
+                    year: e.year,
+                    hour: e.hour,
+                    minute: e.minute
+                }
+                e.person = {
+                    name: e.name,
+                    surname: e.surname,
+                    ID_person: e.ID_person,
+                    description: e.description,
+                    phone_number: e.phone_number,
+                    email: e.email,
+                    URI_image: e.URI_image,
+                    ID_role: e.ID_role
+                }
+                e.service = {
+                    ID_service: e.ID_service,
+                    service_name: e.service_name,
+                    service_presentation: e.service_presentation,
+                    service_category: e.service_category
+                }
+                return e;
+            })
+            return v;
+        })
+}
+
+
+/**
+ * List of events provided by the association
  *
  * categoryId Long Month in which the event takes place
  * limit Integer The maximum number of items per page (optional)
  * offset Integer Pagination offset. Default is 0. (optional)
  * returns List
  **/
-exports.eventsByCateogoryGET = function(categoryId,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-}, {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
+    return sqlDb("Event")
+        .limit(limit).offset(offset)
+        .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
+        .where("event_category",categoryId)
+        .then(data => {
+            let v = data.map(e => {
+                e.date = {
+                    day: e.day,
+                    month: e.month,
+                    year: e.year,
+                    hour: e.hour,
+                    minute: e.minute
+                }
+                return e;
+            })
+            return v;
+        })
 }
 
 
 /**
- * List of events provided by the association in a certain month 
+ * List of events provided by the association in a certain month
  *
  * month Long Month in which the event takes place
  * limit Integer The maximum number of items per page (optional)
  * offset Integer Pagination offset. Default is 0. (optional)
  * returns List
  **/
-exports.eventsByMonthGET = function(month,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-}, {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.eventsByMonthGET = function (month, limit, offset) {
+    return sqlDb("Event")
+        .limit(limit).offset(offset)
+        .where("month",month)
+        .orderBy('year')
+        .then(data => {
+            let v = data.map(e => {
+                e.date = {
+                    day: e.day,
+                    month: e.month,
+                    year: e.year,
+                    hour: e.hour,
+                    minute: e.minute
+                }
+                return e;
+            })
+            return v;
+        })
 }
 
 
 /**
- * List of events provided by the association 
+ * List of events provided by the association
  *
  * limit Integer The maximum number of items per page (optional)
  * offset Integer Pagination offset. Default is 0. (optional)
  * returns List
  **/
-exports.eventsGET = function(limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-}, {
-  "presentation" : "presentation",
-  "month" : 1,
-  "hour" : 5,
-  "year" : 5,
-  "minutes" : 2,
-  "day" : 6,
-  "image" : {
-    "url" : "url"
-  },
-  "event_id" : 0,
-  "relativeTo" : {
-    "presentation" : "presentation",
-    "image" : [ {
-      "url" : "url"
-    }, {
-      "url" : "url"
-    } ],
-    "service_id" : 7,
-    "name" : "Presentazione di Waipoua",
-    "category" : {
-      "category_id" : 9,
-      "name" : "name"
-    }
-  },
-  "contact" : {
-    "image" : {
-      "url" : "url"
-    },
-    "role" : {
-      "category_id" : 9,
-      "name" : "name"
-    },
-    "surname" : "surname",
-    "name" : "name",
-    "description" : "description",
-    "phone_number" : "phone_number",
-    "email" : "email",
-    "person_id" : 3
-  },
-  "name" : "name",
-  "location" : "location",
-  "category" : {
-    "category_id" : 9,
-    "name" : "name"
-  }
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.eventsGET = function (limit, offset) {
+    return sqlDb("Event").limit(limit).offset(offset)
+        .then(data => {
+            let v = data.map(e => {
+                e.date = {
+                    day: e.day,
+                    month: e.month,
+                    year: e.year,
+                    hour: e.hour,
+                    minute: e.minute
+                }
+                return e;
+            })
+            return v;
+        })
 }
 

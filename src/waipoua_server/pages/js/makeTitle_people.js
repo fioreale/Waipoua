@@ -42,30 +42,19 @@ all_radio.onclick = function () {
             .then(function (json) {
                 console.log(json)
                 refresh()
-                var begin;
+                var begin = document.getElementById("begin-people")
                 for (let i = 0; i < json.length; i++) {
-                    if (i % 3 === 0 && i > 2) {
-                        begin.append(
-                            document.createElement("div")
-                                .setAttribute("class", "d-flex flex-row bd-highlight mb-3 justify-content-center")
-                        )
-                    } else if (i === 0) {
+                    if (i % 3 === 0) {
+                        let newRow = document.createElement("div")
+                        newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                            "justify-content-center");
+                        begin.removeAttribute("id");
+                        newRow.setAttribute("id", "begin-people");
                         begin = document.getElementById("begin-people")
+                        begin.parentElement.appendChild(newRow);
                     }
-                    let {ID_person, name, surname, description, phone_number, email, URI_image, ID_role} = json[i];
-                    if (i >= 0 && i <= 2)
-                        begin.appendChild(fill(URI_image, name + " " + surname, ID_person))
-                    if (i >= 3 && i <= 5)
-                        begin
-                            .nextElementSibling.appendChild(fill(URI_image, name + " " + surname, ID_person))
-                    if (i >= 6 && i <= 8)
-                        begin
-                            .nextElementSibling.nextElementSibling
-                            .appendChild(fill(URI_image, name + " " + surname, ID_person))
-                    if (i >= 9 && i <= 11)
-                        begin
-                            .nextElementSibling.nextElementSibling.nextElementSibling
-                            .appendChild(fill(URI_image, name + " " + surname, ID_person))
+                    let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[i];
+                    begin.appendChild(fill(URI_image, name + " " + surname, ID_person))
                 }
             })
             .then(() => clicks(null))
@@ -90,33 +79,21 @@ role_radio.onclick = function () {
                     .then(function (json) {
                         console.log(json)
                         refresh()
-                        var begin;
                         var role_passed = null;
+                        var begin = document.getElementById("begin-people")
                         for (let i = 0; i < json.length; i++) {
-                            if (i % 3 === 0 && i > 2) {
-                                begin.append(
-                                    document.createElement("div")
-                                        .setAttribute("class", "d-flex flex-row bd-highlight mb-3 justify-content-center")
-                                )
-                            } else if (i === 0) {
+                            if (i % 3 === 0) {
+                                let newRow = document.createElement("div")
+                                newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                                    "justify-content-center");
+                                begin.removeAttribute("id");
+                                newRow.setAttribute("id", "begin-people");
                                 begin = document.getElementById("begin-people")
+                                begin.parentElement.appendChild(newRow);
                             }
                             let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[i];
-                            role_passed = role.role_name
-                            console.log("role passed:" + role_passed)
-                            if (i >= 0 && i <= 2)
-                                begin.appendChild(fill(URI_image, name + " " + surname, ID_person))
-                            if (i >= 3 && i <= 5)
-                                begin
-                                    .nextElementSibling.appendChild(fill(URI_image, name + " " + surname, ID_person))
-                            if (i >= 6 && i <= 8)
-                                begin
-                                    .nextElementSibling.nextElementSibling
-                                    .appendChild(fill(URI_image, name + " " + surname, ID_person))
-                            if (i >= 9 && i <= 11)
-                                begin
-                                    .nextElementSibling.nextElementSibling.nextElementSibling
-                                    .appendChild(fill(URI_image, name + " " + surname, ID_person))
+                            role_passed = role.role_name;
+                            begin.appendChild(fill(URI_image, name + " " + surname, ID_person))
                         }
                         return role_passed
                     })

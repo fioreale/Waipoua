@@ -24,7 +24,8 @@ exports.serviceDbSetup = function (connection) {
  * A specific service
  *
  * serviceId Long The id of the service
- * returns Service
+ * returns Service ordering them considering that the first image in order of URI is used for the background of
+ * the title name of the service
  **/
 exports.serviceSpecificGET = function (serviceId) {
     return sqlDb("Service")
@@ -32,6 +33,7 @@ exports.serviceSpecificGET = function (serviceId) {
         .innerJoin("Person", "Person.ID_person", "people_involved_in_services.ID_Person_inv")
         .leftJoin("Event", "Event.event_ID_service", "Service.ID_service")
         .where("ID_service", serviceId)
+        .orderBy("URI_image","desc")
         .then(data => {
             let v = data.map(e => {
                 e.person = {

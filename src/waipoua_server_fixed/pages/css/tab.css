@@ -1,0 +1,14 @@
+a.standard.active{
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+a.standard{
+    font-weight:normal;
+}
+
+.tab-content-line{
+    border-top-left-radius:0;
+}

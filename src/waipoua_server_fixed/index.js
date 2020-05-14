@@ -9,6 +9,9 @@ var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var serverPort = 8080;
 
+let serveStatic = require("serve-static");
+let {setupDataLayer} = require("./service/DataLayer")
+
 // swaggerRouter configuration
 var options = {
   swaggerUi: path.join(__dirname, '/swagger.json'),
@@ -35,10 +38,19 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Serve the Swagger documents and Swagger UI
   app.use(middleware.swaggerUi());
 
-  // Start the server
-  http.createServer(app).listen(serverPort, function () {
-    console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
-    console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
-  });
+  app.use(serveStatic(__dirname + "/pages"));
 
+  // Start the server
+  console.log("entering the Data Layer Setup...")
+  setupDataLayer()
+      .then(() => {
+        console.log("...setupDataLayer Done correctly!")
+        http.createServer(app).listen(serverPort, function () {
+          console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+          console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
+        });
+      })
+      .catch(()=>{
+        console.log("Initialization of Data Layer not succeeded!")
+      });
 });

@@ -1,0 +1,82 @@
+.custom-radio {
+    color: white;
+}
+
+.custom-select {
+    font-size: 1.3em;
+}
+
+/*responsive screen */
+@media (min-width: 800px) {
+    .btn {
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+}
+
+/*APPLY*/
+.btn-primary {
+    color: #fff;
+    background-color: rgb(137, 183, 88);
+    border-color: #757575;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #545454;
+    border-color: #757575;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    color: #fff;
+    background-color: rgb(137, 183, 88);
+    border-color: #757575;
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: rgb(137, 183, 88);
+    border-color: #757575;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #444444;
+    border-color: #444444;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
+}
+
+/*RADIO BUTTONS*/
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: rgb(235, 192, 0);
+    border-color: white;
+    background-color: rgb(235, 192, 0);
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+    border-color: #757575;
+}
+
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+    color: rgb(190, 149, 0);
+    background-color: rgb(190, 149, 0);
+    border-color: rgb(190, 149, 0);
+}
+
+.custom-control-input[disabled] ~ .custom-control-label, .custom-control-input:disabled ~ .custom-control-label {
+    color: #6c757d;
+}
+
+.custom-control-input[disabled] ~ .custom-control-label::before, .custom-control-input:disabled ~ .custom-control-label::before {
+    background-color: rgba(117, 117, 117, 0.5);
+}

@@ -1,0 +1,13 @@
+body {
+	font-size: 20px;
+}
+
+.landmark.active, #Support{
+	border-radius: 0.6em;
+	text-align:center;
+}
+
+#Support{
+	font-weight: bold;
+}
+

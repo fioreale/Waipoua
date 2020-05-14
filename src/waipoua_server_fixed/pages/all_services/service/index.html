@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="../../img/logo.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Project dependent stylesheets-->
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="../../css/images.css">
+    <link rel="stylesheet" href="../../css/jumbotron.css">
+    <link rel="stylesheet" href="../../css/orientation.css">
+    <link rel="stylesheet" href="../../css/paragraphs.css">
+    <link rel="stylesheet" href="../../css/groupNavigationBar.css">
+    <link rel="stylesheet" href="../../css/colors.css">
+    <link rel="stylesheet" href="../../css/tab.css">
+    <link rel="stylesheet" href="../../css/carousel.css">
+    <link rel="stylesheet" href="../../css/cards.css">
+    <link rel="stylesheet" href="../../css/support.css">
+    <title>Waipoua</title>
+
+</head>
+<body>
+<!--NavBar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+    <!-- Logo -->
+    <a class="navbar-brand" href="../../">
+        <img src="../../img/logo.png" id="logo_img" alt="Waipoua Brand">
+    </a>
+
+    <!-- Navbar toggler (appears with small-width screens) -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navigation Bar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Landmarks of the navbar -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav ">
+            <a class="nav-link landmark " href="../../">Home </a>        <!-- Link to Home -->
+            <a class="nav-link landmark active " href="../../all_services">Services</a>        <!-- Link to All Services -->
+            <a class="nav-link landmark" href="../../all_events">Events</a>            <!-- Link to All Events -->
+            <a class="nav-link landmark" href="../../all_people">People</a>            <!-- Link to All People -->
+            <a class="nav-link landmark" href="../../AboutUs.html">About Us</a>
+            <a class="nav-link landmark" href="../../ContactsPage.html">Contact Us</a>        <!-- Link to Contacts -->
+        </div>
+
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link" id="Support" href="../../Support.html">Support us</a>        <!-- Link to Support -->
+        </div>
+
+    </div>
+
+
+</nav>
+<!--JumboTron-->
+<div class="jumbotron jumbotron-fluid jumbotron-background">
+    <div class="container">
+        <h1 class="display-1 title">Animal Protection</h1>
+    </div>
+</div>
+<!--Orientation Info-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item non-active"><a href="../../all_services">All Services</a></li>
+    </ol>
+</nav>
+<!-- Tabs -->
+<ul class="nav nav-fill" id="navigationTabs" role="tablist">
+    <!--  Introduction tab  -->
+    <li class="nav-item">
+        <a class="nav-link standard border-bottom active" id="intro-tab" data-toggle="tab" href="#intro-content"
+           role="tab"
+           aria-controls="Introduction" aria-selected="true">Introduction
+        </a>
+    </li>
+    <!--  Practical Information tab  -->
+    <li class="nav-item">
+        <a class="nav-link standard border-bottom" id="practical-info-tab" data-toggle="tab" href="#practical-content"
+           role="tab"
+           aria-controls="Practical Information" aria-selected="false">Practical Information
+        </a>
+    </li>
+
+</ul>
+<!-- Tabs' content -->
+<div class="tab-content" id="myTabContent">
+    <!--  Introduction content  -->
+    <div class="tab-pane show active" id="intro-content" role="tabpanel" aria-labelledby="intro-tab">
+        <!-- Spacing coloured bar to extend the tab -->
+        <p class="tab-content-line"></p>
+
+        <!--   Description     -->
+        <div class="container-fluid small-skip">
+            <div class="d-flex flex-column bd-highlight mb-2 tab-body">
+                <div class="p-2 bd-highlight">
+                    <h1 class="display-4 titleParagraph">Description</h1>
+                    <p class="description display-4 content-contact" id="service-description">
+                        This is the description of the person; we will describe here the studies of the person, her
+                        passions and her role inside the association.<br>
+                    </p>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <!--   Carousel of images-->
+                    <div id="indicators" class="carousel slide mx-5 px-5" data-ride="carousel">
+                        <!--  Carousel round indicators  -->
+                        <ol class="carousel-indicators ">
+                            <li class="carousel-indicator-round rounded-circle active border"
+                                data-target="#indicators"
+                                data-slide-to="0"></li>
+                            <li class="carousel-indicator-round rounded-circle border" data-target="#indicators"
+                                data-slide-to="1 "></li>
+                            <li class="carousel-indicator-round rounded-circle border" data-target="#indicators"
+                                data-slide-to="2"></li>
+                        </ol>
+
+                        <!--  Carousel items (images)  -->
+
+                        <div class="carousel-inner"></div>
+
+                        <!--  Previous control arrow  -->
+                        <a class="carousel-control-prev" href="#indicators" role="button" data-slide="prev">
+                            <i class="material-icons control-arrow ">navigate_before</i>
+                        </a>
+                        <!--  Next control arrow  -->
+                        <a class="carousel-control-next" href="#indicators" role="button" data-slide="next">
+                            <i class="material-icons control-arrow ">navigate_next</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--  Practical Information content  -->
+    <div class="tab-pane " id="practical-content" role="tabpanel" aria-labelledby="practical-info-tab">
+        <p class="tab-content-line"></p>           <!-- Spacing coloured bar to extend the tab -->
+        <div class="container-fluid small-skip">
+            <h1 class="display-4 titleParagraph">Involved people:</h1>
+            <div class="d-flex flex-md-column bd-highlight mb-2">
+                <div class="d-flex flex-md-row bd-highlight mb-3 justify-content-sm-center"
+                     id="service-involved-people"></div>
+
+                <div class="p-2 bd-highlight">
+                    <h1 class="display-4 titleParagraph">Presented in:</h1>
+                    <div class="d-flex buttons-list">
+                        <div class="d-flex flex-md-row bd-highlight mb-3 align-self-center"
+                             id="service-associated-events"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--groupOrientation-->
+<footer>
+    <nav class="footer-container navbar navbar-expand-lg navbar-light bg-navbar">
+        <!-- Landmarks of the navbar -->
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link landmark group-link prev-btn footer" href="#" aria-label="Previous Button">
+                <span><img src="../../img/prev.svg" height="40"
+                           alt="previous button"></span>Prev</a>
+            <!-- Link to Home -->
+            <a class="nav-link landmark group-link next-btn" href="#" aria-label="Next Button">
+                Next<span><img src="../../img/next_.svg" height="40"
+                               alt="next button"></span></a>
+        </div>
+    </nav>
+</footer>
+<!--Bootrap-dependent scripts-->
+<!--jQuery script-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<!--Popper script-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<!--Bootstrap script-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="../../js/fillService.js"></script>
+</body>
+</html>

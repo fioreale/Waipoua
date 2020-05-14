@@ -1,0 +1,26 @@
+.adj-row {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 7em;
+}
+
+.control-arrow {
+    border-radius: 100%;
+}
+
+.carousel-indicator-round {
+    width: 9px!important;
+    height: 9px!important;
+}
+
+@media (min-width: 1300px){
+    .carousel-indicator-round {
+        width: 18px!important;
+        height: 18px!important;
+    }
+}
+
+.home {
+    padding-left: 0;
+    padding-right: 0;
+}

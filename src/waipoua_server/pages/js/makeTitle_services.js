@@ -4,7 +4,8 @@ var category_ID = services_queryString.split("=")[1];
 console.log("passed category id" + category_ID)
 
 /**
- * This script file manages manages the Introductory Page of "Services" filling the content of the list depending on the choice of the user
+ * This script file manages manages the Introductory Page of "Services" filling the content of the list depending on the
+ * choice of the user
  * @type {HTMLElement}
  */
 
@@ -41,30 +42,19 @@ all_radio.onclick = function () {
             .then(function (json) {
                 console.log(json)
                 refresh()
-                var begin;
+                var begin = document.getElementById("begin-service")
                 for (let i = 0; i < json.length; i++) {
-                    if (i % 3 === 0 && i > 2) {
-                        begin.append(
-                            document.createElement("div")
-                                .setAttribute("class", "d-flex flex-row bd-highlight mb-3 justify-content-center")
-                        )
-                    } else if (i === 0) {
+                    if (i % 3 === 0) {
+                        let newRow = document.createElement("div")
+                        newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                            "justify-content-center");
+                        begin.removeAttribute("id");
+                        newRow.setAttribute("id", "begin-service");
                         begin = document.getElementById("begin-service")
+                        begin.parentElement.appendChild(newRow);
                     }
                     let {ID_service, service_name, service_presentation, URI_image} = json[i];
-                    if (i >= 0 && i <= 2)
-                        begin.appendChild(fill(URI_image, service_name, ID_service))
-                    if (i >= 3 && i <= 5)
-                        begin
-                            .nextElementSibling.appendChild(fill(URI_image, service_name, ID_service))
-                    if (i >= 6 && i <= 8)
-                        begin
-                            .nextElementSibling.nextElementSibling
-                            .appendChild(fill(URI_image, service_name, ID_service))
-                    if (i >= 9 && i <= 11)
-                        begin
-                            .nextElementSibling.nextElementSibling.nextElementSibling
-                            .appendChild(fill(URI_image, service_name, ID_service))
+                    begin.appendChild(fill(URI_image, service_name, ID_service))
                 }
             })
             .then(() => clicks(null))
@@ -78,7 +68,6 @@ category_radio.onclick = function () {
         if (index > 0) {
             document.getElementById("title_jumbo2").innerHTML = document.getElementById("select-category2").innerText.split("\n")[index];
             let momentum = document.getElementById("select-category2").value;
-            console.log("categoria" + momentum)
             document.getElementById("select-category2").value = document.getElementById("select-category2").innerText.split("\n")[0];
             document.getElementById("service-menu").remove();
 
@@ -90,33 +79,21 @@ category_radio.onclick = function () {
                     .then(function (json) {
                         console.log(json)
                         refresh()
-                        var begin;
                         var category_passed = null;
+                        var begin = document.getElementById("begin-service")
                         for (let i = 0; i < json.length; i++) {
-                            if (i % 3 === 0 && i > 2) {
-                                begin.append(
-                                    document.createElement("div")
-                                        .setAttribute("class", "d-flex flex-row bd-highlight mb-3 justify-content-center")
-                                )
-                            } else if (i === 0) {
+                            if (i % 3 === 0) {
+                                let newRow = document.createElement("div")
+                                newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                                    "justify-content-center");
+                                begin.removeAttribute("id");
+                                newRow.setAttribute("id", "begin-service");
                                 begin = document.getElementById("begin-service")
+                                begin.parentElement.appendChild(newRow);
                             }
                             let {ID_service, service_name, service_presentation, URI_image, category} = json[i];
-                            category_passed = category.category_name
-                            console.log("category passed:" + category_passed)
-                            if (i >= 0 && i <= 2)
-                                begin.appendChild(fill(URI_image, service_name, ID_service))
-                            if (i >= 3 && i <= 5)
-                                begin
-                                    .nextElementSibling.appendChild(fill(URI_image, service_name, ID_service))
-                            if (i >= 6 && i <= 8)
-                                begin
-                                    .nextElementSibling.nextElementSibling
-                                    .appendChild(fill(URI_image, service_name, ID_service))
-                            if (i >= 9 && i <= 11)
-                                begin
-                                    .nextElementSibling.nextElementSibling.nextElementSibling
-                                    .appendChild(fill(URI_image, service_name, ID_service))
+                            category = category.category_name
+                            begin.appendChild(fill(URI_image, service_name, ID_service))
                         }
                         return category_passed
                     })
