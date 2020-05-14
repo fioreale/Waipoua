@@ -1,0 +1,481 @@
+---
+swagger: "2.0"
+info:
+  description: "This is the API for the Waipoua website"
+  version: "1.0.0"
+  title: "Waipoua"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "chiara.barbera@mail.polimi.it"
+host: "localhost:8080"
+basePath: "/"
+tags:
+- name: "service"
+  description: "Service provided by the association"
+- name: "event"
+  description: "Event organized by the association; can be relative to a service"
+- name: "person"
+  description: "Person that has joined the association"
+schemes:
+- "http"
+- "https"
+paths:
+  /Events:
+    get:
+      tags:
+      - "event"
+      summary: "List of events provided by the association "
+      operationId: "eventsGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "Success. Return the list of events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        "404":
+          description: "Error. Collection not found."
+      x-swagger-router-controller: "Event"
+  /Events/{eventId}:
+    get:
+      tags:
+      - "event"
+      summary: "List of events provided by the association "
+      operationId: "eventSpecificGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "Id of the month"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the event details"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        "404":
+          description: "Error. Event not found."
+      x-swagger-router-controller: "Event"
+  /Events/Categories/{categoryId}:
+    get:
+      tags:
+      - "event"
+      summary: "List of events provided by the association "
+      operationId: "eventsByCateogoryGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "categoryId"
+        in: "path"
+        description: "Month in which the event takes place"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the list of events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        "404":
+          description: "Error. Collection not found."
+      x-swagger-router-controller: "Event"
+  /Events/Months/{month}:
+    get:
+      tags:
+      - "event"
+      summary: "List of events provided by the association in a certain month "
+      operationId: "eventsByMonthGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "month"
+        in: "path"
+        description: "Month in which the event takes place"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the list of events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        "404":
+          description: "Error. Collection not found."
+      x-swagger-router-controller: "Event"
+  /Services:
+    get:
+      tags:
+      - "service"
+      summary: "List of services provided by the association "
+      operationId: "servicesGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "Success. Return the list of services"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Service"
+        "404":
+          description: "Error. Collection not found."
+      x-swagger-router-controller: "Service"
+  /Services/{serviceId}:
+    get:
+      tags:
+      - "service"
+      summary: "A specific service"
+      operationId: "serviceSpecificGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "serviceId"
+        in: "path"
+        description: "The id of the service"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the required service"
+          schema:
+            $ref: "#/definitions/Service"
+        "404":
+          description: "Error. Service not found."
+      x-swagger-router-controller: "Service"
+  /Services/Category/{categoryId}:
+    get:
+      tags:
+      - "service"
+      summary: "A specific service category"
+      operationId: "servicesByCategoryGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "categoryId"
+        in: "path"
+        description: "The id of the cateogory"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the list of services by category"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Service"
+        "404":
+          description: "Error. Service not found."
+      x-swagger-router-controller: "Service"
+  /People:
+    get:
+      tags:
+      - "person"
+      summary: "List of the people that joined the association"
+      operationId: "peopleGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "Success. Return the list of people"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+        "400":
+          description: "Invalid ID"
+        "404":
+          description: "Error. Collection not found."
+      x-swagger-router-controller: "Person"
+  /People/{personId}:
+    get:
+      tags:
+      - "person"
+      summary: "Find person by Id"
+      operationId: "peopleSpecificGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "personId"
+        in: "path"
+        description: "The id of a person"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the person data"
+          schema:
+            $ref: "#/definitions/Person"
+        "400":
+          description: "Invalid ID"
+        "404":
+          description: "Error. Person not found."
+      x-swagger-router-controller: "Person"
+  /People/Roles/{category_id}:
+    get:
+      tags:
+      - "person"
+      summary: "Find list of person by role"
+      operationId: "peopleByRoleGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "The maximum number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "category_id"
+        in: "path"
+        description: "The id of the role"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Success. Return the list of people by a certain role"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+        "400":
+          description: "Invalid ID"
+        "404":
+          description: "Error. Collection not found."
+      x-swagger-router-controller: "Person"
+definitions:
+  Event:
+    type: "object"
+    properties:
+      event_id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      presentation:
+        type: "string"
+      day:
+        type: "integer"
+        format: "int64"
+      month:
+        type: "integer"
+        format: "int64"
+      year:
+        type: "integer"
+        format: "int64"
+      hour:
+        type: "integer"
+        format: "int64"
+      minutes:
+        type: "integer"
+        format: "int64"
+      image:
+        $ref: "#/definitions/Image"
+      relativeTo:
+        $ref: "#/definitions/Service"
+      contact:
+        $ref: "#/definitions/Person"
+      category:
+        $ref: "#/definitions/Category"
+      location:
+        type: "string"
+    title: "Event"
+    description: "An event of the association"
+    example:
+      presentation: "presentation"
+      date:
+        month: 1
+        hour: 5
+        year: 5
+        minutes: 2
+        day: 6
+      image:
+        url: "url"
+      event_id: 0
+      relativeTo:
+        presentation: "presentation"
+        image:
+        - url: "url"
+        - url: "url"
+        service_id: 7
+        name: "Presentazione di Waipoua"
+        category:
+          category_id: 9
+          name: "name"
+      contact:
+        image:
+          url: "url"
+        role:
+          category_id: 9
+          name: "name"
+        surname: "surname"
+        name: "name"
+        description: "description"
+        phone_number: "phone_number"
+        email: "email"
+        person_id: 3
+      name: "name"
+      location: "location"
+      category:
+        category_id: 9
+        name: "name"
+  Category:
+    type: "object"
+    properties:
+      category_id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    example:
+      category_id: 9
+      name: "name"
+  Image:
+    type: "object"
+    properties:
+      url:
+        type: "string"
+    example:
+      url: "url"
+  Person:
+    type: "object"
+    properties:
+      person_id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      image:
+        $ref: "#/definitions/Image"
+      description:
+        type: "string"
+      role:
+        $ref: "#/definitions/Category"
+      email:
+        type: "string"
+      phone_number:
+        type: "string"
+    example:
+      image:
+        url: "url"
+      role:
+        category_id: 9
+        name: "name"
+      surname: "surname"
+      name: "name"
+      description: "description"
+      phone_number: "phone_number"
+      email: "email"
+      person_id: 3
+  Service:
+    type: "object"
+    properties:
+      service_id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        example: "Presentazione di Waipoua"
+      presentation:
+        type: "string"
+      image:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+      category:
+        $ref: "#/definitions/Category"
+    title: "Service"
+    description: "A service of the association"
+    example:
+      presentation: "presentation"
+      image:
+      - url: "url"
+      - url: "url"
+      service_id: 7
+      name: "Presentazione di Waipoua"
+      category:
+        category_id: 9
+        name: "name"
