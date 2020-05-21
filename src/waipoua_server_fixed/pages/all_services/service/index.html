@@ -41,7 +41,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav ">
             <a class="nav-link landmark " href="../../">Home </a>        <!-- Link to Home -->
-            <a class="nav-link landmark active " href="../../all_services">Services</a>        <!-- Link to All Services -->
+            <a class="nav-link landmark active " href="../../all_services">Services</a>
+            <!-- Link to All Services -->
             <a class="nav-link landmark" href="../../all_events">Events</a>            <!-- Link to All Events -->
             <a class="nav-link landmark" href="../../all_people">People</a>            <!-- Link to All People -->
             <a class="nav-link landmark" href="../../AboutUs.html">About Us</a>
@@ -94,9 +95,9 @@
         <p class="tab-content-line"></p>
 
         <!--   Description     -->
-        <div class="container-fluid small-skip">
+        <div class="container-md small-skip">
             <div class="d-flex flex-column bd-highlight mb-2 tab-body">
-                <div class="p-2 bd-highlight">
+                <div class="p-2 bd-highlight small-skip">
                     <h1 class="display-4 titleParagraph">Description</h1>
                     <p class="description display-4 content-contact" id="service-description">
                         This is the description of the person; we will describe here the studies of the person, her
@@ -138,11 +139,16 @@
     <!--  Practical Information content  -->
     <div class="tab-pane " id="practical-content" role="tabpanel" aria-labelledby="practical-info-tab">
         <p class="tab-content-line"></p>           <!-- Spacing coloured bar to extend the tab -->
-        <div class="container-fluid small-skip">
-            <h1 class="display-4 titleParagraph">Involved people:</h1>
-            <div class="d-flex flex-md-column bd-highlight mb-2">
-                <div class="d-flex flex-md-row bd-highlight mb-3 justify-content-sm-center"
-                     id="service-involved-people"></div>
+        <div class="container-md small-skip">
+            <div class="d-flex flex-column bd-highlight mb-2 tab-body">
+
+                <div class="p-2 bd-highlight">
+                    <h1 class="display-4 titleParagraph">Involved people:</h1>
+                    <div class="d-flex buttons-list">
+                        <div class="d-flex flex-md-row bd-highlight mb-3 align-self-center"
+                             id="service-involved-people"></div>
+                    </div>
+                </div>
 
                 <div class="p-2 bd-highlight">
                     <h1 class="display-4 titleParagraph">Presented in:</h1>
@@ -151,9 +157,11 @@
                              id="service-associated-events"></div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!--groupOrientation-->

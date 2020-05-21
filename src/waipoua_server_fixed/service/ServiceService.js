@@ -95,7 +95,7 @@ exports.servicesByCategoryGET = function (categoryId, limit, offset) {
  **/
 exports.servicesGET = function (limit, offset) {
     return sqlDb("Service").limit(limit).offset(offset)
-        .innerJoin("Service_Images", "Service_Images.ID_service", "Service.ID_service")
+        .innerJoin("service_images", "service_images.ID_service", "Service.ID_service")
         .then(data => {
             let v = data.map(e => {
                 return e;

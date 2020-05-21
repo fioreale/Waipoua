@@ -7,3 +7,11 @@
 .small-skip {
     margin-bottom: 2em;
 }
+
+.adj-left {
+    padding-left: 3em;
+}
+
+.adj-right {
+    padding-right: 3em;
+}

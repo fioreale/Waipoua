@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="icon" href="img/logo.png" >
+    <link rel="icon" href="img/logo.png">
     <title>Waipoua</title>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/images.css">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/animation.css">
 </head>
 <body>
 <!--NavBar-->
@@ -49,125 +50,141 @@
 
 
 </nav>
-<!--Carousel of images-->
-<div class="container-fluid home">
-    <div id="home-indicators" class="carousel slide" data-ride="carousel">
 
-        <!--  Carousel round indicators  -->
-        <ol class="carousel-indicators">
-            <li class="carousel-indicator-round rounded-circle active border" data-target="#home-indicators"
-                data-slide-to="0"></li>
-            <li class="carousel-indicator-round rounded-circle border" data-target="#home-indicators"
-                data-slide-to="1 "></li>
-            <li class="carousel-indicator-round rounded-circle border" data-target="#home-indicators"
-                data-slide-to="2"></li>
-        </ol>
+<div class="fade-in">
+    <!--Carousel of images-->
+    <div class="container-fluid home">
+        <div id="home-indicators" class="carousel slide" data-ride="carousel">
 
-        <!--  Carousel items (images)  -->
+            <!--  Carousel round indicators  -->
+            <ol class="carousel-indicators">
+                <li class="carousel-indicator-round rounded-circle active border" data-target="#home-indicators"
+                    data-slide-to="0"></li>
+                <li class="carousel-indicator-round rounded-circle border" data-target="#home-indicators"
+                    data-slide-to="1"></li>
+                <li class="carousel-indicator-round rounded-circle border" data-target="#home-indicators"
+                    data-slide-to="2"></li>
+                <li class="carousel-indicator-round rounded-circle border" data-target="#home-indicators"
+                    data-slide-to="3"></li>
+            </ol>
 
-        <div class="carousel-inner">
-            <!--  First image  -->
-            <div class="carousel-item active">
-                <img src="http://localhost:63342/Waipoua/web/single-components/img/fig_1.jpg" class="d-block img-fluid" alt="...">
+            <!--  Carousel items (images)  -->
+
+            <div class="carousel-inner">
+                <!--  First image  -->
+                <div class="carousel-item active">
+                    <img src="img/wallpaper_1.jpg" class="d-block img-fluid" alt="...">
+                </div>
+                <!--  Second image  -->
+                <div class="carousel-item">
+                    <img src="img/wallpaper_2.jpeg" class="d-block img-fluid" alt="...">
+                </div>
+                <!--  Third image  -->
+                <div class="carousel-item">
+                    <img src="img/wallpaper_3.jpg" class="d-block img-fluid" alt="...">
+                </div>
+                <!--  Fourth image  -->
+                <div class="carousel-item">
+                    <img src="img/wallpaper_4.jpg" class="d-block img-fluid" alt="...">
+                </div>
             </div>
-            <!--  Second image  -->
-            <div class="carousel-item">
-                <img src="http://localhost:63342/Waipoua/web/single-components/img/fig_2.jpg" class="d-block img-fluid" alt="...">
-            </div>
-            <!--  Third image  -->
-            <div class="carousel-item">
-                <img src="http://localhost:63342/Waipoua/web/single-components/img/fig_3.jpg" class="d-block img-fluid" alt="...">
+
+            <!--  Previous control arrow  -->
+            <a class="carousel-control-prev" href="#home-indicators" role="button" data-slide="prev">
+                <i class="material-icons control-arrow ">navigate_before</i>
+            </a>
+            <!--  Next control arrow  -->
+            <a class="carousel-control-next" href="#home-indicators" role="button" data-slide="next">
+                <i class="material-icons control-arrow ">navigate_next</i>
+            </a>
+
+        </div>
+    </div>
+    <!--Content-->
+    <div class="content-block">
+        <div class="row adj-row justify-content-center">
+            <div class="col-md-10">
+
+                <h1 class="home-title text-center">Welcome to Waipoua!</h1>
+                <p class="description display-4 content-contact">
+                    <b>Our community is in action to make an impact on the globe!</b><br>
+                    We’re in business to save our home planet. We aim to
+                    use the resources we have - our business, our investments, our voice and our imaginations - to do
+                    something
+                    about it.
+                </p>
             </div>
         </div>
 
-        <!--  Previous control arrow  -->
-        <a class="carousel-control-prev" href="#home-indicators" role="button" data-slide="prev">
-            <i class="material-icons control-arrow ">navigate_before</i>
-        </a>
-        <!--  Next control arrow  -->
-        <a class="carousel-control-next" href="#home-indicators" role="button" data-slide="next">
-            <i class="material-icons control-arrow ">navigate_next</i>
-        </a>
-
     </div>
-</div>
-<!--Content-->
-<div class="content-block">
-    <h1 class="home-title text-center">Welcome to Waipoua!</h1>
+
     <div class="row adj-row justify-content-center">
-        <div class="col-md-10">
-            <p class="description display-4 content-contact">
-                <b>Our community is in action to make an impact on the globe!</b><br>
-                We’re in business to save our home planet. We aim to
-                use the resources we have - our business, our investments, our voice and our imaginations - to do
-                something
-                about it.
-            </p>
-        </div>
-    </div>
-
-</div>
-
-<div class="row adj-row justify-content-center">
-    <div class="col-md-10 banners">
-        <div class="row row-cols-1 row-cols-md-4">
-            <div class="col mb-4">
-                <div class="card h-100 banner-color">
-                    <div class="card-body card-position">
-                        <h2 class="card-text card-text-adj">Support the association! Let's achieve with us our mission!</h2>
-                        <a href="Support.html" class="btn btn-primary  ">DONATE</a>
+        <div class="col-md-10 banners">
+            <div class="row row-cols-1 row-cols-md-4">
+                <div class="col mb-4">
+                    <div class="card h-100 banner-color">
+                        <div class="card-body card-position">
+                            <h2 class="card-text card-text-adj">Support the association! Let's achieve with us our
+                                mission!</h2>
+                            <a href="./Support.html" class="btn btn-primary">DONATE</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100 banner-color">
-                    <div class="card-body">
-                        <h2 class="card-text card-text-adj">Have a look on what we do and our projects</h2>
-                        <a href="#" class="btn btn-primary  banner-adj">Services</a>
+                <div class="col mb-4">
+                    <div class="card h-100 banner-color">
+                        <div class="card-body">
+                            <h2 class="card-text card-text-adj">Have a look on what we do and our projects</h2>
+                            <a href="./all_services" class="btn btn-primary banner-adj">Services</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100 banner-color">
-                    <div class="card-body">
-                        <h2 class="card-text card-text-adj">We are open to new faces... join Waipoua Association!</h2>
-                        <a href="Support.html" class="btn btn-primary ">Join Us</a>
+                <div class="col mb-4">
+                    <div class="card h-100 banner-color">
+                        <div class="card-body">
+                            <h2 class="card-text card-text-adj">We are open to new faces... join Waipoua
+                                Association!</h2>
+                            <a href="./Support.html" class="btn btn-primary">Join Us</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100 banner-color">
-                    <div class="card-body">
-                        <h2 class="card-text card-text-adj">Do you want to participate to our beautiful events?</h2>
-                        <a href="#" class="btn btn-primary ">Events</a>
+                <div class="col mb-4">
+                    <div class="card h-100 banner-color">
+                        <div class="card-body">
+                            <h2 class="card-text card-text-adj">Do you want to participate to our beautiful events?</h2>
+                            <a href="./all_events" class="btn btn-primary ">Events</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
-    <h1 class="display-4 text-center subtitle">Next Events</h1>
-    <div class="row adj-row justify-content-center">
-        <div class="col-md-10">
-            <div class="card border-success mb-3">
-                <div class="card-header"><a href="#"
-                                            class="stretched-link link-color">Waipuoa, that's our mission!</a></div>
-                <div class="card-body text-success">
-                    <p class="card-text next-events-adj link-color">Let's meet us and discover our mission, our love for the planet and how we help
-                        it!</p>
+    <div class="container-fluid">
+        <h1 class="display-4 text-center subtitle">Next Events</h1>
+        <div class="row adj-row justify-content-center">
+            <div class="col-md-10">
+                <div class="card border-success mb-3">
+                    <div class="card-header"><a href="#"
+                                                class="stretched-link link-color">Waipuoa, that's our mission!</a></div>
+                    <div class="card-body text-success">
+                        <p class="card-text next-events-adj link-color">Let's meet us and discover our mission, our love
+                            for
+                            the planet and how we help
+                            it!</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="w-100"></div>
-        <div class="col-md-10">
-            <div class="card border-success mb-3">
-                <div class="card-header"><a href="#"
-                                            class="stretched-link link-color">It's hard to breathe!</a></div>
-                <div class="card-body text-success">
-                    <p class="card-text next-events-adj link-color">Air pollution is increasing over the last years, and it's not acceptable! Come and
-                        discover our proposals and goals for this critical and fundamental issue.</p>
+            <div class="w-100"></div>
+            <div class="col-md-10">
+                <div class="card border-success mb-3">
+                    <div class="card-header"><a href="#"
+                                                class="stretched-link link-color">It's hard to breathe!</a></div>
+                    <div class="card-body text-success">
+                        <p class="card-text next-events-adj link-color">Air pollution is increasing over the last years,
+                            and
+                            it's not acceptable! Come and
+                            discover our proposals and goals for this critical and fundamental issue.</p>
+                    </div>
                 </div>
             </div>
         </div>

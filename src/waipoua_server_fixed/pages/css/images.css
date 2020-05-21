@@ -5,6 +5,9 @@
 
 #imageContacts{
 	padding-top:3em;
+	height: 400px;
+	width: auto;
+	padding-left: 10em;
 }
 
 #fillPage{

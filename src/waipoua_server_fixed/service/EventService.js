@@ -75,7 +75,7 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
     return sqlDb("Event")
         .limit(limit).offset(offset)
         .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
-        .where("event_category",categoryId)
+        .where("event_category", categoryId)
         .then(data => {
             let v = data.map(e => {
                 e.date = {
@@ -84,6 +84,10 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
                     year: e.year,
                     hour: e.hour,
                     minute: e.minute
+                }
+                e.category = {
+                    ID_category: e.ID_category,
+                    category_name: e.category_name
                 }
                 return e;
             })
@@ -103,7 +107,7 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
 exports.eventsByMonthGET = function (month, limit, offset) {
     return sqlDb("Event")
         .limit(limit).offset(offset)
-        .where("month",month)
+        .where("month", month)
         .orderBy('year')
         .then(data => {
             let v = data.map(e => {
