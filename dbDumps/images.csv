@@ -1,27 +1,97 @@
-ID IMAGE	URI
-1	../../img/waipoua_association_image.jpg
-2	../../img/ahmed_demir.jpg
-3	../../img/kaya_zhou.jpg
-4	../../img/federica_de_santis.jpg
-5	../../img/monica_giovanari.jpg
-6	../../img/luisa_magnani.jpg
-7	../../img/giada_lorusso.jpg
-8	../../img/keith_jordan.jpg
-9	../../img/federico_giurati.jpg
-10	../../img/miguel_santos.jpg
-11	../../img/johanna_valdez.jpg
-12	../../img/margherita_piccoli.jpg
-13	../../img/giacomo_giorgis.jpg
-14	../../img/gerard_dubois.jpg
-15	../../img/recycle_event.jpg
-16	../../img/animale_1.jpg
-17	../../img/rinoceronte_grigio.jpg
-18	../../img/pale_eoliche.jpg
-19	../../img/save_forests.jpg
-20	../../img/tamarin_mani_rosse.jpg
-21	../../img/tigre_albina.jpg
-22	../../img/pollution_factory.jpg
-23	../../img/who_we_are.jpg
-24	../../img/recycle_plastic.jpg
-25	../../img/cleansing_seas_service.jpg
-26	../../img/person_1.jpg
+"("	15	","	"'../images/People/waipoua_association_image.jpg"	"'),"
+"("	16	","	"'../images/People/ahmed_demir_jumbotron.jpg"	"'),"
+"("	17	","	"'../images/People/kaya_zhou_jumbotron.jpg"	"'),"
+"("	18	","	"'../images/People/federica_de_santis_jumbotron.jpg"	"'),"
+"("	19	","	"'../images/People/monica_giovanari_jumbotron.jpg"	"'),"
+"("	20	","	"'../images/People/luisa_magnani_jumbotron.jpg"	"'),"
+"("	21	","	"'../images/People/giada_lorusso_jumbotron.jpg"	"'),"
+"("	22	","	"'../images/People/keith_jordan_jumbotron.jpg"	"'),"
+"("	23	","	"'../images/People/federico_giurati_jumbotron.jpg"	"'),"
+"("	24	","	"'../images/People/miguel_santos_jumbotron.jpg"	"'),"
+"("	25	","	"'../images/People/joannah_valdez_jumbotron.jpg"	"'),"
+"("	26	","	"'../images/People/margherita_piccoli_jumbotron.jpg"	"'),"
+"("	27	","	"'../images/People/giacomo_giorgis_jumbotron.jpg"	"'),"
+"("	28	","	"'../images/People/gerard_dubois_jumbotron.jpg"	"'),"
+"("	29	","	"'../images/Services/air_quality_analysis_service_01.jpg"	"'),"
+"("	30	","	"'../images/Services/air_quality_analysis_service_02.jpg"	"'),"
+"("	31	","	"'../images/Services/air_quality_analysis_service_03.jpg"	"'),"
+"("	32	","	"'../images/Services/air_quality_analysis_service_jumbotron.png"	"'),"
+"("	33	","	"'../images/Services/animals_exploitation_service_01.jpg"	"'),"
+"("	34	","	"'../images/Services/animals_exploitation_service_02.jpg"	"'),"
+"("	35	","	"'../images/Services/animals_exploitation_service_jumbotron.png"	"'),"
+"("	36	","	"'../images/Services/control_breedings_service_01.jpg"	"'),"
+"("	37	","	"'../images/Services/control_breedings_service_02.jpg"	"'),"
+"("	38	","	"'../images/Services/control_breedings_service_03.jpg"	"'),"
+"("	39	","	"'../images/Services/control_breedings_service_jumbotron.png"	"'),"
+"("	40	","	"'../images/Services/deforestation_service_01.jpg"	"'),"
+"("	41	","	"'../images/Services/deforestation_service_02.jpg"	"'),"
+"("	42	","	"'../images/Services/deforestation_service_03.jpg"	"'),"
+"("	43	","	"'../images/Services/deforestation_service_jumbotron.png"	"'),"
+"("	44	","	"'../images/Services/extinction_species_service_01.jpg"	"'),"
+"("	45	","	"'../images/Services/extinction_species_service_02.jpg"	"'),"
+"("	46	","	"'../images/Services/extinction_species_service_03.jpg"	"'),"
+"("	47	","	"'../images/Services/extinction_species_service_jumbotron.png"	"'),"
+"("	48	","	"'../images/Services/fires_service_01.jpg"	"'),"
+"("	49	","	"'../images/Services/fires_service_02.jpg"	"'),"
+"("	50	","	"'../images/Services/fires_service_03.jpg"	"'),"
+"("	51	","	"'../images/Services/fires_service_jumbotron.png"	"'),"
+"("	52	","	"'../images/Services/garbage_forests_service_01.jpg"	"'),"
+"("	53	","	"'../images/Services/garbage_forests_service_02.jpg"	"'),"
+"("	54	","	"'../images/Services/garbage_forests_service_03.jpg"	"'),"
+"("	55	","	"'../images/Services/garbage_forests_service_jumbotron.jpg"	"'),"
+"("	56	","	"'../images/Services/hunt_poaching_service_01.jpg"	"'),"
+"("	57	","	"'../images/Services/hunt_poaching_service_02.jpg"	"'),"
+"("	58	","	"'../images/Services/hunt_poaching_service_jumbotron.jpg"	"'),"
+"("	59	","	"'../images/Services/oasi_protezione_service_01.jpg"	"'),"
+"("	60	","	"'../images/Services/oasi_protezione_service_02.jpg"	"'),"
+"("	61	","	"'../images/Services/oasi_protezione_service_jumbotron.png"	"'),"
+"("	62	","	"'../images/Services/recycle_activities_service_01.jpg"	"'),"
+"("	63	","	"'../images/Services/recycle_activities_service_02.jpg"	"'),"
+"("	64	","	"'../images/Services/recycle_activities_service_jumbotron.png"	"'),"
+"("	65	","	"'../images/Services/rounds_forests_service_01.jpg"	"'),"
+"("	66	","	"'../images/Services/rounds_forests_service_02.jpg"	"'),"
+"("	67	","	"'../images/Services/rounds_forests_service_jumbotron.png"	"'),"
+"("	68	","	"'../images/Services/sea_waste_service_01.jpg"	"'),"
+"("	69	","	"'../images/Services/sea_waste_service_02.jpg"	"'),"
+"("	70	","	"'../images/Services/sea_waste_service_03.jpg"	"'),"
+"("	71	","	"'../images/Services/sea_waste_service_jumbotron.png"	"'),"
+"("	72	","	"'../images/Services/separate_collection_service_01.jpg"	"'),"
+"("	73	","	"'../images/Services/separate_collection_service_02.jpg"	"'),"
+"("	74	","	"'../images/Services/separate_collection_service_03.jpg"	"'),"
+"("	75	","	"'../images/Services/separate_collection_service_jumbotron.png"	"'),"
+"("	76	","	"'../images/Events/animals_event_jumbotron.png"	"'),"
+"("	77	","	"'../images/Events/association_promotion_event_jumbotron.png"	"'),"
+"("	78	","	"'../images/Events/forests_event_jumbotron.png"	"'),"
+"("	79	","	"'../images/Events/fund_raising_event_jumbotron.png"	"'),"
+"("	80	","	"'../images/Events/pollution_event_jumbotron.png"	"'),"
+"("	81	","	"'../images/Services/air_quality_analysis_service_icon.png"	"'),"
+"("	82	","	"'../images/Services/animals_exploitation_service_icon.png"	"'),"
+"("	83	","	"'../images/Services/control_breedings_service_icon.png"	"'),"
+"("	84	","	"'../images/Services/deforestation_service_icon.png"	"'),"
+"("	85	","	"'../images/Services/extinction_species_service_icon.png"	"'),"
+"("	86	","	"'../images/Services/fires_service_icon.png"	"'),"
+"("	87	","	"'../images/Services/garbage_forests_service_icon.jpg"	"'),"
+"("	88	","	"'../images/Services/hunt_poaching_service_icon.jpg"	"'),"
+"("	89	","	"'../images/Services/oasi_protezione_service_icon.png"	"'),"
+"("	90	","	"'../images/Services/recycle_activities_service_icon.png"	"'),"
+"("	91	","	"'../images/Services/rounds_forests_service_icon.png"	"'),"
+"("	92	","	"'../images/Services/sea_waste_service_icon.png"	"'),"
+"("	93	","	"'../images/Services/separate_collection_service_icon.png"	"'),"
+"("	94	","	"'../images/Events/animals_event_icon.png"	"'),"
+"("	95	","	"'../images/Events/association_promotion_event_icon.png"	"'),"
+"("	96	","	"'../images/Events/forests_event_icon.png"	"'),"
+"("	97	","	"'../images/Events/fund_raising_event_icon.png"	"'),"
+"("	98	","	"'../images/Events/pollution_event_icon.png"	"'),"
+"("	99	","	"'../images/People/ahmed_demir_icon.jpg"	"'),"
+"("	100	","	"'../images/People/kaya_zhou_icon.jpg"	"'),"
+"("	101	","	"'../images/People/federica_de_santis_icon.jpg"	"'),"
+"("	102	","	"'../images/People/monica_giovanari_icon.jpg"	"'),"
+"("	103	","	"'../images/People/luisa_magnani_icon.jpg"	"'),"
+"("	104	","	"'../images/People/giada_lorusso_icon.jpg"	"'),"
+"("	105	","	"'../images/People/keith_jordan_icon.jpg"	"'),"
+"("	106	","	"'../images/People/federico_giurati_icon.jpg"	"'),"
+"("	107	","	"'../images/People/miguel_santos_icon.jpg"	"'),"
+"("	108	","	"'../images/People/joannah_valdez_icon.jpg"	"'),"
+"("	109	","	"'../images/People/margherita_piccoli_icon.jpg"	"'),"
+"("	110	","	"'../images/People/giacomo_giorgis_icon.jpg"	"'),"
+"("	111	","	"'../images/People/gerard_dubois_icon.jpg"	"'),"
