@@ -23,14 +23,6 @@ if (queries[0] != null) {
 
 window.history.pushState({}, document.title, "../all_events");
 
-function evaluate_offset() {
-    let offset_page;
-    if (isNaN(parseInt(page) * 12))
-        offset_page = 0
-    else offset_page = parseInt(page) * 12
-    return offset_page
-}
-
 /**
  * This script file manages manages the Introductory Page of "Events" filling the content of the list depending on the
  * choice of the user
@@ -45,6 +37,9 @@ var months = document.getElementById("month-menu");
 var content_months = months.innerHTML;
 var events = document.getElementById("events-menu");
 var content_events = events.innerHTML;
+
+let dataset = null;
+let index = 0;
 
 if (category_ID != null) {
     window.onload = function () {
@@ -74,10 +69,9 @@ all_radio.onclick = function () {
         document.getElementById("events-menu").remove();
     }
     apply_btn.onclick = function () {
-        let offset_page = evaluate_offset();
-        let max_all_events;
         if (context === 2 || context === 3) {
             page = 0
+            index = 0
             context = 1
         }
         document.getElementById("title_jumbo").innerText = "All Events";
@@ -86,51 +80,29 @@ all_radio.onclick = function () {
                 return response.json();
             })
             .then(function (json) {
-                max_all_events = json.length
+                dataset = json;
+                console.log(json)
             })
-            .then(function () {
-                fetch("../Events/" + "?offset=" + offset_page)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (json) {
-                        console.log(json)
-                        refresh()
-                        var begin = document.getElementById("begin-events")
-                        for (let i = 0; i < json.length; i++) {
-                            if (i % 3 === 0 && i > 0) {
-                                let newRow = document.createElement("div")
-                                newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                    "justify-content-center");
-                                begin.parentElement.appendChild(newRow)
-                                begin = begin.nextElementSibling
-                            }
-                            let {ID_event, event_name, event_presentation, event_URI_image} = json[i];
-                            begin.appendChild(fill(event_URI_image, event_name, ID_event))
-                        }
-                    })
-                    .then(() => clicks(null, null, max_all_events, null))
-            })
+            .then(DataChange)
     }
 }
 
 category_radio.onclick = function () {
-    let max_category_el;
     if (document.getElementById("month-menu") != null) {
         document.getElementById("month-menu").remove();
     }
     category_radio.parentElement.parentElement.append(events);
     events.innerHTML = content_events;
     apply_btn.onclick = function () {
-        let offset_page = evaluate_offset();
         if (context === 1 || context === 3) {
             page = 0
+            index = 0
             context = 2
         }
-        var index = document.getElementById("select-category").selectedIndex
-        if (index > 0) {
+        var selectedIndex = document.getElementById("select-category").selectedIndex
+        if (selectedIndex > 0) {
             document.getElementById("title_jumbo").innerHTML = document.getElementById("select-category")
-                .innerText.split("\n")[index];
+                .innerText.split("\n")[selectedIndex];
             let momentum = document.getElementById("select-category").value;
             document.getElementById("select-category").value = document.getElementById("select-category")
                 .innerText.split("\n")[0];
@@ -142,58 +114,31 @@ category_radio.onclick = function () {
                         return response.json();
                     })
                     .then(function (json) {
-                        max_category_el = json.length;
+                        dataset = json;
+                        console.log(dataset)
                     })
-                    .then(function () {
-                        fetch("../Events/Categories/" + momentum + "/?offset=" + offset_page)
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (json) {
-                                console.log(json)
-                                refresh()
-                                var category_passed = null;
-                                var begin = document.getElementById("begin-events")
-                                for (let i = 0; i < json.length; i++) {
-                                    if (i % 3 === 0 && i > 0) {
-                                        let newRow = document.createElement("div")
-                                        newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                            "justify-content-center");
-                                        begin.parentElement.appendChild(newRow)
-                                        begin = begin.nextElementSibling
-                                    }
-                                    let {ID_event, event_name, event_presentation, event_URI_image, category} = json[i];
-                                    category_passed = category.ID_category;
-                                    begin.appendChild(fill(event_URI_image, event_name, ID_event))
-                                }
-                                return category_passed
-                            })
-                            .then(function (category) {
-                                clicks(category, null, null, max_category_el)
-                            })
-                    })
+                    .then(DataChange)
             }
         }
     }
 }
 
 month_radio.onclick = function () {
-    let max_month_el;
     if (document.getElementById("events-menu") != null) {
         document.getElementById("events-menu").remove();
     }
     month_radio.parentElement.parentElement.append(months);
     months.innerHTML = content_months;
     apply_btn.onclick = function () {
-        let offset_page = evaluate_offset();
         if (context === 1 || context === 2) {
             page = 0
+            index
             context = 3
         }
-        var index = document.getElementById("select-month").selectedIndex
-        if (index > 0) {
+        var selectedIndex = document.getElementById("select-month").selectedIndex
+        if (selectedIndex > 0) {
             document.getElementById("title_jumbo").innerHTML = document.getElementById("select-month")
-                .innerText.split("\n")[index];
+                .innerText.split("\n")[selectedIndex];
             let momentum = document.getElementById("select-month").value
             console.log(momentum)
             document.getElementById("select-month").value = document.getElementById("select-month")
@@ -206,39 +151,64 @@ month_radio.onclick = function () {
                         return response.json();
                     })
                     .then(function (json) {
-                        max_month_el = json.length;
+                        dataset = json;
+                        console.log(dataset)
                     })
-                    .then(function () {
-                        fetch("../Events/Months/" + momentum + "?offset=" + offset_page)
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (json) {
-                                console.log(json)
-                                refresh()
-                                var month_passed = null;
-                                var begin = document.getElementById("begin-events")
-                                for (let i = 0; i < json.length; i++) {
-                                    if (i % 3 === 0 && i > 0) {
-                                        let newRow = document.createElement("div")
-                                        newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                            "justify-content-center");
-                                        begin.parentElement.appendChild(newRow)
-                                        begin = begin.nextElementSibling
-                                    }
-                                    let {ID_event, event_name, event_presentation, event_URI_image, date} = json[i];
-                                    month_passed = date.month;
-                                    begin.appendChild(fill(event_URI_image, event_name, ID_event))
-                                }
-                                return month_passed
-                            })
-                            .then(function (month) {
-                                clicks(null, month, null, max_month_el)
-                            })
-                    })
+                    .then(DataChange)
             }
         }
     }
+}
+
+function filter(dataset) {
+    let newDataset = new Array(0);
+    for (let i = 0; i < dataset.length; i++) {
+        let {URI_image} = dataset[i]
+        if (URI_image.includes("icon"))
+            newDataset.push(dataset[i])
+    }
+    return newDataset
+}
+
+function DataChange() {
+    refresh()
+    fadeIn(document.getElementById("begin-events").parentElement)
+
+    dataset = filter(dataset)
+    console.log(dataset)
+
+    let passed_month, passed_category;
+    let max = Math.min(12, dataset.length - index);
+
+    let newEl = document.createElement("div");
+    let currentRow;
+    for (let i = index; i < index + max; i++) {
+        if (i % 3 === 0) {
+            let newRow = document.createElement("div")
+            newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                "justify-content-center");
+            newEl.appendChild(newRow)
+            currentRow = newRow
+        }
+        let {ID_event, event_name, event_presentation, URI_image, category, date} = dataset[i];
+        console.log(dataset[i])
+        if (context === 3)
+            passed_month = date.month
+        if (context === 2)
+            passed_category = category.ID_category
+
+        currentRow.appendChild(fill(URI_image, event_name, ID_event))
+    }
+
+    newEl.firstElementChild.setAttribute("id", "begin-events")
+    document.getElementById("begin-events").parentElement.innerHTML = newEl.innerHTML
+
+    if (context === 3) {
+        clicks(null, passed_month, null, dataset.length)
+    } else if (context === 2) {
+        clicks(passed_category, null, dataset.length)
+    } else
+        clicks(null, null, dataset.length, null)
 }
 
 function fill(image_url, name, event_id) {
@@ -282,6 +252,8 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (isNaN(page))
         page = 0
 
+    console.log(by_month + " " + by_category)
+
     list1 = list[0];
     if (list1 != null) {
         let offset = parseInt(page) * 12;
@@ -297,7 +269,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list2 = list[1];
@@ -313,7 +285,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list3 = list[2];
@@ -329,7 +301,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list4 = list[3];
@@ -345,7 +317,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list5 = list[4];
@@ -361,7 +333,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list6 = list[5];
@@ -377,7 +349,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list7 = list[6];
@@ -393,7 +365,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list8 = list[7];
@@ -409,7 +381,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list9 = list[8];
@@ -425,7 +397,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list10 = list[9];
@@ -441,7 +413,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list11 = list[10];
@@ -457,7 +429,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
     list12 = list[11];
@@ -473,70 +445,101 @@ function clicks(by_category, by_month, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "event/" + queryString;
+            window.location.href = "../all_events/event/" + queryString;
         }
     }
 
     // Group Navigation clicks
     let listen_prev = document.getElementsByClassName("nav-link landmark group-link prev-btn")[0];
     let listen_next = document.getElementsByClassName("nav-link landmark group-link next-btn")[0];
-    let next, prev;
 
     if (max_cat != null) {
-
-        if (parseInt(page) === Math.floor(parseInt(max_cat) / 12))
-            next = 0
-        else next = (Math.floor(parseInt(page) + 1)).toString()
-
-        if (parseInt(page) === 0) {
-            prev = Math.floor(parseInt(max_cat) / 12).toString()
-        } else prev = (Math.floor(parseInt(page) - 1)).toString()
-
-        if (isNaN(next))
-            next = 0
-        if (isNaN(prev))
-            prev = 0
+        console.log("cat")
 
         listen_next.onclick = function () {
-            let newQuery
-            if (by_category != null)
-                newQuery = "?page=" + next + "&category=" + by_category
-            else
-                newQuery = "?page=" + next + "&month=" + by_month
-            window.location.href = "../all_events/" + newQuery;
+            if (parseInt(page) === Math.floor(parseInt(max_cat) / 12)) {
+                index = 0
+                page = 0
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index += 12
+                page += 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
+
         listen_prev.onclick = function () {
-            let newQuery
-            if (by_category != null)
-                newQuery = "?page=" + prev + "&category=" + by_category
-            else
-                newQuery = "?page=" + prev + "&month=" + by_month
-            window.location.href = "../all_events/" + newQuery;
+            if (parseInt(page) === 0) {
+                index = Math.floor(parseInt(max_cat) / 12) * 12
+                page = Math.floor(parseInt(max_cat) / 12)
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index -= 12
+                page -= 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
-    } else  {
 
-        if (parseInt(page) === Math.floor(parseInt(max_all) / 12))
-            next = 0
-        else next = (Math.floor(parseInt(page) + 1)).toString()
-
-        if (parseInt(page) === 0) {
-            prev = Math.floor(parseInt(max_all) / 12).toString()
-        } else prev = (Math.floor(parseInt(page) - 1)).toString()
-
-        if (isNaN(next))
-            next = 0
-        if (isNaN(prev))
-            prev = 0
-
-        console.log(prev + " " + next)
+    } else {
+        console.log("all")
 
         listen_next.onclick = function () {
-            let newQuery = "?page=" + next
-            window.location.href = "../all_events/" + newQuery;
+            if (parseInt(page) === Math.floor(parseInt(max_all) / 12)) {
+                index = 0
+                page = 0
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index += 12
+                page += 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
+
         listen_prev.onclick = function () {
-            let newQuery = "?page=" + prev
-            window.location.href = "../all_events/" + newQuery;
+            if (parseInt(page) === 0) {
+                index = Math.floor(parseInt(max_all) / 12) * 12
+                page = Math.floor(parseInt(max_all) / 12)
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index -= 12
+                page -= 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
     }
+}
+
+function fadeOut(el) {
+    el.style.opacity = 1;
+
+    (function fade() {
+        if ((el.style.opacity -= .1) < 0) {
+            el.style.display = "none";
+        } else {
+            requestAnimationFrame(fade);
+        }
+    })();
+}
+
+// fade in
+
+function fadeIn(el) {
+    el.style.opacity = 0;
+    el.style.display = "block";
+
+    (function fade() {
+        var val = parseFloat(el.style.opacity);
+        if (!((val += .02) > 1)) {
+            el.style.opacity = val;
+            requestAnimationFrame(fade);
+        }
+    })();
 }

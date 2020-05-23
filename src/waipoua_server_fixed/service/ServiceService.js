@@ -27,11 +27,12 @@ exports.serviceDbSetup = function (connection) {
  **/
 exports.serviceSpecificGET = function (serviceId) {
     return sqlDb("Service")
+        .where("ID_service", serviceId)
         .innerJoin("people_involved_in_services", "people_involved_in_services.ID_Service_inv", "Service.ID_service")
         .innerJoin("Person", "Person.ID_person", "people_involved_in_services.ID_Person_inv")
         .leftJoin("Event", "Event.event_ID_service", "Service.ID_service")
-        .where("ID_service", serviceId)
-        .orderBy("URI_image", "desc")
+        .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
+        .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
         .then(data => {
             let v = data.map(e => {
                 e.person = {
@@ -41,7 +42,6 @@ exports.serviceSpecificGET = function (serviceId) {
                     description: e.description,
                     phone_number: e.phone_number,
                     email: e.email,
-                    URI_image: e.URI_image,
                     ID_role: e.ID_role
                 }
                 e.event = {
@@ -53,7 +53,12 @@ exports.serviceSpecificGET = function (serviceId) {
                     event_URI_image: e.event_URI_image,
                     event_name: e.event_name,
                     event_category: e.event_category,
-                    location: e.location
+                    location: e.location,
+                    day: e.day,
+                    month: e.month,
+                    year: e.year,
+                    hour: e.hour,
+                    minute: e.minute
                 }
                 return e;
             })
@@ -72,10 +77,11 @@ exports.serviceSpecificGET = function (serviceId) {
  **/
 exports.servicesByCategoryGET = function (categoryId, limit, offset) {
     return sqlDb("Service")
-        .limit(limit).offset(offset)
-        .innerJoin("Service_Category", "Service.service_category", "Service_Category.ID_category")
-        .innerJoin("Service_Images", "Service_Images.ID_service", "Service.ID_service")
         .where("Service.service_category", categoryId)
+        .innerJoin("Service_Category", "Service.service_category", "Service_Category.ID_category")
+        .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
+        .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
+        .limit(limit).offset(offset)
         .then(data => {
             let v = data.map(e => {
                 e.category = {ID_category: e.ID_category, category_name: e.category_name}
@@ -94,8 +100,10 @@ exports.servicesByCategoryGET = function (categoryId, limit, offset) {
  * returns List
  **/
 exports.servicesGET = function (limit, offset) {
-    return sqlDb("Service").limit(limit).offset(offset)
-        .innerJoin("service_images", "service_images.ID_service", "Service.ID_service")
+    return sqlDb("Service")
+        .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
+        .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
+        .limit(limit).offset(offset)
         .then(data => {
             let v = data.map(e => {
                 return e;

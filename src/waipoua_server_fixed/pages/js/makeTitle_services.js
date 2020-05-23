@@ -17,14 +17,6 @@ if (queries[0] != null) {
 
 window.history.pushState({}, document.title, "../all_services");
 
-function evaluate_offset() {
-    let offset_page;
-    if (isNaN(parseInt(page) * 12))
-        offset_page = 0
-    else offset_page = parseInt(page) * 12
-    return offset_page
-}
-
 
 /**
  * This script file manages manages the Introductory Page of "Services" filling the content of the list depending on the
@@ -37,6 +29,9 @@ var category_radio = document.getElementById("categoryRadio2");
 var apply_btn = document.getElementById("apply-btn2");
 var menu = document.getElementById("service-menu");
 var content_menu = menu.innerHTML;
+
+let dataset = null;
+let index = 0;
 
 if (category_ID != null) {
     window.onload = function () {
@@ -56,10 +51,9 @@ all_radio.onclick = function () {
         document.getElementById("service-menu").remove();
     }
     apply_btn.onclick = function () {
-        let offset_page = evaluate_offset();
-        let max_all_services;
         if (context === 2) {
             page = 0
+            index = 0
             context = 1
         }
         document.getElementById("title_jumbo2").innerText = "All Services"
@@ -68,48 +62,28 @@ all_radio.onclick = function () {
                 return response.json();
             })
             .then(function (json) {
-                max_all_services = json.length
+                dataset = json;
+                console.log(dataset)
             })
-            .then(function () {
-                fetch("../Services/" + "?offset=" + offset_page)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (json) {
-                        console.log(json)
-                        refresh()
-                        var begin = document.getElementById("begin-service")
-                        for (let i = 0; i < json.length; i++) {
-                            if (i % 3 === 0 && i > 0) {
-                                let newRow = document.createElement("div")
-                                newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                    "justify-content-center");
-                                begin.parentElement.appendChild(newRow)
-                                begin = begin.nextElementSibling
-                            }
-                            let {ID_service, service_name, service_presentation, URI_image} = json[i];
-                            begin.appendChild(fill(URI_image, service_name, ID_service))
-                        }
-                    })
-                    .then(() => clicks(null, max_all_services, null))
-            })
+            .then(DataChange)
     }
 }
 category_radio.onclick = function () {
-    let max_category_el;
     category_radio.parentElement.parentElement.append(menu);
     menu.innerHTML = content_menu;
     apply_btn.onclick = function () {
         if (context === 1) {
             page = 0
+            index = 0
             context = 2
         }
-        let offset_page = evaluate_offset();
-        var index = document.getElementById("select-category2").selectedIndex
-        if (index > 0) {
-            document.getElementById("title_jumbo2").innerHTML = document.getElementById("select-category2").innerText.split("\n")[index];
+        var selectedIndex = document.getElementById("select-category2").selectedIndex
+        if (selectedIndex > 0) {
+            document.getElementById("title_jumbo2").innerHTML = document.getElementById("select-category2")
+                .innerText.split("\n")[selectedIndex];
             let momentum = document.getElementById("select-category2").value;
-            document.getElementById("select-category2").value = document.getElementById("select-category2").innerText.split("\n")[0];
+            document.getElementById("select-category2").value = document.getElementById("select-category2")
+                .innerText.split("\n")[0];
             document.getElementById("service-menu").remove();
 
             if (momentum != null) {
@@ -118,39 +92,61 @@ category_radio.onclick = function () {
                         return response.json();
                     })
                     .then(function (json) {
-                        max_category_el = json.length;
+                        dataset = json;
+                        console.log("ciao")
+                        console.log(dataset)
                     })
-                    .then(function () {
-                        fetch("../Services/Category/" + momentum + "?offset=" + offset_page)
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (json) {
-                                console.log(json)
-                                refresh()
-                                var category_passed = null;
-                                var begin = document.getElementById("begin-service")
-                                for (let i = 0; i < json.length; i++) {
-                                    if (i % 3 === 0 && i > 0) {
-                                        let newRow = document.createElement("div")
-                                        newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                            "justify-content-center");
-                                        begin.parentElement.appendChild(newRow)
-                                        begin = begin.nextElementSibling
-                                    }
-                                    let {ID_service, service_name, service_presentation, URI_image, category} = json[i];
-                                    category_passed = category.ID_category
-                                    begin.appendChild(fill(URI_image, service_name, ID_service))
-                                }
-                                return category_passed
-                            })
-                            .then(function (category) {
-                                clicks(category, null, max_category_el)
-                            })
-                    })
+                    .then(DataChange)
             }
         }
     }
+}
+
+function filter(dataset) {
+    let newDataset = new Array(0);
+    for (let i = 0; i < dataset.length; i++) {
+        let {URI_image} = dataset[i]
+        if(URI_image.includes("icon"))
+            newDataset.push(dataset[i])
+    }
+    return newDataset
+}
+
+function DataChange() {
+    refresh()
+    fadeIn(document.getElementById("begin-service").parentElement)
+
+    dataset = filter(dataset)
+    console.log(dataset)
+
+    let passed_category;
+    let max = Math.min(12, dataset.length - index);
+
+    let newEl = document.createElement("div");
+    let currentRow;
+    for (let i = index; i < index + max; i++) {
+        if (i % 3 === 0) {
+            let newRow = document.createElement("div")
+            newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                "justify-content-center");
+            newEl.appendChild(newRow)
+            currentRow = newRow
+        }
+        let {ID_service, service_name, service_presentation, URI_image, category} = dataset[i];
+        console.log(dataset[i])
+        if (context === 2)
+            passed_category = category.ID_category
+
+        currentRow.appendChild(fill(URI_image, service_name, ID_service))
+    }
+
+    newEl.firstElementChild.setAttribute("id", "begin-service")
+    document.getElementById("begin-service").parentElement.innerHTML = newEl.innerHTML
+
+    if (context === 2) {
+        clicks(passed_category, null, dataset.length)
+    } else
+        clicks(null, dataset.length, null)
 }
 
 function fill(image_url, name, service_id) {
@@ -207,7 +203,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list2 = list[1];
@@ -221,7 +217,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list3 = list[2];
@@ -235,7 +231,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list4 = list[3];
@@ -249,7 +245,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list5 = list[4];
@@ -263,7 +259,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list6 = list[5];
@@ -277,7 +273,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list7 = list[6];
@@ -291,7 +287,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list8 = list[7];
@@ -305,7 +301,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list9 = list[8];
@@ -319,7 +315,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list10 = list[9];
@@ -333,7 +329,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list11 = list[10];
@@ -347,7 +343,7 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
     list12 = list[11];
@@ -361,60 +357,103 @@ function clicks(by_category, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_service=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "service/" + queryString;
+            window.location.href = "../all_services/service/" + queryString;
         }
     }
 
     // Group Navigation clicks
-    let listen_prev = document.getElementsByClassName("prev-btn footer")[0];
-    let listen_next = document.getElementsByClassName("next-btn")[0];
-    let next, prev;
+    let listen_prev = document.getElementsByClassName("nav-link landmark group-link prev-btn")[0];
+    let listen_next = document.getElementsByClassName("nav-link landmark group-link next-btn")[0];
 
     if (max_cat != null) {
-
-        if (parseInt(page) === Math.floor(parseInt(max_cat) / 12))
-            next = 0
-        else next = (Math.floor(parseInt(page) + 1)).toString()
-
-        if (parseInt(page) === 0) {
-            prev = Math.floor(parseInt(max_cat) / 12).toString()
-        } else prev = (Math.floor(parseInt(page) - 1)).toString()
-
-        if (isNaN(next))
-            next = 0
-        if (isNaN(prev))
-            prev = 0
+        console.log("cat")
 
         listen_next.onclick = function () {
-            let newQuery = "?page=" + next + "&id_category" + by_category
-            window.location.href = "../all_services/" + newQuery;
+            if (parseInt(page) === Math.floor(parseInt(max_cat) / 12)) {
+                index = 0
+                page = 0
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index += 12
+                page += 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
+
         listen_prev.onclick = function () {
-            let newQuery = "?page=" + prev + "&id_category" + by_category
-            window.location.href = "../all_services/" + newQuery;
+            if (parseInt(page) === 0) {
+                index = Math.floor(parseInt(max_cat) / 12) * 12
+                page = Math.floor(parseInt(max_cat) / 12)
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index -= 12
+                page -= 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
+
     } else {
-
-        if (parseInt(page) === Math.floor(parseInt(max_all) / 12))
-            next = 0
-        else next = (Math.floor(parseInt(page) + 1)).toString()
-
-        if (parseInt(page) === 0) {
-            prev = Math.floor(parseInt(max_all) / 12).toString()
-        } else prev = (Math.floor(parseInt(page) - 1)).toString()
-
-        if (isNaN(next))
-            next = 0
-        if (isNaN(prev))
-            prev = 0
+        console.log("all")
 
         listen_next.onclick = function () {
-            let newQuery = "?page=" + next
-            window.location.href = "../all_services/" + newQuery;
+            if (parseInt(page) === Math.floor(parseInt(max_all) / 12)) {
+                index = 0
+                page = 0
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index += 12
+                page += 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
+
         listen_prev.onclick = function () {
-            let newQuery = "?page=" + prev
-            window.location.href = "../all_services/" + newQuery;
+            if (parseInt(page) === 0) {
+                index = Math.floor(parseInt(max_all) / 12) * 12
+                page = Math.floor(parseInt(max_all) / 12)
+                console.log(index + "-" + page)
+                DataChange()
+            } else {
+                index -= 12
+                page -= 1
+                console.log(index + "-" + page)
+                DataChange()
+            }
         }
     }
+}
+
+// fade out
+
+function fadeOut(el) {
+    el.style.opacity = 1;
+
+    (function fade() {
+        if ((el.style.opacity -= .1) < 0) {
+            el.style.display = "none";
+        } else {
+            requestAnimationFrame(fade);
+        }
+    })();
+}
+
+// fade in
+
+function fadeIn(el) {
+    el.style.opacity = 0;
+    el.style.display = "block";
+
+    (function fade() {
+        var val = parseFloat(el.style.opacity);
+        if (!((val += .02) > 1)) {
+            el.style.opacity = val;
+            requestAnimationFrame(fade);
+        }
+    })();
 }

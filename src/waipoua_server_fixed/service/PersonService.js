@@ -30,9 +30,11 @@ exports.peopleDbSetup = function (connection) {
  **/
 exports.peopleByRoleGET = function (category_id, limit, offset) {
     return sqlDb("Person")
-        .limit(limit).offset(offset)
-        .innerJoin("Role", "Role.ID_role", "Person.ID_role")
         .where("Person.ID_role", category_id)
+        .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
+        .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
+        .innerJoin("Role", "Role.ID_role", "Person.ID_role")
+        .limit(limit).offset(offset)
         .then(data => {
             let v = data.map(e => {
                 e.role = {ID_role: e.ID_role, role_name: e.role_name}
@@ -51,7 +53,10 @@ exports.peopleByRoleGET = function (category_id, limit, offset) {
  * returns List
  **/
 exports.peopleGET = function (limit, offset) {
-    return sqlDb("Person").limit(limit).offset(offset)
+    return sqlDb("Person")
+        .limit(limit).offset(offset)
+        .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
+        .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .then(data => {
             let v = data.map(e => {
                 return e;
@@ -69,11 +74,13 @@ exports.peopleGET = function (limit, offset) {
  **/
 exports.peopleSpecificGET = function (personId) {
     return sqlDb("Person")
-        .innerJoin("people_involved_in_services", "people_involved_in_services.ID_Person_inv", "Person.ID_person")
-        .innerJoin("Service", "Service.ID_service", "people_involved_in_services.ID_Service_inv")
-        .innerJoin("Role", "Person.ID_role", "Role.ID_role")
-        .leftJoin("Event", "Event.ID_contact_person", "Person.ID_person")
         .where("ID_person", personId)
+        .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
+        .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
+        .leftJoin("Event", "Event.ID_contact_person", "Person.ID_person")
+        .innerJoin("Role", "Person.ID_role", "Role.ID_role")
+        .innerJoin("people_involved_in_services", "Person.ID_person", "people_involved_in_services.ID_Person_inv")
+        .innerJoin("Service", "people_involved_in_services.ID_Service_inv", "Service.ID_service")
         .then(data => {
             let v = data.map(e => {
                 e.role = {ID_role: e.ID_role, role_name: e.role_name}
@@ -91,7 +98,12 @@ exports.peopleSpecificGET = function (personId) {
                     event_URI_image: e.event_URI_image,
                     event_name: e.event_name,
                     event_category: e.event_category,
-                    location: e.location
+                    location: e.location,
+                    day: e.day,
+                    month: e.month,
+                    year: e.year,
+                    hour: e.hour,
+                    minute: e.minute
                 }
                 return e;
             })

@@ -28,9 +28,11 @@ exports.eventDbSetup = function (connection) {
  **/
 exports.eventSpecificGET = function (eventId) {
     return sqlDb("Event")
+        .where("ID_event", eventId)
         .leftJoin("Service", "Service.ID_service", "Event.event_ID_service")
         .innerJoin("Person", "Person.ID_person", "Event.ID_contact_person")
-        .where("ID_event", eventId)
+        .innerJoin("Event_images","Event.event_category","Event_images.ID_event_category")
+        .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
         .then(data => {
             let v = data.map(e => {
                 e.date = {
@@ -73,9 +75,11 @@ exports.eventSpecificGET = function (eventId) {
  **/
 exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
     return sqlDb("Event")
+        .where("event_category", categoryId)
         .limit(limit).offset(offset)
         .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
-        .where("event_category", categoryId)
+        .innerJoin("Event_images","Event.event_category","Event_images.ID_event_category")
+        .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
         .then(data => {
             let v = data.map(e => {
                 e.date = {
@@ -106,9 +110,11 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
  **/
 exports.eventsByMonthGET = function (month, limit, offset) {
     return sqlDb("Event")
-        .limit(limit).offset(offset)
         .where("month", month)
         .orderBy('year')
+        .limit(limit).offset(offset)
+        .innerJoin("Event_images","Event.event_category","Event_images.ID_event_category")
+        .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
         .then(data => {
             let v = data.map(e => {
                 e.date = {
@@ -133,7 +139,13 @@ exports.eventsByMonthGET = function (month, limit, offset) {
  * returns List
  **/
 exports.eventsGET = function (limit, offset) {
-    return sqlDb("Event").limit(limit).offset(offset)
+    return sqlDb("Event")
+        .limit(limit).offset(offset)
+        .innerJoin("Event_images","Event.event_category","Event_images.ID_event_category")
+        .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
+        .orderBy("Event.year")
+        .orderBy("Event.month")
+        .orderBy("Event.day")
         .then(data => {
             let v = data.map(e => {
                 e.date = {
