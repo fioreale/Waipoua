@@ -1,13 +1,13 @@
-var event_queryString = decodeURIComponent(window.location.search);
+let event_queryString = decodeURIComponent(window.location.search);
 event_queryString = event_queryString.substring(1);
-var queries = event_queryString.split("&");
-console.log(queries)
+let queries = event_queryString.split("&");
 
-var offset = queries[0].split("=")[1];
+let offset = queries[0].split("=")[1];
 
-var event_id = queries[1].split("=")[1];
+let event_id = queries[1].split("=")[1];
 event_id = event_id.split(":")[0];
 let category_id = null;
+let month_value = null;
 
 // group in which the person could be: role or all
 let events_by_category = null;
@@ -34,7 +34,7 @@ if (queries[2] != null) {
                 find_index(event_id, events_by_category)
             }).then(() => fill(event_id))
     } else {
-        var month_value = queries[2].split("=")[1];
+        month_value = queries[2].split("=")[1];
         max_cat_el = month_value.split(":")[1]
         month_value = month_value.split(":")[0];
 
@@ -63,8 +63,6 @@ if (queries[2] != null) {
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
-        console.log(i)
-        console.log(group[i])
         if (group[i].ID_person === parseInt(id)) {
             index_group = i
             break
@@ -96,7 +94,6 @@ function fill(event_id) {
             return response.json();
         })
         .then(function (json) {
-            console.log(json)
             let title = document.getElementsByClassName("title")[0];
             let text = document.getElementsByClassName("description")[0];
             let background = document.getElementsByClassName("jumbotron-background")[0];
@@ -105,7 +102,7 @@ function fill(event_id) {
             let event_location = document.getElementById("event-address");
 
             // filling the services (if any)
-            var el = document.getElementById("services-event");
+            let el = document.getElementById("services-event");
             el.innerHTML = "";
 
             let {service} = json[0];
@@ -233,7 +230,7 @@ function orientation_info(category, month, name) {
 }
 
 function clicks_listener(category, month) {
-    var listener = document.getElementById("role-callback");
+    let listener = document.getElementById("role-callback");
 
     if (listener != null) {
         listener.onclick = function () {
@@ -248,8 +245,8 @@ function clicks_listener(category, month) {
             window.location.href = "../../all_events/" + query_par;
         }
     }
-    var listener_person = document.getElementById("event-person");
-    var listener_service = document.getElementsByClassName("clickable-service")[0];
+    let listener_person = document.getElementById("event-person");
+    let listener_service = document.getElementsByClassName("clickable-service")[0];
 
     if (listener_person != null) {
         listener_person.onclick = function () {

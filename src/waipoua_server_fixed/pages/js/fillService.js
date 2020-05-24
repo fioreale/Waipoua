@@ -1,11 +1,10 @@
-var service_queryString = decodeURIComponent(window.location.search);
+let service_queryString = decodeURIComponent(window.location.search);
 service_queryString = service_queryString.substring(1);
-var queries = service_queryString.split("&");
-console.log(queries)
+let queries = service_queryString.split("&");
 
-var offset = queries[0].split("=")[1];
+let offset = queries[0].split("=")[1];
 
-var service_id = queries[1].split("=")[1];
+let service_id = queries[1].split("=")[1];
 service_id = service_id.split(":")[0]
 let category_ID = null;
 
@@ -290,7 +289,7 @@ function orientation_info(category, name) {
 
 function clicks_listener(category) {
     // Orientation Info clicks
-    var listener = document.getElementById("category-callback");
+    let listener = document.getElementById("category-callback");
 
     if (listener != null) {
         listener.onclick = function () {
@@ -450,10 +449,6 @@ function clicks_listener(category) {
     if (parseInt(index_group) === 0)
         prev = (Math.floor(parseInt(max_services_DB) - 1))
     else prev = index_group - 1
-
-    console.log("buttons")
-    console.log(all_services[next].ID_service)
-    console.log(all_services[prev].ID_service)
 
     listen_next.onclick = function () {
         document.getElementById("intro-tab").click()

@@ -17,14 +17,6 @@ if (queries[0] != null) {
 
 window.history.pushState({}, document.title, "../all_people");
 
-function evaluate_offset() {
-    let offset_page;
-    if (isNaN(parseInt(page) * 12))
-        offset_page = 0
-    else offset_page = parseInt(page) * 12
-    return offset_page
-}
-
 
 /**
  * This script manages the Introductory Page of "People" filling the content of the list depending on the choice of the user
@@ -36,6 +28,10 @@ var role_radio = document.getElementById("categoryRadio3");
 var apply_btn = document.getElementById("apply-btn3");
 var menu = document.getElementById("people-menu");
 var content_menu = menu.innerHTML;
+
+let dataset = null;
+let index = 0;
+
 
 if (role_ID != null) {
     window.onload = function () {
@@ -50,16 +46,14 @@ if (role_ID != null) {
     }
 }
 
-
 all_radio.onclick = function () {
     if (document.getElementById("people-menu") != null) {
         document.getElementById("people-menu").remove();
     }
     apply_btn.onclick = function () {
-        let offset_page = evaluate_offset();
-        let max_all_people;
         if (context === 2) {
             page = 0
+            index = 0
             context = 1
         }
         document.getElementById("title_jumbo3").innerText = "All People";
@@ -68,49 +62,28 @@ all_radio.onclick = function () {
                 return response.json();
             })
             .then(function (json) {
-                max_all_people = json.length
+                dataset = json;
             })
-            .then(function () {
-                fetch("../People/" + "?offset=" + offset_page)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (json) {
-                        console.log(json)
-                        refresh()
-                        fadeIn(document.getElementById("begin-people").parentElement)
-                        var begin = document.getElementById("begin-people")
-                        for (let i = 0; i < json.length; i++) {
-                            if (i % 3 === 0 && i > 0) {
-                                let newRow = document.createElement("div")
-                                newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                    "justify-content-center");
-                                begin.parentElement.appendChild(newRow)
-                                begin = begin.nextElementSibling
-                            }
-                            let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[i];
-                            begin.appendChild(fill(URI_image, name + " " + surname, ID_person))
-                        }
-                    })
-                    .then(() => clicks(null, max_all_people, null))
-            })
+            .then(DataChange)
     }
 }
+
 role_radio.onclick = function () {
-    let max_role_el;
     role_radio.parentElement.parentElement.append(menu);
     menu.innerHTML = content_menu;
     apply_btn.onclick = function () {
-        let offset_page = evaluate_offset();
         if (context === 1) {
             page = 0
+            index = 0
             context = 2
         }
-        var index = document.getElementById("select-category3").selectedIndex
-        if (index > 0) {
-            document.getElementById("title_jumbo3").innerHTML = document.getElementById("select-category3").innerText.split("\n")[index];
+        var selectedIndex = document.getElementById("select-category3").selectedIndex
+        if (selectedIndex > 0) {
+            document.getElementById("title_jumbo3").innerHTML = document.getElementById("select-category3")
+                .innerText.split("\n")[selectedIndex];
             let momentum = document.getElementById("select-category3").value;
-            document.getElementById("select-category3").value = document.getElementById("select-category3").innerText.split("\n")[0];
+            document.getElementById("select-category3").value = document.getElementById("select-category3")
+                .innerText.split("\n")[0];
             document.getElementById("people-menu").remove();
 
             if (momentum != null) {
@@ -119,40 +92,57 @@ role_radio.onclick = function () {
                         return response.json();
                     })
                     .then(function (json) {
-                        max_role_el = json.length;
+                        dataset = json;
                     })
-                    .then(function () {
-                        fetch("../People/Roles/" + momentum + "?offset=" + offset_page)
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (json) {
-                                console.log(json)
-                                refresh()
-                                fadeIn(document.getElementById("begin-people").parentElement)
-                                var role_passed = null;
-                                var begin = document.getElementById("begin-people")
-                                for (let i = 0; i < json.length; i++) {
-                                    if (i % 3 === 0 && i > 0) {
-                                        let newRow = document.createElement("div")
-                                        newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
-                                            "justify-content-center");
-                                        begin.parentElement.appendChild(newRow)
-                                        begin = begin.nextElementSibling
-                                    }
-                                    let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[i];
-                                    role_passed = role.ID_role;
-                                    begin.appendChild(fill(URI_image, name + " " + surname, ID_person))
-                                }
-                                return role_passed
-                            })
-                            .then(function (role) {
-                                clicks(role, null, max_role_el)
-                            })
-                    })
+                    .then(DataChange)
             }
         }
     }
+}
+
+function filter(dataset) {
+    let newDataset = new Array(0);
+    for (let i = 0; i < dataset.length; i++) {
+        let {URI_image} = dataset[i]
+        if(URI_image.includes("icon"))
+            newDataset.push(dataset[i])
+    }
+    return newDataset
+}
+
+function DataChange() {
+    refresh()
+    fadeIn(document.getElementById("begin-people").parentElement)
+
+    dataset = filter(dataset)
+
+    let passed_role;
+    let max = Math.min(12, dataset.length - index);
+
+    let newEl = document.createElement("div");
+    let currentRow;
+    for (let i = index; i < index + max; i++) {
+        if (i % 3 === 0) {
+            let newRow = document.createElement("div")
+            newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+                "justify-content-center");
+            newEl.appendChild(newRow)
+            currentRow = newRow
+        }
+        let {ID_person, name, surname, description, phone_number, email, URI_image, role} = dataset[i];
+        if (context === 2)
+            passed_role = role.ID_role
+
+        currentRow.appendChild(fill(URI_image, name + " " + surname, ID_person))
+    }
+
+    newEl.firstElementChild.setAttribute("id", "begin-people")
+    document.getElementById("begin-people").parentElement.innerHTML = newEl.innerHTML
+
+    if (context === 2) {
+        clicks(passed_role, null, dataset.length)
+    } else
+        clicks(null, dataset.length, null)
 }
 
 function fill(image_url, name, person_id) {
@@ -209,7 +199,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list2 = list[1];
@@ -223,7 +213,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list3 = list[2];
@@ -237,7 +227,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list4 = list[3];
@@ -251,7 +241,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list5 = list[4];
@@ -265,7 +255,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list6 = list[5];
@@ -279,7 +269,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list7 = list[6];
@@ -293,7 +283,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list8 = list[7];
@@ -307,7 +297,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list9 = list[8];
@@ -321,7 +311,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list10 = list[9];
@@ -335,7 +325,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list11 = list[10];
@@ -349,7 +339,7 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
     list12 = list[11];
@@ -363,63 +353,65 @@ function clicks(by_role, max_all, max_cat) {
                 queryString = "?offset=" + offset + "&id_person=" + value1 + ":" + max_all;
             }
 
-            window.location.href = "person/" + queryString;
+            window.location.href = "../all_people/person/" + queryString;
         }
     }
 
     // Group Navigation clicks
     let listen_prev = document.getElementsByClassName("nav-link landmark group-link prev-btn")[0];
     let listen_next = document.getElementsByClassName("nav-link landmark group-link next-btn")[0];
-    let next, prev;
 
-    console.log(max_all + " " + max_cat)
 
     if (max_cat != null) {
 
-        if (parseInt(page) === Math.floor(parseInt(max_cat) / 12))
-            next = 0
-        else next = (Math.floor(parseInt(page) + 1)).toString()
-
-        if (parseInt(page) === 0) {
-            prev = Math.floor(parseInt(max_cat) / 12).toString()
-        } else prev = (Math.floor(parseInt(page) - 1)).toString()
-
-        if (isNaN(next))
-            next = 0
-        if (isNaN(prev))
-            prev = 0
-
         listen_next.onclick = function () {
-            let newQuery = "?page=" + next + "&id_role=" + by_role
+            if (parseInt(page) === Math.floor(parseInt(max_cat) / 12)) {
+                index = 0
+                page = 0
+                DataChange()
+            } else {
+                index += 12
+                page += 1
+                DataChange()
+            }
+        }
 
-            window.location.href = "../all_people" + newQuery;
-        }
         listen_prev.onclick = function () {
-            let newQuery = "?page=" + prev + "&id_role=" + by_role
-            window.location.href = "../all_people" + newQuery;
+            if (parseInt(page) === 0) {
+                index = Math.floor(parseInt(max_cat) / 12) * 12
+                page = Math.floor(parseInt(max_cat) / 12)
+                DataChange()
+            } else {
+                index -= 12
+                page -= 1
+                DataChange()
+            }
         }
+
     } else {
 
-        if (parseInt(page) === Math.floor(parseInt(max_all) / 12))
-            next = 0
-        else next = (Math.floor(parseInt(page) + 1)).toString()
-
-        if (parseInt(page) === 0) {
-            prev = Math.floor(parseInt(max_all) / 12).toString()
-        } else prev = (Math.floor(parseInt(page) - 1)).toString()
-
-        if (isNaN(next))
-            next = 0
-        if (isNaN(prev))
-            prev = 0
-
         listen_next.onclick = function () {
-            let newQuery = "?page=" + next
-            window.location.href = "../all_people/" + newQuery;
+            if (parseInt(page) === Math.floor(parseInt(max_all) / 12)) {
+                index = 0
+                page = 0
+                DataChange()
+            } else {
+                index += 12
+                page += 1
+                DataChange()
+            }
         }
+
         listen_prev.onclick = function () {
-            let newQuery = "?page=" + prev
-            window.location.href = "../all_people/" + newQuery;
+            if (parseInt(page) === 0) {
+                index = Math.floor(parseInt(max_all) / 12) * 12
+                page = Math.floor(parseInt(max_all) / 12)
+                DataChange()
+            } else {
+                index -= 12
+                page -= 1
+                DataChange()
+            }
         }
     }
 }

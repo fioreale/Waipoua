@@ -81,7 +81,6 @@ all_radio.onclick = function () {
             })
             .then(function (json) {
                 dataset = json;
-                console.log(json)
             })
             .then(DataChange)
     }
@@ -115,7 +114,6 @@ category_radio.onclick = function () {
                     })
                     .then(function (json) {
                         dataset = json;
-                        console.log(dataset)
                     })
                     .then(DataChange)
             }
@@ -140,7 +138,6 @@ month_radio.onclick = function () {
             document.getElementById("title_jumbo").innerHTML = document.getElementById("select-month")
                 .innerText.split("\n")[selectedIndex];
             let momentum = document.getElementById("select-month").value
-            console.log(momentum)
             document.getElementById("select-month").value = document.getElementById("select-month")
                 .innerText.split("\n")[0];
             document.getElementById("month-menu").remove();
@@ -152,7 +149,6 @@ month_radio.onclick = function () {
                     })
                     .then(function (json) {
                         dataset = json;
-                        console.log(dataset)
                     })
                     .then(DataChange)
             }
@@ -175,7 +171,6 @@ function DataChange() {
     fadeIn(document.getElementById("begin-events").parentElement)
 
     dataset = filter(dataset)
-    console.log(dataset)
 
     let passed_month, passed_category;
     let max = Math.min(12, dataset.length - index);
@@ -191,7 +186,6 @@ function DataChange() {
             currentRow = newRow
         }
         let {ID_event, event_name, event_presentation, URI_image, category, date} = dataset[i];
-        console.log(dataset[i])
         if (context === 3)
             passed_month = date.month
         if (context === 2)
@@ -251,8 +245,6 @@ function clicks(by_category, by_month, max_all, max_cat) {
 
     if (isNaN(page))
         page = 0
-
-    console.log(by_month + " " + by_category)
 
     list1 = list[0];
     if (list1 != null) {
@@ -454,18 +446,15 @@ function clicks(by_category, by_month, max_all, max_cat) {
     let listen_next = document.getElementsByClassName("nav-link landmark group-link next-btn")[0];
 
     if (max_cat != null) {
-        console.log("cat")
 
         listen_next.onclick = function () {
             if (parseInt(page) === Math.floor(parseInt(max_cat) / 12)) {
                 index = 0
                 page = 0
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index += 12
                 page += 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
@@ -474,29 +463,24 @@ function clicks(by_category, by_month, max_all, max_cat) {
             if (parseInt(page) === 0) {
                 index = Math.floor(parseInt(max_cat) / 12) * 12
                 page = Math.floor(parseInt(max_cat) / 12)
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index -= 12
                 page -= 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
 
     } else {
-        console.log("all")
 
         listen_next.onclick = function () {
             if (parseInt(page) === Math.floor(parseInt(max_all) / 12)) {
                 index = 0
                 page = 0
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index += 12
                 page += 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
@@ -505,12 +489,10 @@ function clicks(by_category, by_month, max_all, max_cat) {
             if (parseInt(page) === 0) {
                 index = Math.floor(parseInt(max_all) / 12) * 12
                 page = Math.floor(parseInt(max_all) / 12)
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index -= 12
                 page -= 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }

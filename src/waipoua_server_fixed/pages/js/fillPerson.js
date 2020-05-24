@@ -1,12 +1,11 @@
-var person_queryString = decodeURIComponent(window.location.search);
+let person_queryString = decodeURIComponent(window.location.search);
 person_queryString = person_queryString.substring(1);
-var queries = person_queryString.split("&");
-console.log(queries)
+let queries = person_queryString.split("&");
 
-var offset = queries[0].split("=")[1];
+let offset = queries[0].split("=")[1];
 
-var person_id = queries[1].split("=")[1];
-var max_all_el = person_id.split(":")[1]
+let person_id = queries[1].split("=")[1];
+let max_all_el = person_id.split(":")[1]
 person_id = person_id.split(":")[0]
 let role_id = null;
 
@@ -19,9 +18,7 @@ let index_group = 0;
 
 if (queries[2] != null) {
     role_id = queries[2].split("=")[1];
-    var max_role_el = role_id.split(":")[1]
     role_id = role_id.split(":")[0]
-    console.log(max_role_el)
 
     fetch("../../People/Roles/" + role_id + "/?limit=1000")
         .then(function (response) {
@@ -46,8 +43,6 @@ if (queries[2] != null) {
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
-        console.log(i)
-        console.log(group[i])
         if (group[i].ID_person === parseInt(id)) {
             index_group = i
             break
@@ -79,16 +74,13 @@ function fill(person_id) {
             return response.json();
         })
         .then(function (json) {
-            console.log(json)
             json = filter(json)
-            console.log(json)
 
             let title = document.getElementById("person-name");
             let text = document.getElementById("description");
             let background = document.getElementById("background-person");
             let number = document.getElementById("number");
             let mail = document.getElementById("mail");
-            console.log(json)
             let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[0];
 
             title.firstElementChild.innerHTML = name + " " + surname;
@@ -182,7 +174,7 @@ function orientation_info(role, name) {
 }
 
 function clicks_listener(role) {
-    var listener = document.getElementById("role-callback");
+    let listener = document.getElementById("role-callback");
 
     if (listener != null) {
         listener.onclick = function () {

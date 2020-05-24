@@ -63,7 +63,6 @@ all_radio.onclick = function () {
             })
             .then(function (json) {
                 dataset = json;
-                console.log(dataset)
             })
             .then(DataChange)
     }
@@ -93,8 +92,6 @@ category_radio.onclick = function () {
                     })
                     .then(function (json) {
                         dataset = json;
-                        console.log("ciao")
-                        console.log(dataset)
                     })
                     .then(DataChange)
             }
@@ -117,7 +114,6 @@ function DataChange() {
     fadeIn(document.getElementById("begin-service").parentElement)
 
     dataset = filter(dataset)
-    console.log(dataset)
 
     let passed_category;
     let max = Math.min(12, dataset.length - index);
@@ -133,7 +129,6 @@ function DataChange() {
             currentRow = newRow
         }
         let {ID_service, service_name, service_presentation, URI_image, category} = dataset[i];
-        console.log(dataset[i])
         if (context === 2)
             passed_category = category.ID_category
 
@@ -366,18 +361,15 @@ function clicks(by_category, max_all, max_cat) {
     let listen_next = document.getElementsByClassName("nav-link landmark group-link next-btn")[0];
 
     if (max_cat != null) {
-        console.log("cat")
 
         listen_next.onclick = function () {
             if (parseInt(page) === Math.floor(parseInt(max_cat) / 12)) {
                 index = 0
                 page = 0
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index += 12
                 page += 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
@@ -386,29 +378,24 @@ function clicks(by_category, max_all, max_cat) {
             if (parseInt(page) === 0) {
                 index = Math.floor(parseInt(max_cat) / 12) * 12
                 page = Math.floor(parseInt(max_cat) / 12)
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index -= 12
                 page -= 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
 
     } else {
-        console.log("all")
 
         listen_next.onclick = function () {
             if (parseInt(page) === Math.floor(parseInt(max_all) / 12)) {
                 index = 0
                 page = 0
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index += 12
                 page += 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
@@ -417,12 +404,10 @@ function clicks(by_category, max_all, max_cat) {
             if (parseInt(page) === 0) {
                 index = Math.floor(parseInt(max_all) / 12) * 12
                 page = Math.floor(parseInt(max_all) / 12)
-                console.log(index + "-" + page)
                 DataChange()
             } else {
                 index -= 12
                 page -= 1
-                console.log(index + "-" + page)
                 DataChange()
             }
         }
