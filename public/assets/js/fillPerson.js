@@ -54,7 +54,7 @@ function filter(dataset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
         let {URI_image} = dataset[i]
-        if (URI_image.includes("jumbotron"))
+        if (URI_image.includes("icon"))
             newDataset.push(dataset[i])
     }
     return newDataset
@@ -74,7 +74,7 @@ function fill(person_id) {
             return response.json();
         })
         .then(function (json) {
-            json = filter(json)
+            console.log(json)
 
             let title = document.getElementById("person-name");
             let text = document.getElementById("description");
@@ -91,6 +91,7 @@ function fill(person_id) {
 
             orientation_info(role_id, name + " " + surname)
 
+            json = filter(json)
             //filling the services (at least one)
             let el = document.getElementById("services-person");
             el.innerHTML = "";
@@ -244,7 +245,6 @@ function clicks_listener(role) {
     if (parseInt(index_group) === 0)
         prev = (Math.floor(parseInt(max_people_DB) - 1))
     else prev = index_group - 1
-
 
     listen_next.onclick = function () {
         index_group = next

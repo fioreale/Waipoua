@@ -74,13 +74,13 @@ exports.peopleGET = function (limit, offset) {
  **/
 exports.peopleSpecificGET = function (personId) {
     return sqlDb("Person")
-        .where("ID_person", personId)
-        .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
-        .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
+        .where("Person.ID_person", personId)
         .leftJoin("Event", "Event.ID_contact_person", "Person.ID_person")
         .innerJoin("Role", "Person.ID_role", "Role.ID_role")
         .innerJoin("people_involved_in_services", "Person.ID_person", "people_involved_in_services.ID_Person_inv")
         .innerJoin("Service", "people_involved_in_services.ID_Service_inv", "Service.ID_service")
+        .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
+        .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .then(data => {
             let v = data.map(e => {
                 e.role = {ID_role: e.ID_role, role_name: e.role_name}
