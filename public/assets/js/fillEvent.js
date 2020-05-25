@@ -74,7 +74,7 @@ function filter(dataset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
         let {URI_image} = dataset[i]
-        if (URI_image.includes("jumbotron"))
+        if (URI_image.includes("icon"))
             newDataset.push(dataset[i])
     }
     return newDataset

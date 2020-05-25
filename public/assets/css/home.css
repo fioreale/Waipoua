@@ -7,14 +7,11 @@
 
     font-weight: bold;
     font-size: 2em;
-    /*top: 0;*/
-    /*left: 0;*/
-    /*transform: translate(25%, -10%);*/
-    /*position: absolute;*/
 }
 
 .btn {
-    font-size: 1em;
+    position: relative;
+    transform: translate(0, 10%);
     font-weight: bold;
 }
 
@@ -41,18 +38,18 @@
 }
 
 .banner-adj {
-    margin-top: 40px;
+    transform: translate(0, 70%);
 }
 
 .small-skip {
     margin-bottom: 0.5em;
 }
 
-/*.banner-ref {
-    margin-top: 50%;
-}*/
-
 @media (min-width: 1000px) {
+    .btn {
+        font-size: 1em;
+    }
+
     .home-title {
         font-size: 5em;
     }
