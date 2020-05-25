@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documentation of the Backend part</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documentation of the Backend part</h1>
+</header>
+<h2 id="general-group-information">General group information</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Member n.</th>
+<th>Role</th>
+<th>First name</th>
+<th>Last Name</th>
+<th>Matricola</th>
+<th>Email address</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>administrato</td>
+<td>Alessio</td>
+<td>Fiorentino</td>
+<td>940488</td>
+<td>alessio.fiorentino@mail.polimi.it</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>member</td>
+<td>Chiara</td>
+<td>Barbera</td>
+<td>920938</td>
+<td>chiara.barbera@mail.polimi.it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="links-to-other-deliverables">Links to other deliverables</h2>
+<ul>
+<li><p>Deliverable D0: the web application is accessible at <a href="https://waipoua-association.herokuapp.com/">this address</a>.</p></li>
+<li><p>Deliverable D2: the YAML or JSON file containing the specification of the app API can be found at <a href="https://waipoua-association.herokuapp.com//backend/spec.yaml">this address</a>.</p></li>
+<li><p>Deliverable D3: the SwaggerUI page of the same API is available at <a href="https://waipoua-association.herokuapp.com/backend/swaggerui">this address</a>.</p></li>
+<li><p>Deliverable D4: the source code of D0 is available as a zip file at <a href="https://waipoua-association.herokuapp.com/backend/app.zip">this address</a>.</p></li>
+<li><p>Deliverable D5: the address of the online source control repository is available <a href="https://github.com/Alexio96/Waipoua">this address</a>. We hereby declare that this is a private repository and, upon request, we will give access to the instructors.</p></li>
+</ul>
+<h2 id="specification">Specification</h2>
+<h3 id="web-architecture">Web Architecture</h3>
+<p>Describe here, with a diagram, the components of your web application and how they interact. Highlight which parts belong to the application layer, data layer or presentation layer. How did you ensure that HTML is not rendered server side?</p>
+<p>TODO: ALESSIO</p>
+<h3 id="api">API</h3>
+<h4 id="rest-compliance">REST compliance</h4>
+<p>Describe here to what extent did you follow REST principles and what are the reasons for which you might have decided to diverge. Note, you must not describe the whole API here, just the design decisions. <strong>TODO: chiara</strong></p>
+<h4 id="openapi-resource-models">OpenAPI Resource models</h4>
+<p>Describe here synthetically, which models you have introduced for resources. <strong>TODO: chiara</strong></p>
+<h3 id="data-model">Data model</h3>
+<p>Describe with an ER diagram the model used in the data layer of your web application. How these map to the OpenAPI data model? <strong>TODO: chiara</strong></p>
+<h2 id="implementation">Implementation</h2>
+<h3 id="tools-used">Tools used</h3>
+<p>First, an OpenAPI has been developed on swagger.io and a node-js server has been generated. Secondly, the JavaScript language has been used to implement the data layer and the server. The front-end part has been written in HTML and CSS with a common-used framework, i.e. Bootstrap.</p>
+<h3 id="discussion">Discussion</h3>
+<p>Describe here: - How did you make sure your web application adheres to the provided OpenAPI specification? Which method did you use to test all APIs endpoints against the expected response? <strong>TODO: ALESSIO</strong></p>
+<ul>
+<li><p>Our application adheres to REST common practices because there is both a set of static-assets (i.e. web pages that do not require the access to the database) and a set of pages that require data from the database. In this case, they are retrieved through the data layer and (if necessary) cached, to reduce the number of calles made to the database.</p></li>
+<li><p>Since the website does not provide any login form, there is no need to manage the session of the user. The website only retrieves information from the database and displays them in the pages.</p></li>
+<li><p>We used a relational database written in SQL and PostGres as DBMS.</p></li>
+</ul>
+<h2 id="other-information">Other information</h2>
+<h3 id="task-assignment">Task assignment</h3>
+<p>To be more efficient, we decided to split the work in the following way:</p>
+<ul>
+<li><p>Alessio worked on the front-end (50%), Data Layer development (40% of the time) and DataBase (10% of the time)</p></li>
+<li><p>Chiara worked on the front-end (40%), OpenAPI specification (30% of time) and DataBase (30% of the time)</p></li>
+</ul>
+<p>Moreover, Alessio checked the code of Chiara and viceversa, to ensure a complete understanding of the code and a higher improvement of the acquired competences.</p>
+<h3 id="analysis-of-existing-api">Analysis of existing API</h3>
+<p>We did not search for existing APIs.</p>
+<h3 id="learning-outcome">Learning outcome</h3>
+<ul>
+<li><p>Chiara wanted to learn more about the front-end development in HTML and CSS and acquired competences in Bootstrap usage. Moreover, she learned a lot about REST APIs and how they are implemented, as she was very curious of this topic of which she often heard about.</p></li>
+<li><p><strong>TODO: ALESSIO</strong></p></li>
+</ul>
+</body>
+</html>
