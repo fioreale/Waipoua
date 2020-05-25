@@ -5,7 +5,6 @@ let queries = person_queryString.split("&");
 let offset = queries[0].split("=")[1];
 
 let person_id = queries[1].split("=")[1];
-let max_all_el = person_id.split(":")[1]
 person_id = person_id.split(":")[0]
 let role_id = null;
 
@@ -27,7 +26,7 @@ if (queries[2] != null) {
         .then(function (json) {
             people_by_role = json
             people_by_role = filter(people_by_role)
-            find_index(person_id, all_people)
+            find_index(person_id, people_by_role)
         }).then(() => fill(person_id))
 } else {
     fetch("../../People/" + "?limit=1000")
