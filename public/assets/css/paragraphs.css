@@ -5,7 +5,6 @@
 }
 
 .description, .list-of-links, .contacts {
-    padding-left: 3em;
     padding-top:2em;
 }
 
@@ -21,8 +20,9 @@
 .title-contact {
     font-weight: 500;
 }
-/*#tooltip {
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 13px;
-}*/
+
+@media (min-width: 1000px) {
+    .description, .list-of-links, .contacts {
+        padding-left: 3em;
+    }
+}

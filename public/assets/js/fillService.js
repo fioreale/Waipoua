@@ -140,7 +140,7 @@ function fill(service_id) {
         .then(function (json) {
             let text = document.getElementById("service-description");
             let carousel = document.getElementsByClassName("carousel-inner")[0];
-            let title = document.getElementsByClassName("display-1 title")[0];
+            let title = document.getElementsByClassName("display-4 title")[0];
             let background = document.getElementsByClassName("jumbotron-background")[0];
 
             let {service_name, service_presentation, service_category} = json[0]

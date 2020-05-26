@@ -1,7 +1,7 @@
 .jumbotron-background{
 	background-image: url("../img/RinoImage.png"); /* The image used */
 	background-color: #325c32; /* Used if the image is unavailable */
-	height: 450px; /* You must set a specified height */
+	height: 300px; /* You must set a specified height */
 	background-position: center; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: cover;
@@ -33,8 +33,8 @@
 .title{
 	text-align:left;
 	position: absolute;
-  	top: 30%;
-  	left: 5%;
+  	top: 3%;
+  	left: 3%;
 }
 
 @media (min-width: 1200px) {
