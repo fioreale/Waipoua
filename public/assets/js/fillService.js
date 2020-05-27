@@ -40,6 +40,8 @@ if (queries[2] != null) {
         }).then(() => fill(service_id))
 }
 
+window.history.pushState({}, document.title, "../service");
+
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
         if (group[i].ID_service === parseInt(id)) {
@@ -295,7 +297,7 @@ function clicks_listener(category) {
         listener.onclick = function () {
             let query_par
             if (category != null) {
-                query_par = "?page=0" + "?id_category=" + category;
+                query_par = "?page=0" + "&id_category=" + category;
             } else
                 query_par = "?page=0"
             window.location.href = "../../all_services/" + query_par;

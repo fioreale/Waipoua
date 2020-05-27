@@ -1,18 +1,7 @@
-
-.home {
-    margin-bottom: 3em;
-}
-
 .home-title {
 
     font-weight: bold;
     font-size: 2em;
-}
-
-.btn {
-    position: relative;
-    transform: translate(0, 10%);
-    font-weight: bold;
 }
 
 .banners {
@@ -29,6 +18,20 @@
 
 .card-text-adj {
     text-align: center;
+    font-size: 0.9em;
+}
+
+.card-position {
+    padding-bottom: 3em;
+    padding-top: 1em;
+}
+
+.btn {
+    font-size: 0.6em;
+    position: absolute;
+    bottom: 0;
+    font-weight: bold;
+    transform: translateY(-20%);
 }
 
 .subtitle {
@@ -37,17 +40,14 @@
     font-weight: bold;
 }
 
-.banner-adj {
-    transform: translate(0, 70%);
-}
-
 .small-skip {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em;
 }
 
 @media (min-width: 1000px) {
+
     .btn {
-        font-size: 1em;
+        transform: translate(-50%, -20%);
     }
 
     .home-title {
