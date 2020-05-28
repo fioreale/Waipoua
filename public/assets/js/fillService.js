@@ -43,7 +43,7 @@ if (queries[2] != null) {
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
-        if (group[i].ID_service === parseInt(id)) {
+        if (group[i].service_id === parseInt(id)) {
             index_group = i
             break
         }
@@ -60,61 +60,6 @@ function filter(dataset) {
     return newDataset
 }
 
-function filter_carousel(dataset) {
-    let newDataset = new Array(0);
-    let found = false
-    for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (!(URI_image.includes("jumbotron") || URI_image.includes("icon"))) {
-            for (let j = 0; j < newDataset.length; j++) {
-                if (newDataset[j].URI_image === URI_image)
-                    found = true
-            }
-            if (!found)
-                newDataset.push(dataset[i])
-        }
-        found = false
-    }
-
-    return newDataset
-}
-
-function filter_people(dataset) {
-    let newDataset = new Array(0);
-    let found = false
-    for (let i = 0; i < dataset.length; i++) {
-        let {ID_person} = dataset[i]
-        for (let j = 0; j < newDataset.length; j++) {
-            if (newDataset[j].ID_person === ID_person)
-                found = true
-        }
-        if (!found)
-            newDataset.push(dataset[i])
-
-        found = false
-    }
-
-    return newDataset
-}
-
-function filter_events(dataset) {
-    let newDataset = new Array(0);
-    let found = false
-    for (let i = 0; i < dataset.length; i++) {
-        let {ID_event} = dataset[i]
-        for (let j = 0; j < newDataset.length; j++) {
-            if (newDataset[j].ID_event === ID_event)
-                found = true
-        }
-        if (!found && ID_event != null)
-            newDataset.push(dataset[i])
-
-        found = false
-    }
-
-    return newDataset
-}
-
 function refresh() {
     document.getElementsByClassName("carousel-inner")[0]
         .innerHTML = ""
@@ -123,14 +68,6 @@ function refresh() {
     document.getElementById("service-associated-events")
         .innerHTML = ""
 
-}
-
-function search_back(dataset) {
-    for (let i = 0; i < dataset.length; i++) {
-        if (dataset[i].URI_image.includes("jumbotron"))
-            return dataset[i].URI_image
-    }
-    return "";
 }
 
 function fill(service_id) {
@@ -452,16 +389,16 @@ function clicks_listener(category) {
         document.getElementById("intro-tab").click()
         index_group = next
         if (services_by_category != null)
-            fill(services_by_category[index_group].ID_service)
+            fill(services_by_category[index_group].service_id)
         else
-            fill(all_services[index_group].ID_service)
+            fill(all_services[index_group].service_id)
     }
     listen_prev.onclick = function () {
         document.getElementById("intro-tab").click()
         index_group = prev
         if (services_by_category != null)
-            fill(services_by_category[index_group].ID_service)
+            fill(services_by_category[index_group].service_id)
         else
-            fill(all_services[index_group].ID_service)
+            fill(all_services[index_group].service_id)
     }
 }

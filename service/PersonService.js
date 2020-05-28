@@ -36,11 +36,16 @@ exports.peopleByRoleGET = function (category_id, limit, offset) {
         .innerJoin("Role", "Role.ID_role", "Person.ID_role")
         .limit(limit).offset(offset)
         .then(data => {
-            let v = data.map(e => {
-                e.role = {ID_role: e.ID_role, role_name: e.role_name}
-                return e;
+            data = filter(data)
+            return data.map(e => {
+                e.role = {
+                    category_id: e["ID_role"],
+                    name: e["role_name"]
+                }
+                delete e["ID_role"]
+                delete e["role_name"]
+                return e
             })
-            return v;
         })
 }
 
@@ -58,10 +63,10 @@ exports.peopleGET = function (limit, offset) {
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .then(data => {
-            let v = data.map(e => {
+            data = filter(data)
+            return data.map(e => {
                 return e;
             })
-            return v;
         })
 }
 
@@ -82,32 +87,89 @@ exports.peopleSpecificGET = function (personId) {
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .then(data => {
-            let v = data.map(e => {
-                e.role = {ID_role: e.ID_role, role_name: e.role_name}
-                e.service = {
-                    ID_Service_inv: e.ID_Service_inv,
-                    service_name: e.service_name,
-                    service_presentation: e.service_presentation,
-                    service_category: e.service_category
-                }
-                e.event = {
-                    ID_event: e.ID_event,
-                    event_date: e.event_date,
-                    event_presentation: e.event_presentation,
-                    event_ID_service: e.event_ID_service,
-                    event_URI_image: e.event_URI_image,
-                    event_name: e.event_name,
-                    event_category: e.event_category,
-                    location: e.location,
-                    day: e.day,
-                    month: e.month,
-                    year: e.year,
-                    hour: e.hour,
-                    minute: e.minute
-                }
-                return e;
-            })
-            return v;
+            let jumbotron = search_back(data)
+            let services = filter_services(filter(data))
+            let events = filter_events(filter(data))
+            let newJson = {
+                person_id: data[0]["ID_person"],
+                name: data[0]["name"],
+                surname: data[0]["surname"],
+                image: jumbotron,
+                description: data[0]["description"],
+                role: {
+                    category_id: data[0]["ID_role"],
+                    name: data[0]["role_name"]
+                },
+                phone_number: data[0]["phone_number"],
+                email: data[0]["email"],
+                services: services,
+                events: events,
+            }
+            console.log(newJson)
+            return newJson
         })
+
+}
+
+function filter(dataset) {
+    let newDataset = new Array(0);
+    for (let i = 0; i < dataset.length; i++) {
+        let {URI_image} = dataset[i]
+        if (URI_image.includes("icon"))
+            newDataset.push(dataset[i])
+    }
+    return newDataset
+}
+
+function search_back(dataset) {
+    for (let i = 0; i < dataset.length; i++) {
+        if (dataset[i]["URI_image"].includes("jumbotron"))
+            return dataset[i]["URI_image"]
+    }
+    return "";
+}
+
+function filter_events(dataset) {
+    let newDataset = new Array(0);
+    let found = false
+    for (let i = 0; i < dataset.length; i++) {
+        let {ID_event} = dataset[i]
+        for (let j = 0; j < newDataset.length; j++) {
+            if (newDataset[j].event_id === ID_event)
+                found = true
+        }
+        if (!found && ID_event != null)
+            newDataset
+                .push({
+                    event_id: dataset[i]["ID_event"],
+                    name: dataset[i]["event_name"]
+                })
+
+        found = false
+    }
+
+    return newDataset
+}
+
+function filter_services(dataset) {
+    let newDataset = new Array(0);
+    let found = false
+    for (let i = 0; i < dataset.length; i++) {
+        let {ID_person} = dataset[i]
+        for (let j = 0; j < newDataset.length; j++) {
+            if (newDataset[j].service_id === ID_person)
+                found = true
+        }
+        if (!found)
+            newDataset
+                .push({
+                    service_id: dataset[i]["ID_service"],
+                    name: dataset[i]["service_name"]
+                })
+
+        found = false
+    }
+
+    return newDataset
 }
 

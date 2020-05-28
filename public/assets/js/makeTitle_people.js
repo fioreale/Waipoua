@@ -131,7 +131,7 @@ function DataChange() {
         }
         let {ID_person, name, surname, description, phone_number, email, URI_image, role} = dataset[i];
         if (context === 2)
-            passed_role = role.ID_role
+            passed_role = role.category_id
 
         currentRow.appendChild(fill("assets/" + URI_image, name + " " + surname, ID_person))
     }

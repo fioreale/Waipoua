@@ -64,7 +64,7 @@ if (queries[2] != null) {
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
-        if (group[i].ID_person === parseInt(id)) {
+        if (group[i].ID_event === parseInt(id)) {
             index_group = i
             break
         }
@@ -79,14 +79,6 @@ function filter(dataset) {
             newDataset.push(dataset[i])
     }
     return newDataset
-}
-
-function search_back(dataset) {
-    for (let i = 0; i < dataset.length; i++) {
-        if (dataset[i].URI_image.includes("jumbotron"))
-            return dataset[i].URI_image
-    }
-    return "";
 }
 
 function fill(event_id) {
@@ -106,16 +98,16 @@ function fill(event_id) {
             let el = document.getElementById("services-event");
             el.innerHTML = "";
 
-            let {service} = json[0];
-            if (service.ID_service != null) {
-                let name = service.service_name;
+            let {event_id, name, presentation, category, location, date, image, relativeTo, contact} = json;
+            if (relativeTo.service_id != null) {
+                let name = relativeTo.name;
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "p-2 bd-highlight");
                 let newA = document.createElement("a");
                 newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
                     "list-inline-item transition-link clickable-service");
                 newA.setAttribute("href", "#");
-                newA.setAttribute("id_service", service.ID_service)
+                newA.setAttribute("id_service", relativeTo.service_id)
                 newA.innerText = name;
                 newDiv.appendChild(newA);
                 el.appendChild(newDiv);
@@ -132,22 +124,19 @@ function fill(event_id) {
             // filling the person
             let personEl = document.getElementById("event-person");
             personEl.innerHTML = "";
-            let {person} = json[0];
-            personEl.setAttribute("person_id", person.ID_person)
-            personEl.innerText = person.name + " " + person.surname;
+            personEl.setAttribute("person_id", contact.person_id)
+            personEl.innerText = contact.name + " " + contact.surname;
 
             //filling the rest
-            let {event_presentation, event_URI_image, date, event_name, location} = json[0]
-
-            title.innerText = event_name
-            text.innerText = event_presentation;
-            background.style.backgroundImage = "url(" + "../../assets/" + search_back(json) + ")"
+            title.innerText = name
+            text.innerText = presentation;
+            background.style.backgroundImage = "url(" + "../../assets/" + image + ")"
 
             // orientation info
             if (category_id != null)
-                orientation_info(category_id, null, event_name)
+                orientation_info(category_id, null, name)
             else
-                orientation_info(null, month_value, event_name)
+                orientation_info(null, month_value, name)
 
             // date & location setting
             event_date.innerText = date.day + "/" + date.month + "/" + date.year;
