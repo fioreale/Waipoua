@@ -477,7 +477,7 @@ definitions:
       people:
         type: "array"
         items:
-          $ref: "#/definitions/People"
+          $ref: "#/definitions/Person"
     title: "Service"
     description: "A service of the association"
     example:

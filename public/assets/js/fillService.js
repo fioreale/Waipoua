@@ -389,16 +389,16 @@ function clicks_listener(category) {
         document.getElementById("intro-tab").click()
         index_group = next
         if (services_by_category != null)
-            fill(services_by_category[index_group].service_id)
+            fill(services_by_category[index_group].ID_service)
         else
-            fill(all_services[index_group].service_id)
+            fill(all_services[index_group].ID_service)
     }
     listen_prev.onclick = function () {
         document.getElementById("intro-tab").click()
         index_group = prev
         if (services_by_category != null)
-            fill(services_by_category[index_group].service_id)
+            fill(services_by_category[index_group].ID_service)
         else
-            fill(all_services[index_group].service_id)
+            fill(all_services[index_group].ID_service)
     }
 }
