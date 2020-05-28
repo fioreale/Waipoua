@@ -113,7 +113,6 @@ function DataChange() {
     refresh()
     fadeIn(document.getElementById("begin-service").parentElement)
 
-    console.log(dataset)
     dataset = filter(dataset)
 
     let passed_category;

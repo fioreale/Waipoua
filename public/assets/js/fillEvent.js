@@ -61,7 +61,6 @@ if (queries[2] != null) {
         }).then(() => fill(event_id))
 }
 
-window.history.pushState({}, document.title, "../event");
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {

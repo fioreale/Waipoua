@@ -24,3 +24,11 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+.carousel-control-next {
+    right: 2em;
+}
+
+.carousel-control-prev {
+    left: 2em;
+}

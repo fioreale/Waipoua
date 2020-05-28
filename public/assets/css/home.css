@@ -26,11 +26,18 @@
     padding-top: 1em;
 }
 
+.card {
+    text-align: center;
+}
+
 .btn {
     font-size: 0.6em;
     position: absolute;
+    min-width: 6em;
     bottom: 0;
     font-weight: bold;
+    -webkit-transform: translateY(-20%);
+    -ms-transform: translateY(-20%);
     transform: translateY(-20%);
 }
 
@@ -44,18 +51,31 @@
     margin-bottom: 0.7em;
 }
 
-@media (min-width: 1000px) {
+@media (max-width: 776px) {
+    .btn {
+        width: 10em;
+        font-size: 0.4em;
+    }
+
+    .mb-md-4 {
+        margin-top: 1em;
+    }
+
+    .col-md-10 {
+        margin-top: 1em;
+    }
+}
+
+@media (min-width: 576px) {
 
     .btn {
+        -webkit-transform: translate(-50%, -20%);
+        -ms-transform: translate(-50%, -20%);
         transform: translate(-50%, -20%);
     }
 
     .home-title {
         font-size: 5em;
-    }
-
-    .card {
-        text-align: center;
     }
 }
 
@@ -77,6 +97,7 @@
     color: #fff;
     background-color: #325c32;
     border-color: #757575;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
 }
 
@@ -95,5 +116,6 @@
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(117, 117, 117, 0.5);
 }

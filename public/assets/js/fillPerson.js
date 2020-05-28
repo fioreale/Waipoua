@@ -40,7 +40,6 @@ if (queries[2] != null) {
         }).then(() => fill(person_id))
 }
 
-window.history.pushState({}, document.title, "../person");
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
@@ -75,7 +74,6 @@ function fill(person_id) {
             return response.json();
         })
         .then(function (json) {
-            console.log(json)
 
             let title = document.getElementById("person-name");
             let text = document.getElementById("description");
