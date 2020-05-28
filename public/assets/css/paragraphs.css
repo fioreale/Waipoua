@@ -26,3 +26,17 @@
         padding-left: 3em;
     }
 }
+
+.contact-form{
+    justify-content: center;
+}
+
+.btn-primary{
+    font-weight: bold;
+}
+
+.spacer {
+    content: "";
+    height: 10%;
+}
+
