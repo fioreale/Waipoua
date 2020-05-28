@@ -152,7 +152,7 @@ function filter_people(dataset) {
         if (!found)
             newDataset
                 .push({
-                    person_id: dataset[i].ID_person,
+                    person_id: dataset[i]["ID_person"],
                     name: dataset[i].name,
                     surname: dataset[i].surname
                 })
@@ -175,8 +175,8 @@ function filter_events(dataset) {
         if (!found && ID_event != null)
             newDataset
                 .push({
-                    event_id: dataset[i].ID_event,
-                    name: dataset[i].event_name
+                    event_id: dataset[i]["ID_event"],
+                    name: dataset[i]["event_name"]
                 })
 
         found = false

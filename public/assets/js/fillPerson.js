@@ -80,30 +80,28 @@ function fill(person_id) {
             let background = document.getElementById("background-person");
             let number = document.getElementById("number");
             let mail = document.getElementById("mail");
-            let {ID_person, name, surname, description, phone_number, email, URI_image, role} = json[0];
+            let {person_id, name, surname, description, phone_number, email, image, role, services, events} = json;
 
             title.firstElementChild.innerHTML = name + " " + surname;
             text.innerText = description;
             number.innerText = phone_number;
             mail.innerText = email;
-            background.style.backgroundImage = "url(" + "../../assets/" + search_back(json) + ")"
+            background.style.backgroundImage = "url(" + "../../assets/" + image + ")"
 
             orientation_info(role_id, name + " " + surname)
 
-            json = filter(json)
             //filling the services (at least one)
             let el = document.getElementById("services-person");
             el.innerHTML = "";
-            for (let i = 0; i < json.length; i++) {
-                let {service} = json[i];
-                let name = service.service_name;
+            for (let i = 0; i < services.length; i++) {
+                let name = services[i]["name"];
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "p-2 bd-highlight");
                 let newA = document.createElement("a");
                 newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
                     "list-inline-item transition-link clickable-service");
                 newA.setAttribute("href", "#");
-                newA.setAttribute("service_id", service.ID_Service_inv)
+                newA.setAttribute("service_id", services[i]["service_id"])
                 newA.innerText = name;
                 newDiv.appendChild(newA);
                 el.appendChild(newDiv);
@@ -112,16 +110,15 @@ function fill(person_id) {
             //filling the events (if any)
             let event_el = document.getElementById("event-person");
             event_el.innerHTML = "";
-            let {event} = json[0];
-            if (event.ID_event != null) {
-                let event_name = event.event_name;
+            if (events.event_id != null) {
+                let event_name = events.name;
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "p-2 bd-highlight");
                 let newA = document.createElement("a");
                 newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
                     "list-inline-item transition-link clickable-event");
                 newA.setAttribute("href", "#");
-                newA.setAttribute("event_id", event.ID_event)
+                newA.setAttribute("event_id", events.event_id)
                 newA.innerText = event_name;
                 newDiv.appendChild(newA);
                 event_el.appendChild(newDiv);
@@ -134,7 +131,7 @@ function fill(person_id) {
                 newDiv.appendChild(newA);
                 event_el.appendChild(newDiv);
             }
-            clicks_listener(role.ID_role)
+            clicks_listener(role.category_id)
         })
 }
 
