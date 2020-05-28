@@ -144,27 +144,26 @@ function fill(service_id) {
             let title = document.getElementsByClassName("display-4 title")[0];
             let background = document.getElementsByClassName("jumbotron-background")[0];
 
-            let {service_name, service_presentation, service_category} = json[0]
-            title.innerText = service_name;
-            text.innerText = service_presentation;
+            let {name, presentation, image, category, people, events} = json
+            title.innerText = name;
+            text.innerText = presentation;
 
-            background.style.backgroundImage = "url(" + "../../assets/" + search_back(json) + ")"
+            background.style.backgroundImage = "url(" + "../../assets/" + image[0]["url"] + ")"
 
             refresh()
 
             // setting images in the carousel
-            let images = filter_carousel(json)
-            for (let i = 0; i < images.length; i++) {
-                let {URI_image} = images[i];
+            // let images = filter_carousel(json)
+            for (let i = 1; i < image.length; i++) {
                 let newDiv = document.createElement("div");
-                if (i === 0)
+                if (i === 1)
                     newDiv.setAttribute("class", "carousel-item active")
                 else
                     newDiv.setAttribute("class", "carousel-item")
 
                 let newIm = document.createElement("img");
                 newIm.setAttribute("class", "d-block img-fluid");
-                newIm.setAttribute("src", "../../assets/" + URI_image);
+                newIm.setAttribute("src", "../../assets/" + image[i]["url"]);
                 newIm.setAttribute("alt", "...");
                 newDiv.appendChild(newIm);
                 carousel.appendChild(newDiv);
@@ -172,25 +171,24 @@ function fill(service_id) {
 
             // setting the practical information
             // People
-            let people = filter_people(json)
+            // let people = filter_people(json)
             let personEl = document.getElementById("service-involved-people");
             for (let i = 0; i < people.length; i++) {
-                let {person} = people[i];
-                let name = person.name + " " + person.surname;
+                let name = people[i]["name"] + " " + people[i]["surname"];
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "p-md-2 bd-highlight");
                 let newA = document.createElement("a");
                 newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
                     "list-inline-item transition-link clickable-person");
                 newA.setAttribute("href", "#");
-                newA.setAttribute("person_id", person.ID_person)
+                newA.setAttribute("person_id", people[i]["person_id"])
                 newA.innerText = name;
                 newDiv.appendChild(newA);
                 personEl.appendChild(newDiv);
             }
 
-            //Events
-            let events = filter_events(json)
+            // Events
+            // let events = filter_events(json)
             let el = document.getElementById("service-associated-events");
             for (let i = 0; i < events.length; i++) {
                 if (i % 4 === 0 && i > 0) {
@@ -199,16 +197,15 @@ function fill(service_id) {
                     el.parentElement.appendChild(newRow)
                     el = newRow
                 }
-                let {event} = events[i];
-                if (event.ID_event != null) {
-                    let name = event.event_name;
+                if (events[i]["event_id"] != null) {
+                    let name = events[i]["name"];
                     let newDiv = document.createElement("div");
                     newDiv.setAttribute("class", "p-md-2 bd-highlight");
                     let newA = document.createElement("a");
                     newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
                         "list-inline-item transition-link clickable-event");
                     newA.setAttribute("href", "#");
-                    newA.setAttribute("event_id", event.ID_event);
+                    newA.setAttribute("event_id",events[i]["event_id"]);
                     newA.innerText = name;
                     newDiv.appendChild(newA);
                     el.appendChild(newDiv);
@@ -225,9 +222,9 @@ function fill(service_id) {
                 el.appendChild(newDiv);
             }
 
-            orientation_info(category_ID, service_name)
+            orientation_info(category_ID, name)
 
-            return service_category
+            return category.category_id
         })
         .then(function (category) {
             clicks_listener(category);
