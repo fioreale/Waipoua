@@ -335,21 +335,8 @@ definitions:
         type: "string"
       presentation:
         type: "string"
-      day:
-        type: "integer"
-        format: "int64"
-      month:
-        type: "integer"
-        format: "int64"
-      year:
-        type: "integer"
-        format: "int64"
-      hour:
-        type: "integer"
-        format: "int64"
-      minutes:
-        type: "integer"
-        format: "int64"
+      date:
+        $ref: "#/definitions/Date"
       image:
         $ref: "#/definitions/Image"
       relativeTo:
@@ -363,39 +350,45 @@ definitions:
     title: "Event"
     description: "An event of the association"
     example:
-      presentation: "presentation"
-      month: 1
-      hour: 5
-      year: 5
-      minutes: 2
-      day: 6
+      event_id: 1000
+      name: "Why is hunting wrong?!"
+      presentation: "We'll explain damages of hunting and poaching to the general public."
+      date:
+        day: 10
+        month: 10
+        year: 2020
+        hour: 18
+        minutes: 30
       image:
-        url: "url"
-      event_id: 0
+        - url: "image_jumbotron.jpg"
+        - url: "image_icon.jpg"
       relativeTo:
-        presentation: "presentation"
+        name: "Animal protection from hunting and poaching"
+        presentation: "What we do to fight hunt and poaching."
         image:
-        - url: "url"
-        - url: "url"
-        service_id: 7
-        name: "Presentazione di Waipoua"
+          - url: "image_jumbotron.jpg"
+          - url: "image_icon.jpg"
+          - url: "image_carousel_01.jpg"
+          - url: "image_carousel_02.jpg"
+          - url: "image_carousel_03.jpg"
+        service_id: 17
         category:
-          category_id: 9
-          name: "name"
+          category_id: 0
+          name: "Animal protection"
       contact:
+        person_id: 4
+        name: "Giovanni"
+        surname: "De Mattias"
+        description: "A passionate biologist."
         image:
-          url: "url"
+          - url: "image_jumbotron.jpg"
+          - url: "image_icon.jpg"
         role:
           category_id: 9
           name: "name"
-        surname: "surname"
-        name: "name"
-        description: "description"
-        phone_number: "phone_number"
-        email: "email"
-        person_id: 3
-      name: "name"
-      location: "location"
+        phone_number: "+39 347 12345678"
+        email: "giovanni.demattias@waipoua.org"
+      location: "Via Bellagio 51, Milano (Italy)"
       category:
         category_id: 9
         name: "name"
@@ -416,7 +409,7 @@ definitions:
       url:
         type: "string"
     example:
-      url: "url"
+      url: "image_url.jpg"
   Person:
     type: "object"
     properties:
@@ -437,18 +430,30 @@ definitions:
         type: "string"
       phone_number:
         type: "string"
+      services:
+        type: array
+        items:
+          $ref: "#/definitions/Service"
+      events:
+        type: array
+        items:
+          $ref: "#/definitions/Event"
     example:
+      person_id: 17
+      name: "Giovanni"
+      surname: "De Mattias"
+      description: "A passionate biologist."
       image:
-        url: "url"
+        url: "image_jumbotron.jpg"
       role:
         category_id: 9
-        name: "name"
-      surname: "surname"
-      name: "name"
-      description: "description"
-      phone_number: "phone_number"
-      email: "email"
-      person_id: 3
+        name: "Biolgist"
+      phone_number: "+39 347 12345678"
+      email: "giovanni.demattias@waipoua.org"
+      services:
+        - service_id: 4
+      events:
+        - event_id: 8
   Service:
     type: "object"
     properties:
@@ -457,7 +462,6 @@ definitions:
         format: "int64"
       name:
         type: "string"
-        example: "Presentazione di Waipoua"
       presentation:
         type: "string"
       image:
@@ -466,15 +470,55 @@ definitions:
           $ref: "#/definitions/Image"
       category:
         $ref: "#/definitions/Category"
+      event:
+        type: "array"
+        items:
+          $ref: "#/definitions/Event"
+      people:
+        type: "array"
+        items:
+          $ref: "#/definitions/People"
     title: "Service"
     description: "A service of the association"
     example:
-      presentation: "presentation"
+      name: "Animal protection from hunting and poaching"
+      presentation: "What we do to fight hunt and poaching."
       image:
-      - url: "url"
-      - url: "url"
-      service_id: 7
-      name: "Presentazione di Waipoua"
+      - url: "image_jumbotron.jpg"
+      - url: "image_carousel_01.jpg"
+      - url: "image_carousel_02.jpg"
+      - url: "image_carousel_03.jpg"
+      service_id: 17
       category:
-        category_id: 9
-        name: "name"
+        category_id: 0
+        name: "Animal protection"
+      people:
+        - person_id: 17
+      events:
+        - event_id: 1000
+  Date:
+    type: "object"
+    properties:
+      day:
+        type: "integer"
+        format: "int64"
+      month:
+        type: "integer"
+        format: "int64"
+      year:
+        type: "integer"
+        format: "int64"
+      hour:
+        type: "integer"
+        format: "int64"
+      minutes:
+        type: "integer"
+        format: "int64"
+    title: "Date"
+    description: "The date of an event"
+    example:
+      day: 6
+      month: 1
+      year: 5
+      hour: 17
+      minutes: 30
