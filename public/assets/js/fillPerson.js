@@ -87,6 +87,7 @@ function fill(person_id) {
             number.innerText = phone_number;
             mail.innerText = email;
             background.style.backgroundImage = "url(" + "../../assets/" + image + ")"
+            background.firstElementChild.lastElementChild.innerHTML = role.name
 
             orientation_info(role_id, name + " " + surname)
 

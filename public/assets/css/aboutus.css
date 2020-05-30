@@ -1,7 +1,7 @@
 .jumbotron-background {
     background-image: url("../img/RinoImage.png"); /* The image used */
     background-color: #325c32; /* Used if the image is unavailable */
-    height: 300px; /* You must set a specified height */
+    height: 400px; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
@@ -14,13 +14,6 @@
 
 .jumbotron {
     margin-bottom: 0;
-}
-
-.lead {
-    font-weight: bold;
-    position: absolute;
-    bottom: 25%;
-    left: 3%;
 }
 
 .jumbotron div h1 {
@@ -44,13 +37,22 @@
     left: 3%;
 }
 
-@media (max-width: 992px) {
+.lead {
+    font-weight: bold;
+    position: absolute;
+    text-align: left;
+    line-height: 1em;
+    bottom: 10%;
+    left: 3%;
+}
+
+@media (max-width: 1200px) {
     .lead {
-        bottom: 50%;
+        bottom: 45%;
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .title {
         font-size: 6em;
     }
@@ -59,3 +61,4 @@
         font-size: 2em;
     }
 }
+
