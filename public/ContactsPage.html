@@ -64,7 +64,7 @@
         <div class="row">
             <section class="container-fluid">
                 <!--Section description-->
-                <p class="text-center w-responsive mx-auto ">Do you have any questions? Please do not hesitate to
+                <p class="text-center w-responsive mx-auto">Do you have any questions? Please do not hesitate to
                     contact us directly. Our team will come back to you within
                     a matter of hours to help you.</p>
 
@@ -96,7 +96,7 @@
                 <div class="spacer"></div>
 
                 <!-- Contact form-->
-                <form class="was-validated" novalidate>
+                <form id="ContactForm" class="begin-form" novalidate>
                     <div class="form-row">
                         <!-- First Row-->
                         <div class="col-md-4 mb-3">
@@ -123,12 +123,10 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="validationServerMail">Email</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="validationServerMail"
-                                       aria-describedby="inputGroupPrepend3" required>
-                                <div class="invalid-feedback">
-                                    Please insert a mail address.
-                                </div>
+                            <input type="text" class="form-control" id="validationServerMail"
+                                   required>
+                            <div class="invalid-feedback">
+                                Please insert a mail address.
                             </div>
                         </div>
                     </div>
@@ -148,17 +146,15 @@
                         </div>
                     </div>
                     <!-- Text Row-->
-                    <form class="was-validated">
-                        <div class="mb-3">
-                            <label for="validationTextarea">Textarea</label>
-                            <textarea class="form-control" id="validationTextarea"
-                                      placeholder="Your message" required>
+                    <div class="mb-3">
+                        <label for="validationTextarea">Textarea</label>
+                        <textarea class="form-control" id="validationTextarea"
+                                  placeholder="Your message" required>
                             </textarea>
-                            <div class="invalid-feedback">
-                                Please enter a message in the textarea.
-                            </div>
+                        <div class="invalid-feedback">
+                            Please enter a message in the textarea.
                         </div>
-                    </form>
+                    </div>
                     <!--CONFIRM-->
                     <button class="btn btn-primary" type="submit">Submit form</button>
                     <div class="alerting"></div>
@@ -183,6 +179,11 @@
 <script>
     let jumbo = document.getElementsByClassName("jumbotron")[0]
     jumbo.style.backgroundImage = "url(\"assets/img/contacts_1.webp\")"
+</script>
+<script>
+    let form = document.getElementById("ContactForm");
+    function handleForm(event) { event.preventDefault(); }
+    form.addEventListener('submit', handleForm);
 </script>
 </body>
 </html>

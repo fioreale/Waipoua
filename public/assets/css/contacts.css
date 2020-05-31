@@ -9,3 +9,7 @@
 .fas{
     transform: translateX(70%);
 }
+
+p.w-responsive {
+    padding-top: 3em;
+}

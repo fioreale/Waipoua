@@ -13,6 +13,8 @@ window.onload = function () {
 submit.onclick = function () {
     let ok = true
 
+    document.getElementsByClassName("begin-form")[0].removeAttribute("novalidate")
+
     let name_text = name.value
     if (checkName(name_text)) {
         name.setAttribute("class", "form-control is-valid")
@@ -72,7 +74,7 @@ submit.onclick = function () {
         newAlert.setAttribute("role", "alert")
         newAlert.innerText = "Your message is been sent correctly!"
         submit.nextElementSibling.appendChild(newAlert)
-        refresh()
+        postSubmit()
     }
 
 }
@@ -115,4 +117,18 @@ function refresh() {
     subject.setAttribute("class", "form-control")
     text.value = ""
     text.setAttribute("class", "form-control")
+}
+
+function postSubmit() {
+    name.value = ""
+    name.setAttribute("class", "form-control")
+    surname.value = ""
+    surname.setAttribute("class", "form-control")
+    mail.value = ""
+    mail.setAttribute("class", "form-control")
+    subject.value = ""
+    subject.setAttribute("class", "form-control")
+    text.value = ""
+    text.setAttribute("class", "form-control")
+    document.getElementsByClassName("begin-form")[0].setAttribute("novalidate","")
 }
