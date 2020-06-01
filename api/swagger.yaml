@@ -340,7 +340,9 @@ definitions:
       image:
         $ref: "#/definitions/Image"
       relativeTo:
-        $ref: "#/definitions/Service"
+	type: array
+	items:
+          $ref: "#/definitions/Service"
       contact:
         $ref: "#/definitions/Person"
       category:
@@ -435,9 +437,7 @@ definitions:
         items:
           $ref: "#/definitions/Service"
       events:
-        type: array
-        items:
-          $ref: "#/definitions/Event"
+        $ref: "#/definitions/Event"
     example:
       person_id: 17
       name: "Giovanni"
