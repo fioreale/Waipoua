@@ -7,7 +7,7 @@ title: Documentation of the Backend part
 ## General group information
 | Member n. | Role          | First name | Last Name | Matricola | Email address                     |
 |-----------|---------------|------------|-----------|-----------|-----------------------------------|
-| 1         | administrato  | Alessio    | Fiorentino| 940488    | alessio.fiorentino@mail.polimi.it |
+| 1         | administrator | Alessio    | Fiorentino| 940488    | alessio.fiorentino@mail.polimi.it |
 | 2         | member        | Chiara     | Barbera   | 920938    | chiara.barbera@mail.polimi.it     |
 
 
@@ -46,24 +46,38 @@ TODO: ALESSIO
 
 #### REST compliance
 
-Describe here to what extent did you follow REST principles and what are
-the reasons for which you might have decided to diverge. Note, you must
-not describe the whole API here, just the design decisions.
-**TODO: chiara**
+The architecture of the website uses a REST API that provides a **uniform interface** to the resources, since when they are required by the client, the latter are retrieved from database and exposed in the format required by the API. In this way, the client is not aware of how the resources are retrieved and it is independent from the server-side of the website.
+Moreover, the connection is **stateless**, since in any case status information about the session are memorized. 
+To increase the efficiency of the website, if necessary the resources retrieved by the website are stored locally (?? ASK ALESSIO) to avoid useless calls to the database.
+Finally, we did not implement any authentication system since this requirement did not apply to our project: the architecture uses modular components that are highly coese and loosely coupled, so that they interact in a **layer structure**.
 
 
 
 #### OpenAPI Resource models
-Describe here synthetically, which models you have introduced for
-resources.
-**TODO: chiara**
+The models of the resources are the following:
+
+- **Event**: represents an event organized by the association. It is characterized by a unique *event_id* (integer), a **name** and a **presentation** (strings); moreover, it is characterized by a *date*, an *image*, a reference *contact* person, a *service* to which the event may be relative. Finally, the event is characterized by a *category*. These last 5 fields (date, image, contact, service, category) reference other models that will be described in the next lines.
+
+- **Service**: a service provided by the association. It is characterized by a *service_id* (integer), a *name* and a *presentation* (strings). The service is characterized by a *category*, an array of *images*, an array of *events* in which the service is presented and an array of *people* involved in the service.
+As above, category, images, events, and people refer to models that will be described in the next lines.
+
+- **Person**: a person involved in the association. It is characterized by a *person_id* (integer), a *name*, a *surname*, an *email* a *phone_number* and a *description* (strings). Moreover, it contains a list of *services* in which the person is involved and a possible **event** for which the person can be the reference contact.
+
+- **Image**: represents an image of a person, of an event or of a service. It is characterized by a simple *url* (string).
+
+- **Category**: represents the category of service or event or the type of role. Even if these categories are well distinguished in the database, such a distrinction would be redundant in the API. The category contains a *category_id* (string) and a *name* (string).
+
+- **Date**: a model for the date of the event. It has 5 integer fields, used to represent *day*, *month*, *year*, *hour*, *minutes*.
 
 
 
 ### Data model
-Describe with an ER diagram the model used in the data layer of your web
-application. How these map to the OpenAPI data model?
-**TODO: chiara**
+We show here the ER diagram of our database. 
+
+![ER diagram](ER diagram -final.png "ER diagram")
+
+
+There is a 1:1 correspondance between the API models and the entities of services, events and people and images. The relationships are represented with references between the models of the API. The association and the donations, even if present in the database, are not access by the client and thus they are not represented in the API. Finally, the entities *role*, *service_category* and *event_category* are mapped to the model *category* in the API.
 
 
 ## Implementation
@@ -74,10 +88,10 @@ written in HTML and CSS with a common-used framework, i.e. Bootstrap.
  
 ### Discussion
 Describe here:
-- How did you make sure your web application adheres to the provided
-OpenAPI specification? Which method did you use to test all APIs
-endpoints against the expected response?
-**TODO: ALESSIO**
+- How did you make sure your web application adheres to the provided OpenAPI specification? Which method did you use to test all APIs endpoints against the expected response?
+
+In order to verify that the web application adheres to the OpenAPI specifications, we accessed the endpoints through the browser and checked that the json data retrieved from the database respected the format required by the API.
+(?? TUTORATO ?? CHIEDI se dobbiamo fare un test automatico.) 
 
 - Our application adheres to REST common practices because there is both a set of static-assets (i.e. web pages
 that do not require the access to the database) and a set of pages that require data from the database. In this case, they are retrieved through the data layer and (if necessary) cached, to reduce the number of calles made
