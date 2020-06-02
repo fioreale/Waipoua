@@ -43,7 +43,7 @@ if (queries[2] != null) {
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
-        if (group[i].ID_person === parseInt(id)) {
+        if (group[i].person_id === parseInt(id)) {
             index_group = i
             break
         }
@@ -53,19 +53,11 @@ function find_index(id, group) {
 function filter(dataset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (URI_image.includes("icon"))
+        let {image} = dataset[i]
+        if (image.url.includes("icon"))
             newDataset.push(dataset[i])
     }
     return newDataset
-}
-
-function search_back(dataset) {
-    for (let i = 0; i < dataset.length; i++) {
-        if (dataset[i].URI_image.includes("jumbotron"))
-            return dataset[i].URI_image
-    }
-    return "";
 }
 
 function fill(person_id) {

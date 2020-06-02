@@ -100,21 +100,9 @@ role_radio.onclick = function () {
     }
 }
 
-function filter(dataset) {
-    let newDataset = new Array(0);
-    for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (URI_image.includes("icon"))
-            newDataset.push(dataset[i])
-    }
-    return newDataset
-}
-
 function DataChange() {
     refresh()
     fadeIn(document.getElementById("begin-people").parentElement)
-
-    dataset = filter(dataset)
 
     let passed_role;
     let max = Math.min(12, dataset.length - index);
@@ -129,11 +117,11 @@ function DataChange() {
             newEl.appendChild(newRow)
             currentRow = newRow
         }
-        let {ID_person, name, surname, description, phone_number, email, URI_image, role} = dataset[i];
+        let {person_id, name, surname, description, phone_number, email, image, role} = dataset[i];
         if (context === 2)
             passed_role = role.category_id
 
-        currentRow.appendChild(fill("assets/" + URI_image, name + " " + surname, ID_person))
+        currentRow.appendChild(fill("assets/" + image.url, name + " " + surname, person_id))
     }
 
     newEl.firstElementChild.setAttribute("id", "begin-people")

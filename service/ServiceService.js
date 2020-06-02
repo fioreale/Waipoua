@@ -30,7 +30,8 @@ exports.serviceSpecificGET = function (serviceId) {
         .where("ID_service", serviceId)
         .innerJoin("people_involved_in_services", "people_involved_in_services.ID_Service_inv", "Service.ID_service")
         .innerJoin("Person", "Person.ID_person", "people_involved_in_services.ID_Person_inv")
-        .leftJoin("Event", "Event.event_ID_service", "Service.ID_service")
+        .leftJoin("services_related_to_event", "services_related_to_event.ID_service_rel", "Service.ID_service")
+        .leftJoin("Event", "Event.ID_event", "services_related_to_event.ID_event_rel")
         .innerJoin("Service_Category", "Service.service_category", "Service_Category.ID_category")
         .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
         .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
@@ -74,10 +75,25 @@ exports.servicesByCategoryGET = function (categoryId, limit, offset) {
         .then(data => {
             data = filter(data, "icon")
             return data.map(e => {
-                e.category = {ID_category: e.ID_category, category_name: e.category_name}
-                delete e.ID_category
-                delete e.category_name
-                delete e.service_presentation
+                e.service_id = e["ID_service"]
+                delete e["ID_service"]
+                e.name = e["service_name"]
+                delete e["service_name"]
+                e.presentation = e["service_presentation"]
+                delete e["service_presentation"]
+                e.image = {
+                    url: e["URI_image"]
+                }
+                delete e["URI_image"]
+                delete e["ID_image"]
+                e.category = {
+                    category_id: e["ID_category"],
+                    name: e["category_name"]
+                }
+                delete e["ID_category"]
+                delete e["category_name"]
+                delete e["service_category"]
+                delete e["ID_service_img"]
                 return e;
             })
         })
@@ -93,12 +109,32 @@ exports.servicesByCategoryGET = function (categoryId, limit, offset) {
  **/
 exports.servicesGET = function (limit, offset) {
     return sqlDb("Service")
+        .innerJoin("Service_Category", "Service.service_category", "Service_Category.ID_category")
         .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
         .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
         .limit(limit).offset(offset)
         .then(data => {
             data = filter(data, "icon")
             return data.map(e => {
+                e.service_id = e["ID_service"]
+                delete e["ID_service"]
+                e.name = e["service_name"]
+                delete e["service_name"]
+                e.presentation = e["service_presentation"]
+                delete e["service_presentation"]
+                e.image = {
+                    url: e["URI_image"]
+                }
+                delete e["URI_image"]
+                delete e["ID_image"]
+                e.category = {
+                    category_id: e["ID_category"],
+                    name: e["category_name"]
+                }
+                delete e["ID_category"]
+                delete e["category_name"]
+                delete e["service_category"]
+                delete e["ID_service_img"]
                 return e;
             })
         })

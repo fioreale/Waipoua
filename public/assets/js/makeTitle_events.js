@@ -156,21 +156,9 @@ month_radio.onclick = function () {
     }
 }
 
-function filter(dataset) {
-    let newDataset = new Array(0);
-    for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (URI_image.includes("icon"))
-            newDataset.push(dataset[i])
-    }
-    return newDataset
-}
-
 function DataChange() {
     refresh()
     fadeIn(document.getElementById("begin-events").parentElement)
-
-    dataset = filter(dataset)
 
     let passed_month, passed_category;
     let max = Math.min(12, dataset.length - index);
@@ -185,13 +173,13 @@ function DataChange() {
             newEl.appendChild(newRow)
             currentRow = newRow
         }
-        let {ID_event, event_name, event_presentation, URI_image, category, date} = dataset[i];
+        let {event_id, name, presentation, image, category, date} = dataset[i];
         if (context === 3)
             passed_month = date.month
         if (context === 2)
             passed_category = category.ID_category
 
-        currentRow.appendChild(fill("assets/" + URI_image, event_name, ID_event))
+        currentRow.appendChild(fill("assets/" + image.url, name, event_id))
     }
 
     newEl.firstElementChild.setAttribute("id", "begin-events")

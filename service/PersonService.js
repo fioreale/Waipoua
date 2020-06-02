@@ -38,13 +38,19 @@ exports.peopleByRoleGET = function (category_id, limit, offset) {
         .then(data => {
             data = filter(data)
             return data.map(e => {
+                e.person_id = e["ID_person"]
+                delete e["ID_person"]
+                e.image = {
+                    url: e["URI_image"]
+                }
+                delete e["URI_image"]
                 e.role = {
                     category_id: e["ID_role"],
                     name: e["role_name"]
                 }
                 delete e["ID_role"]
                 delete e["role_name"]
-                return e
+                return e;
             })
         })
 }
@@ -62,9 +68,25 @@ exports.peopleGET = function (limit, offset) {
         .limit(limit).offset(offset)
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
+        .innerJoin("Role", "Role.ID_role", "Person.ID_role")
         .then(data => {
             data = filter(data)
             return data.map(e => {
+                e.person_id = e["ID_person"]
+                delete e["ID_person"]
+                e.image = {
+                    url: e["URI_image"]
+                }
+                delete e["URI_image"]
+                e.role = {
+                    category_id: e["ID_role"],
+                    name: e["role_name"]
+                }
+                delete e["ID_person_img"]
+                delete e["ID_image"]
+                delete e["ID_role"]
+                delete e["role_name"]
+                console.log(e)
                 return e;
             })
         })
@@ -155,9 +177,9 @@ function filter_services(dataset) {
     let newDataset = new Array(0);
     let found = false
     for (let i = 0; i < dataset.length; i++) {
-        let {ID_person} = dataset[i]
+        let {ID_service} = dataset[i]
         for (let j = 0; j < newDataset.length; j++) {
-            if (newDataset[j].service_id === ID_person)
+            if (newDataset[j].service_id === ID_service)
                 found = true
         }
         if (!found)

@@ -10,35 +10,35 @@ info:
 host: "waipoua-association.herokuapp.com:8080"
 basePath: "/"
 tags:
-- name: "service"
-  description: "Service provided by the association"
-- name: "event"
-  description: "Event organized by the association; can be relative to a service"
-- name: "person"
-  description: "Person that has joined the association"
+  - name: "service"
+    description: "Service provided by the association"
+  - name: "event"
+    description: "Event organized by the association; can be relative to a service"
+  - name: "person"
+    description: "Person that has joined the association"
 schemes:
-- "http"
-- "https"
+  - "http"
+  - "https"
 paths:
   /Events:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "List of events provided by the association "
       operationId: "eventsGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
       responses:
         "200":
           description: "Success. Return the list of events"
@@ -52,18 +52,18 @@ paths:
   /Events/{eventId}:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "List of events provided by the association "
       operationId: "eventSpecificGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "eventId"
-        in: "path"
-        description: "Id of the month"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "eventId"
+          in: "path"
+          description: "Id of the month"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the event details"
@@ -77,28 +77,28 @@ paths:
   /Events/Categories/{categoryId}:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "List of events provided by the association "
       operationId: "eventsByCateogoryGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "categoryId"
-        in: "path"
-        description: "Month in which the event takes place"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "categoryId"
+          in: "path"
+          description: "Month in which the event takes place"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the list of events"
@@ -112,28 +112,28 @@ paths:
   /Events/Months/{month}:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "List of events provided by the association in a certain month "
       operationId: "eventsByMonthGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "month"
-        in: "path"
-        description: "Month in which the event takes place"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "month"
+          in: "path"
+          description: "Month in which the event takes place"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the list of events"
@@ -147,22 +147,22 @@ paths:
   /Services:
     get:
       tags:
-      - "service"
+        - "service"
       summary: "List of services provided by the association "
       operationId: "servicesGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
       responses:
         "200":
           description: "Success. Return the list of services"
@@ -176,18 +176,18 @@ paths:
   /Services/{serviceId}:
     get:
       tags:
-      - "service"
+        - "service"
       summary: "A specific service"
       operationId: "serviceSpecificGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "serviceId"
-        in: "path"
-        description: "The id of the service"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "serviceId"
+          in: "path"
+          description: "The id of the service"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the required service"
@@ -199,28 +199,28 @@ paths:
   /Services/Category/{categoryId}:
     get:
       tags:
-      - "service"
+        - "service"
       summary: "A specific service category"
       operationId: "servicesByCategoryGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "categoryId"
-        in: "path"
-        description: "The id of the cateogory"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "categoryId"
+          in: "path"
+          description: "The id of the cateogory"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the list of services by category"
@@ -234,22 +234,22 @@ paths:
   /People:
     get:
       tags:
-      - "person"
+        - "person"
       summary: "List of the people that joined the association"
       operationId: "peopleGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
       responses:
         "200":
           description: "Success. Return the list of people"
@@ -265,18 +265,18 @@ paths:
   /People/{personId}:
     get:
       tags:
-      - "person"
+        - "person"
       summary: "Find person by Id"
       operationId: "peopleSpecificGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "personId"
-        in: "path"
-        description: "The id of a person"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "personId"
+          in: "path"
+          description: "The id of a person"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the person data"
@@ -290,28 +290,28 @@ paths:
   /People/Roles/{category_id}:
     get:
       tags:
-      - "person"
+        - "person"
       summary: "Find list of person by role"
       operationId: "peopleByRoleGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "limit"
-        in: "query"
-        description: "The maximum number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "category_id"
-        in: "path"
-        description: "The id of the role"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "limit"
+          in: "query"
+          description: "The maximum number of items per page"
+          required: false
+          type: "integer"
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "category_id"
+          in: "path"
+          description: "The id of the role"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: "Success. Return the list of people by a certain role"
@@ -340,8 +340,8 @@ definitions:
       image:
         $ref: "#/definitions/Image"
       relativeTo:
-	type: array
-	items:
+        type: array
+        items:
           $ref: "#/definitions/Service"
       contact:
         $ref: "#/definitions/Person"
@@ -484,10 +484,10 @@ definitions:
       name: "Animal protection from hunting and poaching"
       presentation: "What we do to fight hunt and poaching."
       image:
-      - url: "image_jumbotron.jpg"
-      - url: "image_carousel_01.jpg"
-      - url: "image_carousel_02.jpg"
-      - url: "image_carousel_03.jpg"
+        - url: "image_jumbotron.jpg"
+        - url: "image_carousel_01.jpg"
+        - url: "image_carousel_02.jpg"
+        - url: "image_carousel_03.jpg"
       service_id: 17
       category:
         category_id: 0

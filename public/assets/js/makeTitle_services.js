@@ -99,21 +99,9 @@ category_radio.onclick = function () {
     }
 }
 
-function filter(dataset) {
-    let newDataset = new Array(0);
-    for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (URI_image.includes("icon"))
-            newDataset.push(dataset[i])
-    }
-    return newDataset
-}
-
 function DataChange() {
     refresh()
     fadeIn(document.getElementById("begin-service").parentElement)
-
-    dataset = filter(dataset)
 
     let passed_category;
     let max = Math.min(12, dataset.length - index);
@@ -128,11 +116,11 @@ function DataChange() {
             newEl.appendChild(newRow)
             currentRow = newRow
         }
-        let {ID_service, service_name, service_presentation, URI_image, category} = dataset[i];
+        let {service_id, name, presentation, image, category} = dataset[i];
         if (context === 2)
             passed_category = category.ID_category
 
-        currentRow.appendChild(fill("assets/" + URI_image, service_name, ID_service))
+        currentRow.appendChild(fill("assets/" + image.url, name, service_id))
     }
 
     newEl.firstElementChild.setAttribute("id", "begin-service")

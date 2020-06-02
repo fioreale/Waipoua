@@ -64,7 +64,7 @@ if (queries[2] != null) {
 
 function find_index(id, group) {
     for (let i = 0; i < group.length; i++) {
-        if (group[i].ID_event === parseInt(id)) {
+        if (group[i].event_id === parseInt(id)) {
             index_group = i
             break
         }
@@ -74,8 +74,8 @@ function find_index(id, group) {
 function filter(dataset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (URI_image.includes("icon"))
+        let {image} = dataset[i]
+        if (image.url.includes("icon"))
             newDataset.push(dataset[i])
     }
     return newDataset
@@ -99,18 +99,20 @@ function fill(event_id) {
             el.innerHTML = "";
 
             let {event_id, name, presentation, category, location, date, image, relativeTo, contact} = json;
-            if (relativeTo.service_id != null) {
-                let name = relativeTo.name;
-                let newDiv = document.createElement("div");
-                newDiv.setAttribute("class", "p-2 bd-highlight");
-                let newA = document.createElement("a");
-                newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
-                    "list-inline-item transition-link clickable-service");
-                newA.setAttribute("href", "#");
-                newA.setAttribute("id_service", relativeTo.service_id)
-                newA.innerText = name;
-                newDiv.appendChild(newA);
-                el.appendChild(newDiv);
+            if (relativeTo.length > 0) {
+                for (let i = 0; i < relativeTo.length; i++) {
+                    let name = relativeTo[i]["name"];
+                    let newDiv = document.createElement("div");
+                    newDiv.setAttribute("class", "p-2 bd-highlight");
+                    let newA = document.createElement("a");
+                    newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
+                        "list-inline-item transition-link clickable-service");
+                    newA.setAttribute("href", "#");
+                    newA.setAttribute("service_id", relativeTo[i]["service_id"])
+                    newA.innerText = name;
+                    newDiv.appendChild(newA);
+                    el.appendChild(newDiv);
+                }
             } else {
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "p-2 bd-highlight");
@@ -130,7 +132,7 @@ function fill(event_id) {
             //filling the rest
             title.innerText = name
             text.innerText = presentation;
-            background.style.backgroundImage = "url(" + "../../assets/" + image + ")"
+            background.style.backgroundImage = "url(" + "../../assets/" + image.url + ")"
 
             // orientation info
             if (category_id != null)
@@ -236,7 +238,7 @@ function clicks_listener(category, month) {
         }
     }
     let listener_person = document.getElementById("event-person");
-    let listener_service = document.getElementsByClassName("clickable-service")[0];
+    let listener_service = document.getElementsByClassName("clickable-service");
 
     if (listener_person != null) {
         listener_person.onclick = function () {
@@ -245,9 +247,36 @@ function clicks_listener(category, month) {
             window.location.href = "../../all_people/person/" + queryString;
         }
     }
-    if (listener_service != null) {
-        listener_service.onclick = function () {
-            let value1 = listener_service.getAttribute("id_service")
+    if (listener_service[0] != null) {
+        listener_service[0].onclick = function () {
+            let value1 = listener_service[0].getAttribute("service_id")
+            let queryString = "?offset=0" + "&id_service=" + value1 + ":1";
+            window.location.href = "../../all_services/service/" + queryString;
+        }
+    }
+    if (listener_service[1] != null) {
+        listener_service[1].onclick = function () {
+            let value1 = listener_service[1].getAttribute("service_id")
+            let queryString = "?offset=0" + "&id_service=" + value1 + ":1";
+            window.location.href = "../../all_services/service/" + queryString;
+        }
+    }
+    if (listener_service[2] != null) {
+        listener_service[2].onclick = function () {
+            let value1 = listener_service[2].getAttribute("service_id")
+            let queryString = "?offset=0" + "&id_service=" + value1 + ":1";
+            window.location.href = "../../all_services/service/" + queryString;
+        }
+    }
+    if (listener_service[3] != null) {
+        listener_service[3].onclick = function () {
+            let value1 = listener_service[3].getAttribute("service_id")
+            let queryString = "?offset=0" + "&id_service=" + value1 + ":1";
+            window.location.href = "../../all_services/service/" + queryString;
+        }
+    }if (listener_service[4] != null) {
+        listener_service[4].onclick = function () {
+            let value1 = listener_service[4].getAttribute("service_id")
             let queryString = "?offset=0" + "&id_service=" + value1 + ":1";
             window.location.href = "../../all_services/service/" + queryString;
         }

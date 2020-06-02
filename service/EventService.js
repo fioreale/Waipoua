@@ -29,13 +29,16 @@ exports.eventDbSetup = function (connection) {
 exports.eventSpecificGET = function (eventId) {
     return sqlDb("Event")
         .where("ID_event", eventId)
-        .leftJoin("Service", "Service.ID_service", "Event.event_ID_service")
         .innerJoin("Person", "Person.ID_person", "Event.ID_contact_person")
         .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
+        .innerJoin("services_related_to_event", "services_related_to_event.ID_event_rel",
+            "Event.ID_event")
+        .leftJoin("Service", "Service.ID_service", "services_related_to_event.ID_service_rel")
         .innerJoin("Event_images", "Event.event_category", "Event_images.ID_event_category")
         .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
         .then(data => {
             let jumbotron = search_back(data)
+            let events = filter_services(data)
             let newJson = {
                 event_id: data[0]["ID_event"],
                 name: data[0]["event_name"],
@@ -52,18 +55,16 @@ exports.eventSpecificGET = function (eventId) {
                     hour: data[0]["hour"],
                     minute: data[0]["minute"],
                 },
-                image: jumbotron,
-                relativeTo: {
-                    service_id: data[0]["event_ID_service"],
-                    name: data[0]["service_name"],
+                image: {
+                    url: jumbotron
                 },
+                relativeTo: events,
                 contact: {
                     person_id: data[0]["ID_contact_person"],
                     name: data[0]["name"],
                     surname: data[0]["surname"],
                 }
             }
-            console.log(newJson)
             return newJson
         })
 }
@@ -87,6 +88,12 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
         .then(data => {
             data = filter(data, "icon")
             return data.map(e => {
+                e.event_id = e["ID_event"]
+                delete e.ID_event
+                e.name = e["event_name"]
+                delete e.event_name
+                e.presentation = e["event_presentation"]
+                delete e.event_presentation
                 e.date = {
                     day: e.day,
                     month: e.month,
@@ -94,17 +101,23 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
                     hour: e.hour,
                     minute: e.minute
                 }
-                e.category = {
-                    ID_category: e.ID_category,
-                    category_name: e.category_name
+                e.image = {
+                    url: e["URI_image"]
                 }
+                delete e.URI_image
+                e.category = {
+                    category_id: e["event_category"],
+                    name: e["event_category_name"]
+                }
+                delete e.event_category
+                delete e.ID_event_category
+                delete e.event_category_name
                 delete e.day
                 delete e.month
                 delete e.year
                 delete e.hour
                 delete e.minute
-                delete e.ID_category
-                delete e.category_name
+                delete e.ID_contact_person
                 return e;
             })
         })
@@ -123,12 +136,19 @@ exports.eventsByMonthGET = function (month, limit, offset) {
     return sqlDb("Event")
         .where("month", month)
         .orderBy('year')
+        .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
         .innerJoin("Event_images", "Event.event_category", "Event_images.ID_event_category")
         .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
         .limit(limit).offset(offset)
         .then(data => {
             data = filter(data, "icon")
             return data.map(e => {
+                e.event_id = e["ID_event"]
+                delete e.ID_event
+                e.name = e["event_name"]
+                delete e.event_name
+                e.presentation = e["event_presentation"]
+                delete e.event_presentation
                 e.date = {
                     day: e.day,
                     month: e.month,
@@ -136,11 +156,23 @@ exports.eventsByMonthGET = function (month, limit, offset) {
                     hour: e.hour,
                     minute: e.minute
                 }
+                e.image = {
+                    url: e["URI_image"]
+                }
+                delete e.URI_image
+                e.category = {
+                    category_id: e["event_category"],
+                    name: e["event_category_name"]
+                }
+                delete e.event_category
+                delete e.ID_event_category
+                delete e.event_category_name
                 delete e.day
                 delete e.month
                 delete e.year
                 delete e.hour
                 delete e.minute
+                delete e.ID_contact_person
                 return e;
             })
         })
@@ -158,13 +190,21 @@ exports.eventsGET = function (limit, offset) {
     return sqlDb("Event")
         .innerJoin("Event_images", "Event.event_category", "Event_images.ID_event_category")
         .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
+        .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
         .orderBy("Event.year")
         .orderBy("Event.month")
         .orderBy("Event.day")
         .limit(limit).offset(offset)
         .then(data => {
+            console.log(data)
             data = filter(data, "icon")
             return data.map(e => {
+                e.event_id = e["ID_event"]
+                delete e.ID_event
+                e.name = e["event_name"]
+                delete e.event_name
+                e.presentation = e["event_presentation"]
+                delete e.event_presentation
                 e.date = {
                     day: e.day,
                     month: e.month,
@@ -172,11 +212,23 @@ exports.eventsGET = function (limit, offset) {
                     hour: e.hour,
                     minute: e.minute
                 }
+                e.image = {
+                    url: e["URI_image"]
+                }
+                delete e.URI_image
+                e.category = {
+                    category_id: e["event_category"],
+                    name: e["event_category_name"]
+                }
+                delete e.event_category
+                delete e.ID_event_category
+                delete e.event_category_name
                 delete e.day
                 delete e.month
                 delete e.year
                 delete e.hour
                 delete e.minute
+                delete e.ID_contact_person
                 return e;
             })
         })
@@ -198,4 +250,26 @@ function search_back(dataset) {
             return dataset[i].URI_image
     }
     return "";
+}
+
+function filter_services(dataset) {
+    let newDataset = new Array(0);
+    let found = false
+    for (let i = 0; i < dataset.length; i++) {
+        let {ID_service} = dataset[i]
+        for (let j = 0; j < newDataset.length; j++) {
+            if (newDataset[j].service_id === ID_service)
+                found = true
+        }
+        if (!found)
+            newDataset
+                .push({
+                    service_id: dataset[i]["ID_service"],
+                    name: dataset[i]["service_name"]
+                })
+
+        found = false
+    }
+
+    return newDataset
 }

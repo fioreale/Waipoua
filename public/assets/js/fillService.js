@@ -53,8 +53,8 @@ function find_index(id, group) {
 function filter(dataset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
-        let {URI_image} = dataset[i]
-        if (URI_image.includes("icon"))
+        let {image} = dataset[i]
+        if (image.url.includes("icon"))
             newDataset.push(dataset[i])
     }
     return newDataset
