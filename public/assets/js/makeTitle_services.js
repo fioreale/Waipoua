@@ -167,7 +167,7 @@ function refresh() {
 
 function clicks(by_category, max_all, max_cat) {
     var list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, list11, list12;
-    var list = document.getElementsByClassName("card-body");
+    var list = document.getElementsByClassName("card");
     var queryString;
 
     if (isNaN(page))
