@@ -1,113 +1,192 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Documentation of the Backend part</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
-  <!--[if lt IE 9]>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="pandoc"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+    <title>Documentation of the Backend part</title>
+    <style>
+        code {
+            white-space: pre-wrap;
+        }
+
+        span.smallcaps {
+            font-variant: small-caps;
+        }
+
+        span.underline {
+            text-decoration: underline;
+        }
+
+        div.column {
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        div.hanging-indent {
+            margin-left: 1.5em;
+            text-indent: -1.5em;
+        }
+
+        ul.task-list {
+            list-style: none;
+        }
+    </style>
+    <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+    <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Documentation of the Backend part</h1>
+    <h1 class="title">Documentation of the Backend part</h1>
 </header>
 <h2 id="general-group-information">General group information</h2>
 <table>
-<thead>
-<tr class="header">
-<th>Member n.</th>
-<th>Role</th>
-<th>First name</th>
-<th>Last Name</th>
-<th>Matricola</th>
-<th>Email address</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>administrator</td>
-<td>Alessio</td>
-<td>Fiorentino</td>
-<td>940488</td>
-<td>alessio.fiorentino@mail.polimi.it</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>member</td>
-<td>Chiara</td>
-<td>Barbera</td>
-<td>920938</td>
-<td>chiara.barbera@mail.polimi.it</td>
-</tr>
-</tbody>
+    <thead>
+    <tr class="header">
+        <th>Member n.</th>
+        <th>Role</th>
+        <th>First name</th>
+        <th>Last Name</th>
+        <th>Matricola</th>
+        <th>Email address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+        <td>1</td>
+        <td>administrator</td>
+        <td>Alessio</td>
+        <td>Fiorentino</td>
+        <td>940488</td>
+        <td>alessio.fiorentino@mail.polimi.it</td>
+    </tr>
+    <tr class="even">
+        <td>2</td>
+        <td>member</td>
+        <td>Chiara</td>
+        <td>Barbera</td>
+        <td>920938</td>
+        <td>chiara.barbera@mail.polimi.it</td>
+    </tr>
+    </tbody>
 </table>
 <h2 id="links-to-other-deliverables">Links to other deliverables</h2>
 <ul>
-<li><p>Deliverable D0: the web application is accessible at <a href="https://waipoua-association.herokuapp.com/">this address</a>.</p></li>
-<li><p>Deliverable D2: the YAML or JSON file containing the specification of the app API can be found at <a href="https://waipoua-association.herokuapp.com//backend/spec.yaml">this address</a>.</p></li>
-<li><p>Deliverable D3: the SwaggerUI page of the same API is available at <a href="https://waipoua-association.herokuapp.com/backend/swaggerui">this address</a>.</p></li>
-<li><p>Deliverable D4: the source code of D0 is available as a zip file at <a href="https://waipoua-association.herokuapp.com/backend/app.zip">this address</a>.</p></li>
-<li><p>Deliverable D5: the address of the online source control repository is available <a href="https://github.com/Alexio96/Waipoua">this address</a>. We hereby declare that this is a private repository and, upon request, we will give access to the instructors.</p></li>
+    <li><p>Deliverable D0: the web application is accessible at <a href="https://waipoua-association.herokuapp.com/">this
+        address</a>.</p></li>
+    <li><p>Deliverable D2: the YAML or JSON file containing the specification of the app API can be found at <a
+            href="https://waipoua-association.herokuapp.com/backend/spec.yaml">this address</a>.</p></li>
+    <li><p>Deliverable D3: the SwaggerUI page of the same API is available at <a
+            href="https://waipoua-association.herokuapp.com/backend/swaggerui">this address</a>.</p></li>
+    <li><p>Deliverable D4: the source code of D0 is available as a zip file at <a
+            href="https://waipoua-association.herokuapp.com/backend/app.zip">this address</a>.</p></li>
+    <li><p>Deliverable D5: the address of the online source control repository is available <a
+            href="https://github.com/Alexio96/Waipoua">this address</a>. We hereby declare that this is a private
+        repository and, upon request, we will give access to the instructors.</p></li>
 </ul>
 <h2 id="specification">Specification</h2>
 <h3 id="web-architecture">Web Architecture</h3>
-<p>Describe here, with a diagram, the components of your web application and how they interact. Highlight which parts belong to the application layer, data layer or presentation layer. How did you ensure that HTML is not rendered server side?</p>
-<p>TODO: ALESSIO</p>
+
+<div>
+    <img src="UML_BackEnd.svg" title="Web Application Components" width="100%" alt="..."/>
+    <figcaption>Web Application Components</figcaption>
+</div>
+<p> The HTML pages are not rendered on the server side since, like it's possible to see from the diagram, Javascript
+    code
+    handles the fetching of the resources.
+    Such data are picked up from the server side, through the REST API, and then they dynamically fill the HTML pages
+    with
+    respect to the specific page that does the request.
+    Moreover, each page manages its own dynamic content with its own javascript code.</p>
 <h3 id="api">API</h3>
 <h4 id="rest-compliance">REST compliance</h4>
-<p>The architecture of the website uses a REST API that provides a <strong>uniform interface</strong> to the resources, since when they are required by the client, the latter are retrieved from database and exposed in the format required by the API. In this way, the client is not aware of how the resources are retrieved and it is independent from the server-side of the website. Moreover, the connection is <strong>stateless</strong>, since in any case status information about the session are memorized. To increase the efficiency of the website, if necessary the resources retrieved by the website are stored locally (?? ASK ALESSIO) to avoid useless calls to the database. Finally, we did not implement any authentication system since this requirement did not apply to our project: the architecture uses modular components that are highly coese and loosely coupled, so that they interact in a <strong>layer structure</strong>.</p>
+<p>The architecture of the website uses a REST API that provides a <strong>uniform interface</strong> to the resources,
+    since when they are required by the client, the latter are retrieved from database and exposed in the format
+    required by the API. In this way, the client is not aware of how the resources are retrieved and it is independent
+    from the server-side of the website. Moreover, the connection is <strong>stateless</strong>, since in any case
+    status information about the session are memorized. To increase the efficiency of the website, if necessary the
+    resources retrieved by the website are stored locally (?? ASK ALESSIO) to avoid useless calls to the database.
+    Finally, we did not implement any authentication system since this requirement did not apply to our project: the
+    architecture uses modular components that are highly coese and loosely coupled, so that they interact in a <strong>layer
+        structure</strong>.</p>
 <h4 id="openapi-resource-models">OpenAPI Resource models</h4>
 <p>The models of the resources are the following:</p>
 <ul>
-<li><p><strong>Event</strong>: represents an event organized by the association. It is characterized by a unique <em>event_id</em> (integer), a <strong>name</strong> and a <strong>presentation</strong> (strings); moreover, it is characterized by a <em>date</em>, an <em>image</em>, a reference <em>contact</em> person, a <em>service</em> to which the event may be relative. Finally, the event is characterized by a <em>category</em>. These last 5 fields (date, image, contact, service, category) reference other models that will be described in the next lines.</p></li>
-<li><p><strong>Service</strong>: a service provided by the association. It is characterized by a <em>service_id</em> (integer), a <em>name</em> and a <em>presentation</em> (strings). The service is characterized by a <em>category</em>, an array of <em>images</em>, an array of <em>events</em> in which the service is presented and an array of <em>people</em> involved in the service. As above, category, images, events, and people refer to models that will be described in the next lines.</p></li>
-<li><p><strong>Person</strong>: a person involved in the association. It is characterized by a <em>person_id</em> (integer), a <em>name</em>, a <em>surname</em>, an <em>email</em> a <em>phone_number</em> and a <em>description</em> (strings). Moreover, it contains a list of <em>services</em> in which the person is involved and a possible <strong>event</strong> for which the person can be the reference contact.</p></li>
-<li><p><strong>Image</strong>: represents an image of a person, of an event or of a service. It is characterized by a simple <em>url</em> (string).</p></li>
-<li><p><strong>Category</strong>: represents the category of service or event or the type of role. Even if these categories are well distinguished in the database, such a distrinction would be redundant in the API. The category contains a <em>category_id</em> (string) and a <em>name</em> (string).</p></li>
-<li><p><strong>Date</strong>: a model for the date of the event. It has 5 integer fields, used to represent <em>day</em>, <em>month</em>, <em>year</em>, <em>hour</em>, <em>minutes</em>.</p></li>
+    <li><p><strong>Event</strong>: represents an event organized by the association. It is characterized by a unique
+        <em>event_id</em> (integer), a <strong>name</strong> and a <strong>presentation</strong> (strings); moreover, it
+        is characterized by a <em>date</em>, an <em>image</em>, a reference <em>contact</em> person, a <em>service</em>
+        to which the event may be relative. Finally, the event is characterized by a <em>category</em>. These last 5
+        fields (date, image, contact, service, category) reference other models that will be described in the next
+        lines.</p></li>
+    <li><p><strong>Service</strong>: a service provided by the association. It is characterized by a <em>service_id</em>
+        (integer), a <em>name</em> and a <em>presentation</em> (strings). The service is characterized by a
+        <em>category</em>, an array of <em>images</em>, an array of <em>events</em> in which the service is presented
+        and an array of <em>people</em> involved in the service. As above, category, images, events, and people refer to
+        models that will be described in the next lines.</p></li>
+    <li><p><strong>Person</strong>: a person involved in the association. It is characterized by a <em>person_id</em>
+        (integer), a <em>name</em>, a <em>surname</em>, an <em>email</em> a <em>phone_number</em> and a
+        <em>description</em> (strings). Moreover, it contains a list of <em>services</em> in which the person is
+        involved and a possible <strong>event</strong> for which the person can be the reference contact.</p></li>
+    <li><p><strong>Image</strong>: represents an image of a person, of an event or of a service. It is characterized by
+        a simple <em>url</em> (string).</p></li>
+    <li><p><strong>Category</strong>: represents the category of service or event or the type of role. Even if these
+        categories are well distinguished in the database, such a distrinction would be redundant in the API. The
+        category contains a <em>category_id</em> (string) and a <em>name</em> (string).</p></li>
+    <li><p><strong>Date</strong>: a model for the date of the event. It has 5 integer fields, used to represent
+        <em>day</em>, <em>month</em>, <em>year</em>, <em>hour</em>, <em>minutes</em>.</p></li>
 </ul>
 <h3 id="data-model">Data model</h3>
 <p>We show here the ER diagram of our database.</p>
 <figure>
-<img src="ER%20diagram%20-final.png" title="ER diagram" alt="" /><figcaption>ER diagram</figcaption>
+    <img src="ER_diagram.png" width="100%" title="ER diagram" alt="..."/>
+    <figcaption>ER diagram</figcaption>
 </figure>
-<p>There is a 1:1 correspondance between the API models and the entities of services, events and people and images. The relationships are represented with references between the models of the API. The association and the donations, even if present in the database, are not access by the client and thus they are not represented in the API. Finally, the entities <em>role</em>, <em>service_category</em> and <em>event_category</em> are mapped to the model <em>category</em> in the API.</p>
+<p>There is a 1:1 correspondance between the API models and the entities of services, events and people and images. The
+    relationships are represented with references between the models of the API. The association and the donations, even
+    if present in the database, are not access by the client and thus they are not represented in the API. Finally, the
+    entities <em>role</em>, <em>service_category</em> and <em>event_category</em> are mapped to the model
+    <em>category</em> in the API.</p>
 <h2 id="implementation">Implementation</h2>
 <h3 id="tools-used">Tools used</h3>
-<p>First, an OpenAPI has been developed on swagger.io and a node-js server has been generated. Secondly, the JavaScript language has been used to implement the data layer and the server. The front-end part has been written in HTML and CSS with a common-used framework, i.e. Bootstrap.</p>
+<p>First, an OpenAPI has been developed on swagger.io and a node-js server has been generated. Secondly, the JavaScript
+    language has been used to implement the data layer and the server. The front-end part has been written in HTML and
+    CSS with a common-used framework, i.e. Bootstrap.</p>
 <h3 id="discussion">Discussion</h3>
-<p>Describe here: - How did you make sure your web application adheres to the provided OpenAPI specification? Which method did you use to test all APIs endpoints against the expected response?</p>
-<p>In order to verify that the web application adheres to the OpenAPI specifications, we accessed the endpoints through the browser and checked that the json data retrieved from the database respected the format required by the API. (?? TUTORATO ?? CHIEDI se dobbiamo fare un test automatico.)</p>
+<p>Describe here: - How did you make sure your web application adheres to the provided OpenAPI specification? Which
+    method did you use to test all APIs endpoints against the expected response?</p>
+<p>In order to verify that the web application adheres to the OpenAPI specifications, we accessed the endpoints through
+    the browser and checked that the json data retrieved from the database respected the format required by the API. (??
+    TUTORATO ?? CHIEDI se dobbiamo fare un test automatico.)</p>
 <ul>
-<li><p>Our application adheres to REST common practices because there is both a set of static-assets (i.e. web pages that do not require the access to the database) and a set of pages that require data from the database. In this case, they are retrieved through the data layer and (if necessary) cached, to reduce the number of calles made to the database.</p></li>
-<li><p>Since the website does not provide any login form, there is no need to manage the session of the user. The website only retrieves information from the database and displays them in the pages.</p></li>
-<li><p>We used a relational database written in SQL and PostGres as DBMS.</p></li>
+    <li><p>Our application adheres to REST common practices because there is both a set of static-assets (i.e. web pages
+        that do not require the access to the database) and a set of pages that require data from the database. In this
+        case, they are retrieved through the data layer and (if necessary) cached, to reduce the number of calles made
+        to the database.</p></li>
+    <li><p>Since the website does not provide any login form, there is no need to manage the session of the user. The
+        website only retrieves information from the database and displays them in the pages.</p></li>
+    <li><p>We used a relational database written in SQL and PostGres as DBMS.</p></li>
 </ul>
 <h2 id="other-information">Other information</h2>
 <h3 id="task-assignment">Task assignment</h3>
 <p>To be more efficient, we decided to split the work in the following way:</p>
 <ul>
-<li><p>Alessio worked on the front-end (50%), Data Layer development (40% of the time) and DataBase (10% of the time)</p></li>
-<li><p>Chiara worked on the front-end (40%), OpenAPI specification (30% of time) and DataBase (30% of the time)</p></li>
+    <li><p>Alessio worked on the front-end (50%), Data Layer development (40% of the time) and DataBase (10% of the
+        time)</p></li>
+    <li><p>Chiara worked on the front-end (40%), OpenAPI specification (30% of time) and DataBase (30% of the time)</p>
+    </li>
 </ul>
-<p>Moreover, Alessio checked the code of Chiara and viceversa, to ensure a complete understanding of the code and a higher improvement of the acquired competences.</p>
+<p>Moreover, Alessio checked the code of Chiara and viceversa, to ensure a complete understanding of the code and a
+    higher improvement of the acquired competences.</p>
 <h3 id="analysis-of-existing-api">Analysis of existing API</h3>
 <p>We did not search for existing APIs.</p>
 <h3 id="learning-outcome">Learning outcome</h3>
 <ul>
-<li><p>Chiara wanted to learn more about the front-end development in HTML and CSS and acquired competences in Bootstrap usage. Moreover, she learned a lot about REST APIs and how they are implemented, as she was very curious of this topic of which she often heard about.</p></li>
-<li><p><strong>TODO: ALESSIO</strong></p></li>
+    <li><p>Chiara wanted to learn more about the front-end development in HTML and CSS and acquired competences in
+        Bootstrap usage. Moreover, she learned a lot about REST APIs and how they are implemented, as she was very
+        curious of this topic of which she often heard about.</p></li>
+    <li><p><strong>TODO: ALESSIO</strong></p></li>
 </ul>
 </body>
 </html>
