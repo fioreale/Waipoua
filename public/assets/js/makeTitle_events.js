@@ -228,7 +228,7 @@ function refresh() {
 
 function clicks(by_category, by_month, max_all, max_cat) {
     var list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, list11, list12;
-    var list = document.getElementsByClassName("card-body");
+    var list = document.getElementsByClassName("card");
     var queryString;
 
     if (isNaN(page))
@@ -240,7 +240,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
         if (isNaN(offset))
             offset = 0
         list1.onclick = function () {
-            var value1 = list1.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list1.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -256,7 +256,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list2 != null) {
         let offset = 1 + parseInt(page) * 12;
         list2.onclick = function () {
-            var value1 = list2.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list2.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -272,7 +272,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list3 != null) {
         let offset = 2 + parseInt(page) * 12;
         list3.onclick = function () {
-            var value1 = list3.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list3.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -288,7 +288,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list4 != null) {
         let offset = 3 + parseInt(page) * 12;
         list4.onclick = function () {
-            var value1 = list4.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list4.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -304,7 +304,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list5 != null) {
         let offset = 4 + parseInt(page) * 12;
         list5.onclick = function () {
-            var value1 = list5.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list5.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -320,7 +320,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list6 != null) {
         let offset = 5 + parseInt(page) * 12;
         list6.onclick = function () {
-            var value1 = list6.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list6.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -336,7 +336,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list7 != null) {
         let offset = 6 + parseInt(page) * 12;
         list7.onclick = function () {
-            var value1 = list7.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list7.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -352,7 +352,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list8 != null) {
         let offset = 7 + parseInt(page) * 12;
         list8.onclick = function () {
-            var value1 = list8.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list8.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -368,7 +368,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list9 != null) {
         let offset = 8 + parseInt(page) * 12;
         list9.onclick = function () {
-            var value1 = list9.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list9.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -384,7 +384,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list10 != null) {
         let offset = 9 + parseInt(page) * 12;
         list10.onclick = function () {
-            var value1 = list10.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list10.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -400,7 +400,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list11 != null) {
         let offset = 10 + parseInt(page) * 12;
         list11.onclick = function () {
-            var value1 = list11.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list11.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
@@ -416,7 +416,7 @@ function clicks(by_category, by_month, max_all, max_cat) {
     if (list12 != null) {
         let offset = 11 + parseInt(page) * 12;
         list12.onclick = function () {
-            var value1 = list12.firstElementChild.getAttribute("id").split("-")[1];
+            var value1 = list12.lastElementChild.firstElementChild.getAttribute("id").split("-")[1];
             if (by_category != null) {
                 queryString = "?offset=" + offset + "&id_event=" + value1 + "&category=" + by_category + ":" + max_cat;
             } else if (by_month != null) {
