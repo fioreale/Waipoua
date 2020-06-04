@@ -7,7 +7,7 @@ info:
   termsOfService: "http://swagger.io/terms/"
   contact:
     email: "chiara.barbera@mail.polimi.it"
-host: "localhost:8080"
+host: "waipoua-association.herokuapp.com"
 basePath: "/"
 tags:
   - name: "service"
