@@ -118,7 +118,7 @@ function DataChange() {
         }
         let {service_id, name, presentation, image, category} = dataset[i];
         if (context === 2)
-            passed_category = category.ID_category
+            passed_category = category.category_id
 
         currentRow.appendChild(fill("assets/" + image.url, name, service_id))
     }
