@@ -84,41 +84,29 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
         .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
         .innerJoin("Event_images", "Event.event_category", "Event_images.ID_event_category")
         .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
-        .limit(limit).offset(offset)
         .then(data => {
-            data = filter(data, "icon")
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.event_id = e["ID_event"]
-                delete e.ID_event
-                e.name = e["event_name"]
-                delete e.event_name
-                e.presentation = e["event_presentation"]
-                delete e.event_presentation
-                e.date = {
+                let d = {}
+                d.event_id = e["ID_event"]
+                d.name = e["event_name"]
+                d.presentation = e["event_presentation"]
+                d.date = {
                     day: e.day,
                     month: e.month,
                     year: e.year,
                     hour: e.hour,
                     minute: e.minute
                 }
-                e.image = {
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e.URI_image
-                e.category = {
+                d.category = {
                     category_id: e["event_category"],
                     name: e["event_category_name"]
                 }
-                delete e.event_category
-                delete e.ID_event_category
-                delete e.event_category_name
-                delete e.day
-                delete e.month
-                delete e.year
-                delete e.hour
-                delete e.minute
-                delete e.ID_contact_person
-                return e;
+                d.location = e.location
+                return d;
             })
         })
 }
@@ -139,41 +127,29 @@ exports.eventsByMonthGET = function (month, limit, offset) {
         .innerJoin("Event_Category", "Event.event_category", "Event_Category.ID_category")
         .innerJoin("Event_images", "Event.event_category", "Event_images.ID_event_category")
         .innerJoin("Image", "Event_images.ID_image", "Image.ID_image")
-        .limit(limit).offset(offset)
         .then(data => {
-            data = filter(data, "icon")
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.event_id = e["ID_event"]
-                delete e.ID_event
-                e.name = e["event_name"]
-                delete e.event_name
-                e.presentation = e["event_presentation"]
-                delete e.event_presentation
-                e.date = {
+                let d = {}
+                d.event_id = e["ID_event"]
+                d.name = e["event_name"]
+                d.presentation = e["event_presentation"]
+                d.date = {
                     day: e.day,
                     month: e.month,
                     year: e.year,
                     hour: e.hour,
                     minute: e.minute
                 }
-                e.image = {
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e.URI_image
-                e.category = {
+                d.category = {
                     category_id: e["event_category"],
                     name: e["event_category_name"]
                 }
-                delete e.event_category
-                delete e.ID_event_category
-                delete e.event_category_name
-                delete e.day
-                delete e.month
-                delete e.year
-                delete e.hour
-                delete e.minute
-                delete e.ID_contact_person
-                return e;
+                d.location = e.location
+                return d;
             })
         })
 }
@@ -194,53 +170,49 @@ exports.eventsGET = function (limit, offset) {
         .orderBy("Event.year")
         .orderBy("Event.month")
         .orderBy("Event.day")
-        .limit(limit).offset(offset)
         .then(data => {
-            console.log(data)
-            data = filter(data, "icon")
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.event_id = e["ID_event"]
-                delete e.ID_event
-                e.name = e["event_name"]
-                delete e.event_name
-                e.presentation = e["event_presentation"]
-                delete e.event_presentation
-                e.date = {
+                let d = {}
+                d.event_id = e["ID_event"]
+                d.name = e["event_name"]
+                d.presentation = e["event_presentation"]
+                d.date = {
                     day: e.day,
                     month: e.month,
                     year: e.year,
                     hour: e.hour,
                     minute: e.minute
                 }
-                e.image = {
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e.URI_image
-                e.category = {
+                d.category = {
                     category_id: e["event_category"],
                     name: e["event_category_name"]
                 }
-                delete e.event_category
-                delete e.ID_event_category
-                delete e.event_category_name
-                delete e.day
-                delete e.month
-                delete e.year
-                delete e.hour
-                delete e.minute
-                delete e.ID_contact_person
-                return e;
+                d.location = e.location
+                return d;
             })
         })
 }
 
-function filter(dataset) {
+function filter_interval(data, limit, offset) {
+    let newData = new Array(0)
+    for (let i = offset; i < offset + limit && i < data.length; i++) {
+        newData.push(data[i])
+    }
+    return newData
+}
+
+function filter(dataset, limit, offset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
         let {URI_image} = dataset[i]
         if (URI_image.includes("icon"))
             newDataset.push(dataset[i])
     }
+    newDataset = filter_interval(newDataset, limit, offset)
     return newDataset
 }
 

@@ -103,18 +103,20 @@ function fill(person_id) {
             //filling the events (if any)
             let event_el = document.getElementById("event-person");
             event_el.innerHTML = "";
-            if (events.event_id != null) {
-                let event_name = events.name;
-                let newDiv = document.createElement("div");
-                newDiv.setAttribute("class", "p-2 bd-highlight");
-                let newA = document.createElement("a");
-                newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
-                    "list-inline-item transition-link clickable-event");
-                newA.setAttribute("href", "#");
-                newA.setAttribute("event_id", events.event_id)
-                newA.innerText = event_name;
-                newDiv.appendChild(newA);
-                event_el.appendChild(newDiv);
+            if (events.length > 0) {
+                for (let i = 0; i < 1; i++) {
+                    let event_name = events[i].name;
+                    let newDiv = document.createElement("div");
+                    newDiv.setAttribute("class", "p-2 bd-highlight");
+                    let newA = document.createElement("a");
+                    newA.setAttribute("class", "tooltip-base badge-pill btn btn-outline-success " +
+                        "list-inline-item transition-link clickable-event");
+                    newA.setAttribute("href", "#");
+                    newA.setAttribute("event_id", events[i].event_id)
+                    newA.innerText = event_name;
+                    newDiv.appendChild(newA);
+                    event_el.appendChild(newDiv);
+                }
             } else {
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "p-2 bd-highlight");
@@ -238,13 +240,13 @@ function clicks_listener(role) {
     listen_next.onclick = function () {
         index_group = next
         if (queries[2] != null)
-            fill(people_by_role[index_group].ID_person)
-        else fill(all_people[index_group].ID_person)
+            fill(people_by_role[index_group].person_id)
+        else fill(all_people[index_group].person_id)
     }
     listen_prev.onclick = function () {
         index_group = prev
         if (queries[2] != null)
-            fill(people_by_role[index_group].ID_person)
-        else fill(all_people[index_group].ID_person)
+            fill(people_by_role[index_group].person_id)
+        else fill(all_people[index_group].person_id)
     }
 }

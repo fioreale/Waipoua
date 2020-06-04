@@ -51,7 +51,6 @@ exports.serviceSpecificGET = function (serviceId) {
                 people: people,
                 events: events
             }
-            console.log(newJson)
             return newJson
         })
 }
@@ -71,30 +70,21 @@ exports.servicesByCategoryGET = function (categoryId, limit, offset) {
         .innerJoin("Service_Category", "Service.service_category", "Service_Category.ID_category")
         .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
         .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
-        .limit(limit).offset(offset)
         .then(data => {
-            data = filter(data, "icon")
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.service_id = e["ID_service"]
-                delete e["ID_service"]
-                e.name = e["service_name"]
-                delete e["service_name"]
-                e.presentation = e["service_presentation"]
-                delete e["service_presentation"]
-                e.image = {
+                let d = {}
+                d.service_id = e["ID_service"]
+                d.name = e["service_name"]
+                d.presentation = e["service_presentation"]
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e["URI_image"]
-                delete e["ID_image"]
-                e.category = {
+                d.category = {
                     category_id: e["ID_category"],
                     name: e["category_name"]
                 }
-                delete e["ID_category"]
-                delete e["category_name"]
-                delete e["service_category"]
-                delete e["ID_service_img"]
-                return e;
+                return d;
             })
         })
 }
@@ -112,41 +102,41 @@ exports.servicesGET = function (limit, offset) {
         .innerJoin("Service_Category", "Service.service_category", "Service_Category.ID_category")
         .innerJoin("service_images", "service_images.ID_service_img", "Service.ID_service")
         .innerJoin("Image", "service_images.ID_image", "Image.ID_image")
-        .limit(limit).offset(offset)
         .then(data => {
-            data = filter(data, "icon")
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.service_id = e["ID_service"]
-                delete e["ID_service"]
-                e.name = e["service_name"]
-                delete e["service_name"]
-                e.presentation = e["service_presentation"]
-                delete e["service_presentation"]
-                e.image = {
+                let d = {}
+                d.service_id = e["ID_service"]
+                d.name = e["service_name"]
+                d.presentation = e["service_presentation"]
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e["URI_image"]
-                delete e["ID_image"]
-                e.category = {
+                d.category = {
                     category_id: e["ID_category"],
                     name: e["category_name"]
                 }
-                delete e["ID_category"]
-                delete e["category_name"]
-                delete e["service_category"]
-                delete e["ID_service_img"]
-                return e;
+                return d;
             })
         })
 }
 
-function filter(dataset, text) {
+function filter_interval(data, limit, offset) {
+    let newData = new Array(0)
+    for (let i = offset; i < offset + limit && i < data.length; i++) {
+        newData.push(data[i])
+    }
+    return newData
+}
+
+function filter(dataset, limit, offset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
         let {URI_image} = dataset[i]
-        if (URI_image.includes(text))
+        if (URI_image.includes("icon"))
             newDataset.push(dataset[i])
     }
+    newDataset = filter_interval(newDataset, limit, offset)
     return newDataset
 }
 

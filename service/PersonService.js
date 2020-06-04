@@ -34,23 +34,24 @@ exports.peopleByRoleGET = function (category_id, limit, offset) {
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .innerJoin("Role", "Role.ID_role", "Person.ID_role")
-        .limit(limit).offset(offset)
         .then(data => {
-            data = filter(data)
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.person_id = e["ID_person"]
-                delete e["ID_person"]
-                e.image = {
+                let d = {}
+                d.name = e.name
+                d.surname = e.surname
+                d.person_id = e["ID_person"]
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e["URI_image"]
-                e.role = {
+                d.description = e.description
+                d.email = e.email
+                d.phone_number = e.phone_number
+                d.role = {
                     category_id: e["ID_role"],
                     name: e["role_name"]
                 }
-                delete e["ID_role"]
-                delete e["role_name"]
-                return e;
+                return d;
             })
         })
 }
@@ -65,29 +66,28 @@ exports.peopleByRoleGET = function (category_id, limit, offset) {
  **/
 exports.peopleGET = function (limit, offset) {
     return sqlDb("Person")
-        .limit(limit).offset(offset)
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .innerJoin("Role", "Role.ID_role", "Person.ID_role")
         .then(data => {
-            data = filter(data)
+            data = filter(data, limit, offset)
             return data.map(e => {
-                e.person_id = e["ID_person"]
-                delete e["ID_person"]
-                e.image = {
+                console.log(data)
+                let d = {}
+                d.name = e.name
+                d.surname = e.surname
+                d.person_id = e["ID_person"]
+                d.image = {
                     url: e["URI_image"]
                 }
-                delete e["URI_image"]
-                e.role = {
+                d.description = e.description
+                d.email = e.email
+                d.phone_number = e.phone_number
+                d.role = {
                     category_id: e["ID_role"],
                     name: e["role_name"]
                 }
-                delete e["ID_person_img"]
-                delete e["ID_image"]
-                delete e["ID_role"]
-                delete e["role_name"]
-                console.log(e)
-                return e;
+                return d;
             })
         })
 }
@@ -101,7 +101,7 @@ exports.peopleGET = function (limit, offset) {
  **/
 exports.peopleSpecificGET = function (personId) {
     return sqlDb("Person")
-        .where("Person.ID_person", personId)
+        .where("ID_person", personId)
         .leftJoin("Event", "Event.ID_contact_person", "Person.ID_person")
         .innerJoin("Role", "Person.ID_role", "Role.ID_role")
         .innerJoin("people_involved_in_services", "Person.ID_person", "people_involved_in_services.ID_Person_inv")
@@ -109,9 +109,10 @@ exports.peopleSpecificGET = function (personId) {
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .then(data => {
+            console.log(data)
             let jumbotron = search_back(data)
-            let services = filter_services(filter(data))
-            let events = filter_events(filter(data))
+            let services = filter_services(data)
+            let events = filter_events(data)
             let newJson = {
                 person_id: data[0]["ID_person"],
                 name: data[0]["name"],
@@ -133,13 +134,22 @@ exports.peopleSpecificGET = function (personId) {
 
 }
 
-function filter(dataset) {
+function filter_interval(data, limit, offset) {
+    let newData = new Array(0)
+    for (let i = offset; i < offset + limit && i < data.length; i++) {
+        newData.push(data[i])
+    }
+    return newData
+}
+
+function filter(dataset, limit, offset) {
     let newDataset = new Array(0);
     for (let i = 0; i < dataset.length; i++) {
         let {URI_image} = dataset[i]
         if (URI_image.includes("icon"))
             newDataset.push(dataset[i])
     }
+    newDataset = filter_interval(newDataset, limit, offset)
     return newDataset
 }
 

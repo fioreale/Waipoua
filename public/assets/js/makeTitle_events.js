@@ -177,7 +177,7 @@ function DataChange() {
         if (context === 3)
             passed_month = date.month
         if (context === 2)
-            passed_category = category.ID_category
+            passed_category = category.category_id
 
         currentRow.appendChild(fill("assets/" + image.url, name, event_id))
     }
@@ -185,10 +185,11 @@ function DataChange() {
     newEl.firstElementChild.setAttribute("id", "begin-events")
     document.getElementById("begin-events").parentElement.innerHTML = newEl.innerHTML
 
+
     if (context === 3) {
         clicks(null, passed_month, null, dataset.length)
     } else if (context === 2) {
-        clicks(passed_category, null, dataset.length)
+        clicks(passed_category, null, null, dataset.length)
     } else
         clicks(null, null, dataset.length, null)
 }

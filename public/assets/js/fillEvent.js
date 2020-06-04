@@ -310,22 +310,22 @@ function clicks_listener(category, month) {
     listen_next.onclick = function () {
         index_group = next
         if (events_by_category != null) {
-            fill(events_by_category[index_group].ID_event)
+            fill(events_by_category[index_group].event_id)
         } else if (events_by_month != null) {
-            fill(events_by_month[index_group].ID_event)
+            fill(events_by_month[index_group].event_id)
         } else {
-            fill(all_events[index_group].ID_event)
+            fill(all_events[index_group].event_id)
         }
     }
 
     listen_prev.onclick = function () {
         index_group = prev
         if (events_by_category != null) {
-            fill(events_by_category[index_group].ID_event)
+            fill(events_by_category[index_group].event_id)
         } else if (events_by_month != null) {
-            fill(events_by_month[index_group].ID_event)
+            fill(events_by_month[index_group].event_id)
         } else {
-            fill(all_events[index_group].ID_event)
+            fill(all_events[index_group].event_id)
         }
     }
 }
