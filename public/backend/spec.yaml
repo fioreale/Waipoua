@@ -7,7 +7,7 @@ info:
   termsOfService: "http://swagger.io/terms/"
   contact:
     email: "chiara.barbera@mail.polimi.it"
-host: "waipoua-association.herokuapp.com:8080"
+host: "waipoua-association.herokuapp.com"
 basePath: "/"
 tags:
   - name: "service"
@@ -17,8 +17,8 @@ tags:
   - name: "person"
     description: "Person that has joined the association"
 schemes:
-  - "http"
   - "https"
+  - "http"
 paths:
   /Events:
     get:
@@ -60,7 +60,7 @@ paths:
       parameters:
         - name: "eventId"
           in: "path"
-          description: "Id of the month"
+          description: "Id of the event"
           required: true
           type: "integer"
           format: "int64"

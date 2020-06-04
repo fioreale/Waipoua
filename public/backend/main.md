@@ -18,7 +18,7 @@ address](https://waipoua-association.herokuapp.com/).
 
 - Deliverable D2: the YAML or JSON file containing the specification
 of the app API can be found at [this
-address](https://waipoua-association.herokuapp.com//backend/spec.yaml).
+address](https://waipoua-association.herokuapp.com/backend/spec.yaml).
 
 - Deliverable D3: the SwaggerUI page of the same API is available at
 [this address](https://waipoua-association.herokuapp.com/backend/swaggerui).
@@ -35,12 +35,15 @@ give access to the instructors.
 
 ### Web Architecture
 
-Describe here, with a diagram, the components of your web application
-and how they interact. Highlight which parts belong to the application
-layer, data layer or presentation layer. How did you ensure that HTML is
-not rendered server side?
+![Web Application Components](UML_BackEnd.svg "Web Application Components")
 
-TODO: ALESSIO
+he HTML pages are not rendered on the server side since, like it's possible to see from the diagram, Javascript
+code
+handles the fetching of the resources.
+Such data are picked up from the server side, through the REST API, and then they dynamically fill the HTML pages
+with
+respect to the specific page that does the request.
+Moreover, each page manages its own dynamic content with its own javascript code.
 
 ### API
 
@@ -74,7 +77,7 @@ As above, category, images, events, and people refer to models that will be desc
 ### Data model
 We show here the ER diagram of our database. 
 
-![ER diagram](ER diagram -final.png "ER diagram")
+![ER diagram](ER_diagram.png "ER diagram")
 
 
 There is a 1:1 correspondance between the API models and the entities of services, events and people and images. The relationships are represented with references between the models of the API. The association and the donations, even if present in the database, are not access by the client and thus they are not represented in the API. Finally, the entities *role*, *service_category* and *event_category* are mapped to the model *category* in the API.
@@ -124,7 +127,12 @@ We did not search for existing APIs.
 
 - Chiara wanted to learn more about the front-end development in HTML and CSS and acquired competences in Bootstrap usage. Moreover, she learned a lot about REST APIs and how they are implemented, as she was very curious of this topic of which she often heard about.
 
-- **TODO: ALESSIO**
+- Alessio approached the web development for the first time so it's been an opportunity to learn many
+  programming languages like Javascript and the markup ones (HTML, CSS and the Bootstrap library as well). Also
+  for him it's been really challenging and very interesting at the same time the back-end development, discovering
+  a new way to intend the management
+  of data: how it's possible to exchange information between client and server. Alessio studied REST API
+  specifications which it's been essential to understand the behavior the website would have had.
 
 
 
