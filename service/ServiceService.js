@@ -84,6 +84,8 @@ exports.servicesByCategoryGET = function (categoryId, limit, offset) {
                     category_id: e["ID_category"],
                     name: e["category_name"]
                 }
+                d.people = []
+                d.events = []
                 return d;
             })
         })
@@ -116,6 +118,8 @@ exports.servicesGET = function (limit, offset) {
                     category_id: e["ID_category"],
                     name: e["category_name"]
                 }
+                d.people = []
+                d.events = []
                 return d;
             })
         })

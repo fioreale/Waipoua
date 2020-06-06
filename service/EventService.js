@@ -106,6 +106,8 @@ exports.eventsByCateogoryGET = function (categoryId, limit, offset) {
                     name: e["event_category_name"]
                 }
                 d.location = e.location
+                d.relativeTo = []
+                d.contact = {}
                 return d;
             })
         })
@@ -149,6 +151,8 @@ exports.eventsByMonthGET = function (month, limit, offset) {
                     name: e["event_category_name"]
                 }
                 d.location = e.location
+                d.relativeTo = []
+                d.contact = {}
                 return d;
             })
         })
@@ -192,6 +196,8 @@ exports.eventsGET = function (limit, offset) {
                     name: e["event_category_name"]
                 }
                 d.location = e.location
+                d.relativeTo = []
+                d.contact = {}
                 return d;
             })
         })

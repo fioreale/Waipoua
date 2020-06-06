@@ -51,6 +51,8 @@ exports.peopleByRoleGET = function (category_id, limit, offset) {
                     category_id: e["ID_role"],
                     name: e["role_name"]
                 }
+                d.services = []
+                d.events = []
                 return d;
             })
         })
@@ -87,6 +89,8 @@ exports.peopleGET = function (limit, offset) {
                     category_id: e["ID_role"],
                     name: e["role_name"]
                 }
+                d.services = []
+                d.events = []
                 return d;
             })
         })

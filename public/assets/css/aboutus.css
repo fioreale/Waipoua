@@ -46,19 +46,77 @@
     left: 3%;
 }
 
-@media (max-width: 1200px) {
-    .lead {
-        bottom: 45%;
+@media (max-width: 576px) {
+    blockquote h1 {
+        font-size: 0.8em!important;
     }
 }
 
-@media (min-width: 1200px) {
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
     .title {
-        font-size: 6em;
+        font-size: 3em;
     }
 
     .lead {
-        font-size: 2em;
+        font-size: 1em;
+        bottom: 45%;
+        line-height: 1.1em;
+    }
+
+    blockquote h1 {
+        font-size: 1em!important;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .title {
+        font-size: 3.5em;
+    }
+
+    .lead {
+        font-size: 1.1em;
+        bottom: 30%;
+        line-height: 1.15em;
+    }
+
+    blockquote h1 {
+        font-size: 1.5em!important;
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .title {
+        font-size: 4.5em;
+    }
+
+    .lead {
+        font-size: 1.3em;
+        bottom: 20%;
+        line-height: 1.2em;
+    }
+
+    blockquote h1 {
+        font-size: 2em!important;
+    }
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    .title {
+        font-size: 5em;
+    }
+
+    .lead {
+        font-size: 1.5em;
+        bottom: 10%;
+        line-height: 1.25em;
+    }
+
+    blockquote h1 {
+        font-size: 2.5em!important;
     }
 }
 

@@ -112,7 +112,7 @@ function DataChange() {
     for (let i = index; i < index + max; i++) {
         if (i % 3 === 0) {
             let newRow = document.createElement("div")
-            newRow.setAttribute("class", "d-flex flex-row bd-highlight mb-3 " +
+            newRow.setAttribute("class", "d-md-flex flex-row bd-highlight mb-md-3 " +
                 "justify-content-center");
             newEl.appendChild(newRow)
             currentRow = newRow
@@ -135,7 +135,7 @@ function DataChange() {
 
 function fill(image_url, name, person_id) {
     let newPiece = document.createElement("div")
-    newPiece.setAttribute("class", "p-2 bd-highlight")
+    newPiece.setAttribute("class", "p-md-2 bd-highlight")
     let newPiece_in = document.createElement("div")
     newPiece_in.setAttribute("class", "card");
     let newPiece_in_im = document.createElement("img")

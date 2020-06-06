@@ -151,7 +151,7 @@ function fill(service_id) {
             }
             if (events.length === 0) {
                 let newDiv = document.createElement("div");
-                newDiv.setAttribute("class", "p-2 bd-highlight");
+                newDiv.setAttribute("class", "p-md-2 bd-highlight");
                 let newA = document.createElement("p");
                 newA.setAttribute("class", " display-4 content-contact");
                 newA.innerText = "There is no associated event.";
