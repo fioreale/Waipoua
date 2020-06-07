@@ -11,13 +11,12 @@
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/images.css">
     <link rel="stylesheet" href="assets/css/jumbotron.css">
-    <link rel="stylesheet" href="assets/css/paragraphs.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/animation.css">
     <link rel="stylesheet" href="assets/css/contacts.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <!--NavBar-->
@@ -163,8 +162,33 @@
         </div>
         <div id="fillPage"></div>
     </div>
-</div>
 
+    <div class="container-fluid">
+        <div class="d-md-flex bd-highlight mb-md-5 social">
+            <div class="p-md-2 bd-highlight align-self-md-center">
+                <p>
+                    © 2020 Waipoua Association. All Rights Reserved.
+                </p>
+            </div>
+            <div class="ml-md-auto p-md-2 bd-highlight">
+                <a href="#" class="fa fa-facebook"></a>
+            </div>
+            <div class="ml-md-1 p-md-2 bd-highlight">
+                <a href="#" class="fa fa-twitter"></a>
+            </div>
+            <div class="ml-md-1 p-md-2 bd-highlight">
+                <a href="#" class="fa fa-youtube"></a>
+            </div>
+            <div class="ml-md-1 p-md-2 bd-highlight">
+                <a href="#" class="fa fa-instagram"></a>
+            </div>
+            <div class="ml-md-1 p-md-2 bd-highlight">
+                <a href="#" class="fa fa-reddit"></a>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -182,7 +206,11 @@
 </script>
 <script>
     let form = document.getElementById("ContactForm");
-    function handleForm(event) { event.preventDefault(); }
+
+    function handleForm(event) {
+        event.preventDefault();
+    }
+
     form.addEventListener('submit', handleForm);
 </script>
 </body>
