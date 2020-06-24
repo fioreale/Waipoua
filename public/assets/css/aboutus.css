@@ -47,14 +47,19 @@
 }
 
 @media (max-width: 576px) {
+    .subtitle {
+        font-size: 2.5em;
+    }
+
     blockquote h1 {
-        font-size: 0.8em!important;
+        font-size: 1em!important;
+        margin-top: 1em;
     }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
-    .title {
+    .title,.subtitle {
         font-size: 3em;
     }
 
@@ -65,13 +70,13 @@
     }
 
     blockquote h1 {
-        font-size: 1em!important;
+        font-size: 1.3em!important;
     }
 }
 
 /*// Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
-    .title {
+    .title,.subtitle {
         font-size: 3.5em;
     }
 
@@ -88,7 +93,7 @@
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
-    .title {
+    .title,.subtitle {
         font-size: 4.5em;
     }
 
@@ -105,7 +110,7 @@
 
 /*// Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-    .title {
+    .title,.subtitle {
         font-size: 5em;
     }
 

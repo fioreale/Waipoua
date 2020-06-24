@@ -1,7 +1,5 @@
 .home-title {
-
     font-weight: bold;
-    font-size: 2em;
 }
 
 .banners {
@@ -36,9 +34,7 @@
     min-width: 6em;
     bottom: 0;
     font-weight: bold;
-    -webkit-transform: translateY(-20%);
-    -ms-transform: translateY(-20%);
-    transform: translateY(-20%);
+    transform: translate(-50%, -20%);
 }
 
 .subtitle {
@@ -51,7 +47,13 @@
     margin-bottom: 0.7em;
 }
 
-@media (max-width: 776px) {
+@media (max-width: 576px) {
+    .img-fluid {
+        max-width: 200%;
+    }
+    .home-title{
+        font-size: 2.5em;
+    }
     .btn {
         width: 10em;
         font-size: 0.4em;
@@ -66,17 +68,34 @@
     }
 }
 
+/*// Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
-
-    .btn {
-        -webkit-transform: translate(-50%, -20%);
-        -ms-transform: translate(-50%, -20%);
-        transform: translate(-50%, -20%);
+    .home-title {
+        font-size: 3em;
     }
+}
 
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .home-title {
+        font-size: 3.5em;
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .home-title {
+        font-size: 4.5em;
+    }
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
     .home-title {
         font-size: 5em;
     }
 }
+
+
 
 
