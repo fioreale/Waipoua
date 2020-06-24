@@ -6,8 +6,14 @@
     font-size: 1.3em;
 }
 
+@media (max-width: 576px) {
+    .btn {
+        margin-bottom: 1em;
+    }
+}
+
 /*responsive screen */
-@media (min-width: 800px) {
+@media (min-width: 768px) {
     .btn {
         padding-left: 3em;
         padding-right: 3em;
