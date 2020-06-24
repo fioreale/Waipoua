@@ -165,26 +165,26 @@
             <div class="col-md-10">
                 <div class="card border-success mb-md-3">
                     <div class="card-header">
-                        <a href="./all_events/event/?offset=0&id_event=10:1" class="stretched-link link-color">Danger is in the air</a>
+                        <a href="#" class="stretched-link link-color">Waipuoa, that's our mission!</a>
                     </div>
                     <div class="card-body text-success">
-                        <p class="card-text next-events-adj link-color">What are fine powders? What are their dangers
-                            and how can we reduce them? Come at our conference to receive an answer to this and lots of
-                            other questions!</p>
+                        <p class="card-text next-events-adj link-color">Let's meet us and discover our mission, our love
+                            for
+                            the planet and how we help
+                            it!</p>
                     </div>
                 </div>
             </div>
             <div class="w-100"></div>
             <div class="col-md-10">
                 <div class="card border-success mb-md-3">
-                    <div class="card-header"><a href="./all_events/event/?offset=0&id_event=11:1"
-                                                class="stretched-link link-color">Clean up! Lab for kids
-                    </a></div>
+                    <div class="card-header"><a href="#"
+                                                class="stretched-link link-color">It's hard to breathe!</a></div>
                     <div class="card-body text-success">
-                        <p class="card-text next-events-adj link-color">In this event, we are organizing labs for kids
-                            to teach them to do separate collection! They will play together in teams and at the same
-                            time they will learn how to respect the nature. Are you in search of a different weekend for
-                            your children? Come to join us!</p>
+                        <p class="card-text next-events-adj link-color">Air pollution is increasing over the last years,
+                            and
+                            it's not acceptable! Come and
+                            discover our proposals and goals for this critical and fundamental issue.</p>
                     </div>
                 </div>
             </div>
@@ -202,5 +202,51 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script>
+    function filter(dataset) {
+        let newDataset = new Array(0);
+        for (let i = 0; i < dataset.length; i++) {
+            let {image} = dataset[i]
+            if (image.url.includes("icon"))
+                newDataset.push(dataset[i])
+        }
+        return newDataset
+    }
+
+    fetch("Events/?limit=1000")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (json) {
+            json = filter(json)
+            let events = document.getElementsByClassName("card border-success mb-md-3")
+
+            for (let i = 0; i < 2; i++) {
+                let newA = document.createElement("a")
+                newA.setAttribute("class", "stretched-link link-color")
+                newA.setAttribute("href", "#")
+                newA.innerText = json[i]["name"]
+                events[i].firstElementChild.innerHTML = ""
+                events[i].firstElementChild.appendChild(newA)
+                let newP = document.createElement("p")
+                newP.setAttribute("class", "card-text next-events-adj link-color")
+                newP.innerText = json[i]["presentation"]
+                events[i].lastElementChild.innerHTML = ""
+                events[i].lastElementChild.appendChild(newP)
+            }
+            listeners(events, json)
+        })
+
+    function listeners(el, json) {
+        el[0].onclick = function () {
+            let queryString = "?offset=0" + "&id_event=" + json[0]["event_id"] + ":1";
+            window.location.href = "all_events/event/" + queryString;
+        }
+        el[1].onclick = function () {
+            let queryString = "?offset=0" + "&id_event=" + json[1]["event_id"] + ":1";
+            window.location.href = "all_events/event/" + queryString;
+        }
+    }
+</script>
 </body>
 </html>
