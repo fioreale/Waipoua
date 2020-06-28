@@ -127,11 +127,10 @@ We did not search for existing APIs.
 
 - Chiara wanted to learn more about the front-end development in HTML and CSS and acquired competences in Bootstrap usage. Moreover, she learned a lot about REST APIs and how they are implemented, as she was very curious of this topic of which she often heard about.
 
-- Alessio approached the web development for the first time so it's been an opportunity to learn many
-  programming languages like Javascript and the markup ones (HTML, CSS and the Bootstrap library as well). Also
-  for him it's been really challenging and very interesting at the same time the back-end development, discovering
-  a new way to intend the management
-  of data: how it's possible to exchange information between client and server. Alessio studied REST API
+- Alessio approached the web development for the first time, so it's been an opportunity to learn
+  to program languages like Javascript and markup ones (HTML, CSS and the Bootstrap library as well). Also,
+  for him it's been really challenging, and interesting at the same time, the back-end development:
+  how it's possible to exchange information between a client and server. Alessio studied REST API
   specifications which it's been essential to understand the behavior the website would have had.
 
 
