@@ -44,13 +44,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   console.log("entering the Data Layer Setup...")
   setupDataLayer()
       .then(() => {
-        console.log("...setupDataLayer Done correctly!")
         http.createServer(app).listen(serverPort, function () {
           console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
           console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
         });
       })
       .catch(()=>{
-        console.log("Initialization of Data Layer not succeeded!")
+        console.log("Creation of server not succeeded!")
       });
 });
