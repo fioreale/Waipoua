@@ -74,7 +74,6 @@ exports.peopleGET = function (limit, offset) {
         .then(data => {
             data = filter(data, limit, offset)
             return data.map(e => {
-                console.log(data)
                 let d = {}
                 d.name = e.name
                 d.surname = e.surname
@@ -113,7 +112,6 @@ exports.peopleSpecificGET = function (personId) {
         .innerJoin("person_images", "Person.ID_person", "person_images.ID_person_img")
         .innerJoin("Image", "person_images.ID_image", "Image.ID_image")
         .then(data => {
-            console.log(data)
             let jumbotron = search_back(data)
             let services = filter_services(data)
             let events = filter_events(data)
@@ -132,7 +130,6 @@ exports.peopleSpecificGET = function (personId) {
                 services: services,
                 events: events,
             }
-            console.log(newJson)
             return newJson
         })
 
